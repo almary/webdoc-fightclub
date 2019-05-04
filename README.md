@@ -2,20 +2,31 @@
 
 URL du site : http://votre-url-ici.com
 
-- Voici le cahier des charges que doit respecter **au minimum** le projet.
-- Tout ce qui n'est pas précisé relève de vos choix personnels.
+### Groupe
+
+- Prénom & Nom
+- Prénom & Nom
 
 ## Prologue
 
+- Voici le cahier des charges que doit respecter **au minimum** le projet.
+- Tout ce qui n'est pas précisé relève de vos choix personnels.
+
 ### Git
 
-1. Forkez ce repository et renommez-le selon la nommenclature `w1p2021-hero-01`, où le dernier chiffre est votre numéro de groupe.
+1. Forkez ce repository et renommez-le selon la nommenclature `w1p2021-hero-amsellem-calou`, en remplaçant les noms par les vôtres.
 2. Utilisez [netlify](https://www.netlify.com/) ou le service de votre choix pour mettre votre projet en ligne.
 3. Remplacez la fausse URL en haut de ce fichier par l'URL de votre projet.
+4. Renseignez les membres de votre groupe en haut du fichier.
 
 ### Environnement technique
 
 Le projet doit être construit avec le framework [VueJS](https://vuejs.org/).
+
+#### Plugins conseillés
+
+- [Vue.js devtools pour Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Vue.js devtools pour Firefox](https://addons.mozilla.org/fr/firefox/addon/vue-js-devtools/)
 
 ### Structure des données
 
@@ -41,7 +52,7 @@ Avant d'écrire votre histoire, commencez par un jeu de données de test constit
 - Chaque phase pourra offrir un ou plusieurs choix (sans se limiter à deux).
 - Votre `json` s'enrichira de nouvelles informations pour chaque phase (texte(s), image(s)...).
 
-## Chapitre 1 : Routing & transitions
+## Semaine 1 : Routing & transitions
 
 ### Routes
 
@@ -55,7 +66,12 @@ Le projet doit contenir les pages suivantes :
 | `/win`       | Page de victoire            |                              | `/`                              |
 | `/lose`      | Page d'échec                |                              | `/`                              |
 
-Commencez par créer des pages constituées d'un simple texte de test. Elles se construiront par la suite.
+- Commencez par créer des pages constituées d'un simple texte de test. Elles se construiront par la suite.
+- Lorsque l'utilisateur recharge le navigateur, la page courante doit être restaurée correctement. Si je suis sur `game/3` et que je rafraîchi, je suis toujours sur `game/3`.
+
+#### La page /character
+
+Vide pour l'instant, sa logique sera approfondie au cours des semaines suivantes.
 
 #### La page /game/:id
 
