@@ -1,0 +1,31 @@
+{
+  "name": "hero",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "parcel app/index.html",
+    "build": "parcel build app/index.html"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/bcalou/w1p2021-hero-00#readme",
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.20.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  },
+  "dependencies": {
+    "home": "^1.0.1",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-router": "^3.0.6"
+  }
+}
