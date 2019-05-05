@@ -31,8 +31,7 @@ Le projet doit être construit avec le framework [VueJS](https://vuejs.org/).
 
 ### Structure des données
 
-- Le projet doit contenir un fichier `data.json` contenant l'intégralité des données nécessaires à la génération du jeu.
-- La méthode JavaScript `fetch` sera utilisée pour récupérer le fichier.
+Le projet doit contenir un fichier `data.json` contenant l'intégralité des données nécessaires à la génération du jeu.
 
 #### Données de test
 
