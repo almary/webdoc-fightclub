@@ -6,7 +6,8 @@
   },
   "scripts": {
     "dev": "parcel app/index.html",
-    "build": "parcel build app/index.html"
+    "build": "parcel build app/index.html",
+    "lint": "esw . --ext .js,.vue --watch --color"
   },
   "repository": {
     "type": "git"
@@ -15,6 +16,10 @@
   "homepage": "https://github.com/bcalou/w1p2021-hero-00#readme",
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
+    "babel-eslint": "^8.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.1.0",
+    "eslint-watch": "^5.1.2",
     "parcel-bundler": "^1.12.3",
     "sass": "^1.20.1",
     "vue-template-compiler": "^2.6.10"
@@ -23,7 +28,6 @@
     "vue": "./node_modules/vue/dist/vue.common.js"
   },
   "dependencies": {
-    "home": "^1.0.1",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3",
     "vue-router": "^3.0.6"

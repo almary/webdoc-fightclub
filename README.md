@@ -27,6 +27,7 @@ Le projet doit être construit avec le framework [VueJS](https://vuejs.org/).
 
 - [Vue.js devtools pour Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 - [Vue.js devtools pour Firefox](https://addons.mozilla.org/fr/firefox/addon/vue-js-devtools/)
+- [Plugin eslint pour VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 ### Structure des données
 
