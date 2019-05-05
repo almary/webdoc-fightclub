@@ -101,3 +101,7 @@ Voici un exemple de trame :
   - Phase 3
 - _Transition du jeu vers le hors-jeu_
   - Page de victoire ou d'échec
+
+## Semaine 2 : À venir
+
+Proposez vos idées de fonctionnalités pour la semaine 2 et votez pour celles des autres [sur ce sondage collaboratif](https://poll.ly/#/Pw7KgAnK).
