@@ -23,6 +23,12 @@ URL du site : http://votre-url-ici.com
 
 Le projet doit être construit avec le framework [VueJS](https://vuejs.org/).
 
+### Lancer le projet
+
+Se mettre dans un terminal dans le répertoire du projet forké, puis :
+* `npm i`
+* `npm run dev`
+
 #### Plugins conseillés
 
 - [Vue.js devtools pour Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
