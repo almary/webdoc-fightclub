@@ -14,14 +14,20 @@
     name: "Homme",
     data() {
       return {
-        duration: 500,
-        show: 0
+        duration: 1000,
+        show: 0,
+        totalSlides: 10
       };
     },
 
     methods: {
       scroll: function(e) {
+        // scroll down
         if (e.deltaY > 50) {
+          //max
+          if (this.show >= this.totalSlides) {
+            return;
+          }
           //detect scroll (-50 : sensitivity)
           console.log("scrolling down");
           window.removeEventListener("wheel", this.scroll);
@@ -35,19 +41,22 @@
             window.addEventListener("wheel", this.scroll);
           }, this.duration);
         }
+        // scroll up
         if (e.deltaY < -50) {
+          // min
+          if (this.show <= 0) {
+            return;
+          }
           //detect scroll (-50 : sensitivity)
           console.log("scrolling up");
           window.removeEventListener("wheel", this.scroll);
 
           //reset show to trigger leaving animation
-          this.memo = this.show;
-          this.show = 0;
+          this.show = this.show - 0.5;
 
           //timeout to delay animation
           setTimeout(() => {
-            this.show = this.memo;
-            this.show--;
+            this.show = this.show - 0.5;
             window.addEventListener("wheel", this.scroll);
           }, this.duration);
         }
