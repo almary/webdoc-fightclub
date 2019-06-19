@@ -29,7 +29,7 @@
 
 <script>
   export default {
-    props: ["show"]
+    props: ["show"],
   };
 </script>
 

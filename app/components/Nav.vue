@@ -6,12 +6,19 @@
       <router-link to="/Chaos"><div class="chaos" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Chaos', otherTabs: this.$route.path !== '/Chaos'}">Le chaos</div></router-link>
     </div>
     <div class="bar" v-bind:style="styleBar"></div>
+    <button v-on:click="console">ok</button>
   </div>
 </template>
 
 <script>
   export default {
     props: ["show"],
+
+    methods: {
+      console: function() {
+        console.log(this.show);
+     },
+    },
 
     computed: {
       styleTabs: function() {

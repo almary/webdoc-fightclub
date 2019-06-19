@@ -2,7 +2,7 @@
   <div class="wrapper">
     <h1>Homme</h1>
     <SlidesHomme :show="show"></SlidesHomme>
-    <Nav></Nav>
+    <Nav :show="show"></Nav>
   </div>
 </template>
 
@@ -15,7 +15,7 @@
     data() {
       return {
         duration: 500,
-        show: 0,
+        show: 0
       };
     },
 
@@ -63,7 +63,7 @@
 
     components: {
       SlidesHomme,
-      Nav,
+      Nav
     }
   };
 </script>
