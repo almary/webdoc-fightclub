@@ -1,13 +1,16 @@
 <template>
-  <div class="big-header">
+  <div class="wrapper">
     <h1>Regles</h1>
-    <br />
-    <router-link class="button" to="/">Go to Home</router-link>
+    <Nav></Nav>
   </div>
 </template>
 
 <script>
-export default {
+  import Nav from "./Nav.vue";
 
-};
+  export default {
+    components: {
+      Nav
+    }
+  };
 </script>
