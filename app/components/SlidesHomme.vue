@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <div id="demo">
+      <div>show : {{ show }}</div>
 
       <div class="wrapper">
         <transition name="bounce">

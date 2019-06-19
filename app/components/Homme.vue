@@ -31,6 +31,23 @@
         setTimeout(() => {
            this.show = this.memo;
             this.show++;
+            window.addEventListener("wheel", this.scroll);
+        }, 1000);
+        }
+        if (e.deltaY < -50) {
+        //detect scroll (-50 : sensitivity)
+        console.log("scrolling up");
+        window.removeEventListener("wheel", this.scroll);
+
+        //reset show to trigger leaving animation
+          this.memo = this.show;
+          this.show = 0;
+
+        //timeout to delay animation
+        setTimeout(() => {
+           this.show = this.memo;
+            this.show--;
+            window.addEventListener("wheel", this.scroll);
         }, 1000);
         }
       },
