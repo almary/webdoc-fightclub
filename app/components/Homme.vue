@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <h1>Homme</h1>
     <SlidesHomme :show="show"></SlidesHomme>
     <Nav :show="show"></Nav>
   </div>

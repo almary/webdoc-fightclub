@@ -1,4 +1,77 @@
-@import 'reset';
+@import "reset";
+
+@font-face {
+  font-family: "Fight";
+  src: url("../fonts/fightt3_-webfont.woff2") format("woff2"),
+    url("../fonts/fightt3_-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro";
+  src: url("../fonts/UniversNextPro-Thin.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro Ext";
+  src: url("../fonts/UniversNextPro-LightExt.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-LightExt.woff") format("woff");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro Light Cond";
+  src: url("../fonts/UniversNextPro-BoldCond.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-BoldCond.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro Ext";
+  src: url("../fonts/UniversNextPro-BoldExt.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-BoldExt.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro";
+  src: url("../fonts/UniversNextPro-Bold.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro";
+  src: url("../fonts/UniversNextPro-Regular.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro Light Cond";
+  src: url("../fonts/UniversNextPro-LightCond.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-LightCond.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Univers Next Pro Ext";
+  src: url("../fonts/UniversNextPro-Ext.woff2") format("woff2"),
+    url("../fonts/UniversNextPro-Ext.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 * {
   box-sizing: border-box;
@@ -6,7 +79,38 @@
 
 body {
   overflow: hidden;
+  font-family: 'Univers Next Pro', 'sans-serif';
+  color: #EDEDED
 }
 
+a {
+  text-decoration: none;
+}
+
+.wrapper--themes {
+  background: black;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  font-family: "Fight";
+  font-size: 120px;
+  color: #ededed;
+  height: 80px;
+}
+
+h2 {
+  font-weight: 100;
+  font-size: 25px;
+}
+
+.slide {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  font-weight: 100;
+  line-height: 230%;
+}
 
 //version mobile....

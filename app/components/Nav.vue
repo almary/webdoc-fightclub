@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :class="{navClosed: show > 0}">
     <div class="bar" v-bind:style="styleBar"></div>
     <div class="wrapper--theme">
       <router-link to="/Homme"><div class="homme" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Homme', otherTabs: this.$route.path !== '/Homme'}">L'Homme</div></router-link>
@@ -19,18 +19,16 @@
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "33vw",
+          width: "33.3vw",
           height: "50px",
-          border: "0 1px 0 1px",
-          bordeStyle: "solid",
         };
       },
 
       styleBar: function() {
         return {
-          height: "10px",
-          background: "orange",
-          width: Math.ceil(this.show) * 10 + "%",
+          height: "5px",
+          background: "#9F221D",
+          width: Math.round(this.show) * 10 + "%",
           transition: "all 1.5s ease"
         };
       }
@@ -42,6 +40,11 @@
   .wrapper {
     position: absolute;
     bottom: 0;
+    transition: transform 0.5s;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .wrapper--theme {
@@ -51,11 +54,25 @@
     justify-content: space-between;
   }
 
+  .navClosed {
+    transform: translateY(50px);
+  }
+
+  .navClosed:hover {
+    transform: none;
+  }
+
   .selectedTab {
-    background: orange;
+    background: #F0F0F0;
+    color: #9F221D;
+    font-family: 'Univers Next Pro Ext';
+    font-weight: bold;
   }
 
   .otherTabs {
-    background: darkgrey;
+    background: #111111;
+    color: #F3F3F3;
+    font-family: 'Univers Next Pro Ext';
+    font-weight: normal;
   }
 </style>
