@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
+    <div class="bar" v-bind:style="styleBar"></div>
     <div class="wrapper--theme">
       <router-link to="/Homme"><div class="homme" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Homme', otherTabs: this.$route.path !== '/Homme'}">L'Homme</div></router-link>
       <router-link to="/Regles"> <div class="regles" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Regles', otherTabs: this.$route.path !== '/Regles'}">Les règles</div></router-link>
       <router-link to="/Chaos"><div class="chaos" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Chaos', otherTabs: this.$route.path !== '/Chaos'}">Le chaos</div></router-link>
     </div>
-    <div class="bar" v-bind:style="styleBar"></div>
   </div>
 </template>
 

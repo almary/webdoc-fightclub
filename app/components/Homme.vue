@@ -30,17 +30,9 @@
           }
           //detect scroll (-50 : sensitivity)
           console.log("scrolling down");
-          window.removeEventListener("wheel", this.scroll);
-
-          //reset show to trigger leaving animation
-          this.show = this.show + 0.5;
-
-          //timeout to delay animation
-          setTimeout(() => {
-            this.show = this.show + 0.5;
-            window.addEventListener("wheel", this.scroll);
-          }, this.duration);
+          this.next();
         }
+
         // scroll up
         if (e.deltaY < -50) {
           // min
@@ -49,25 +41,80 @@
           }
           //detect scroll (-50 : sensitivity)
           console.log("scrolling up");
-          window.removeEventListener("wheel", this.scroll);
-
-          //reset show to trigger leaving animation
-          this.show = this.show - 0.5;
-
-          //timeout to delay animation
-          setTimeout(() => {
-            this.show = this.show - 0.5;
-            window.addEventListener("wheel", this.scroll);
-          }, this.duration);
+          this.prev();
         }
+      },
+
+      scrollFirefox: function(e) {
+        var y = e.detail;
+        if (e.detail > 2) {
+          this.next();
+        }
+        if (e.detail < -2) {
+          this.prev();
+        }
+      },
+
+      next: function() {
+        this.removeScrollListener();
+
+        //reset show to trigger leaving animation
+        this.show = this.show + 0.5;
+
+        //timeout to delay animation
+        setTimeout(() => {
+          this.show = this.show + 0.5;
+          setTimeout(() => {
+            this.addScrollListener();
+          }, this.duration);
+        }, this.duration);
+      },
+
+      prev: function() {
+        this.removeScrollListener();
+
+        //reset show to trigger leaving animation
+        this.show = this.show - 0.5;
+
+        //timeout to delay animation
+        setTimeout(() => {
+          this.show = this.show - 0.5;
+          setTimeout(() => {
+            this.addScrollListener();
+          }, this.duration);
+        }, this.duration);
+      },
+
+      addScrollListener: function() {
+        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+          window.addEventListener("wheel", this.scroll, { passive: true });
+        } else {
+          window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+            passive: true
+          });
+        }
+      },
+
+      removeScrollListener: function() {
+        window.removeEventListener("wheel", this.scroll);
+        window.removeEventListener("DOMMouseScroll", this.scrollFirefox);
       }
     },
 
     created() {
-      window.addEventListener("wheel", this.scroll);
+      if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+        window.addEventListener("wheel", this.scroll, { passive: true });
+      } else {
+        window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+          passive: true
+        });
+      }
     },
     destroyed() {
       window.addEventListener("wheel", this.scroll);
+      window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+        passive: true
+      });
     },
 
     components: {
