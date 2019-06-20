@@ -23,7 +23,7 @@
       </transition>
     </div>
     <div class="slide slide--narrator">
-      <transition name="fade">
+      <transition name="bobine">
         <img
           preload
           class="narrator--pic"
@@ -261,9 +261,21 @@
     transform: translateY(20px);
   }
 
-  @keyframes bobine {
+  .bobine-enter-active {
+    transition: all 1s;
+  }
+  .bobine-leave-active {
+    transition: all 1s;
+  }
+  .bobine-enter {
+    transform: translateY(200vh);
+  }
+  .bobine-leave-to {
+    transform: translateY(-200vh);
+  }
+
+  /* @keyframes bobine {
   0% {
-    transform: none;
   }
 
   30% {
@@ -284,7 +296,7 @@
 
   80% {
     transform: translateY(400px);
-  }
+  } */
 
-}
+/* } */
 </style>

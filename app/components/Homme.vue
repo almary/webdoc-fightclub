@@ -13,7 +13,7 @@
     name: "Homme",
     data() {
       return {
-        duration: 1000,
+        duration: 500,
         show: 0,
         totalSlides: 10
       };
