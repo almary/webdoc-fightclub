@@ -35,7 +35,7 @@
     <div class="slide slide--monotone">
       <div class="monotone__background">
         <transition name="fade">
-          <img src="../assets/img/mosaique.png" alt="mosaique ambiance monotone" v-if="show == 4">
+          <img preload src="../assets/img/mosaique.png" alt="mosaique ambiance monotone" v-if="show == 4">
         </transition>
       </div>
       <div class="monotone__content">
@@ -170,7 +170,6 @@
   }
 
   .content__book {
-    transform: translateY(30px);
     transition: transform 0.5s;
   }
 
