@@ -38,6 +38,7 @@
 
 <style scoped>
   .wrapper {
+    z-index: 2;
     position: absolute;
     bottom: 0;
     transition: transform 0.5s;

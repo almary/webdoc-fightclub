@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper wrapper--themes">
-      <div style="position: absolute">{{ show }}</div>
+    <div style="position: absolute">{{ show }}</div>
     <div class="slide slide--title">
       <transition name="fade">
         <h1 v-if="show == 0">L'Homme</h1>
@@ -15,51 +15,103 @@
       </transition>
     </div>
     <div class="slide slide--intro">
-      <transition name="fade">
-        <div class="intro" v-if="show == 2">Fight Club dresse le portrait de la fin d'un siècle qui agonise, par le biais d'un narrateur désabusé.</div>
+      <transition name="text">
+        <div class="intro" v-if="show == 2">
+          Fight Club dresse le portrait de la fin d'un siècle qui agonise, par
+          le biais d'un narrateur désabusé.
+        </div>
       </transition>
     </div>
     <div class="slide slide--narrator">
       <transition name="fade">
-        <img preload class="narrator--pic" v-if="show == 3" src="../assets/img/bobine.png" alt="image illustration edward norton">
+        <img
+          preload
+          class="narrator--pic"
+          v-if="show == 3"
+          src="../assets/img/bobine.png"
+          alt="image illustration edward norton"
+        />
       </transition>
-        <div class="narrator--textwrapper">
-          <transition name="fade">
-            <div class="narrator--details" v-if="show == 3">Le narrateur : un cadre moyen, célibataire, sans aucune passion et qui souffre d'insomnie.</div>
-          </transition>
-          <transition name="fade">
-            <div class="narrator--details" v-if="show == 3">Prédisposé à vouloir changer.</div>
-          </transition>
-       </div>
+      <div class="narrator--textwrapper">
+        <transition name="text">
+          <div class="narrator--details" v-if="show == 3">
+            Le narrateur : un cadre moyen, célibataire, sans aucune passion et
+            qui souffre d'insomnie.
+          </div>
+        </transition>
+        <transition name="text">
+          <div class="narrator--details" v-if="show == 3">
+            Prédisposé à vouloir changer.
+          </div>
+        </transition>
+      </div>
     </div>
     <div class="slide slide--monotone">
       <div class="monotone__background">
         <transition name="fade">
-          <img preload src="../assets/img/mosaique.png" alt="mosaique ambiance monotone" v-if="show == 4">
+          <img
+            preload
+            src="../assets/img/mosaique.png"
+            alt="mosaique ambiance monotone"
+            v-if="show == 4"
+          />
         </transition>
       </div>
       <div class="monotone__content">
         <div class="content__title">
-          <div class="content__title--first" v-if="show == 4">
-            Un environnement
-          </div>
-          <div class="content__title--second" v-if="show == 4">
-            monotone
-          </div>
+          <transition name="fade">
+            <div class="content__title--first" v-if="show == 4">
+              Un environnement
+            </div>
+          </transition>
+          <transition name="fade">
+            <div class="content__title--second" v-if="show == 4">
+              monotone
+            </div>
+          </transition>
         </div>
         <div class="content__details">
-          <div class="content__details--first" v-if="show == 4">
-              Son cadre de vie est baigné dans des tons ternes qui font échos à la platitude de son quotidien.
-          </div>
-          <div class="content__details--second" v-if="show == 4">
+          <transition name="fade">
+            <div class="content__details--first" v-if="show == 4">
+              Son cadre de vie est baigné dans des tons ternes qui font échos à
+              la platitude de son quotidien.
+            </div>
+          </transition>
+          <transition name="fade">
+            <div class="content__details--second" v-if="show == 4">
               Un quotidien sans passion, voué à la lassitude.
-          </div>
+            </div>
+          </transition>
         </div>
-        <div class="content__book">
-          <img src="../assets/img/book.png" alt="image d'extrait du livre" v-if="show == 4">
+        <!-- add la class pour pouvoir hover au premier plan -->
+        <div class="content__book" :class="{firstPlan: show == 4}">
+          <transition name="fade">
+            <img
+              src="../assets/img/book.png"
+              alt="image d'extrait du livre"
+              v-if="show == 4"
+            />
+          </transition>
         </div>
       </div>
     </div>
+    <div class="slide slide--therapie">
+      <div class="therapie__background"></div>
+      <div class="therapie__content">
+        <div class="therapie__content--title" v-if="show == 5">
+          Les thérapies de groupe
+        </div>
+        <div class="therapie__content--details" v-if="show == 5">
+          Le narrateur cherche d’une certaine façon un contact pour le sortir de
+          sa vie morose. Il relativise sur sa vie et sa condition.
+        </div>
+      </div>
+    </div>
+    <img
+      src="../assets/img/therapie-extrait.png"
+      alt="extrait du livre"
+      v-if="show == 5"
+    />
   </div>
 </template>
 
@@ -74,6 +126,10 @@
 </script>
 
 <style scoped>
+  .firstPlan {
+    z-index: 1;
+  }
+
   .slide--title {
     display: flex;
     flex-direction: column;
@@ -104,6 +160,7 @@
 
   .narrator--pic {
     width: 40vw;
+    animation: bobine 5s;
   }
 
   .narrator--textwrapper {
@@ -144,7 +201,8 @@
     width: 390px;
   }
 
-  .content__title, .content__details {
+  .content__title,
+  .content__details {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,8 +217,9 @@
     line-height: 130%;
   }
 
-  .content__title--first, .content__title--second {
-    font-family: 'Univers Next Pro Ext', 'sans-serif';
+  .content__title--first,
+  .content__title--second {
+    font-family: "Univers Next Pro Ext", "sans-serif";
     font-weight: bold;
     font-size: 24px;
   }
@@ -177,6 +236,11 @@
     transform: translateY(-200px);
   }
 
+  .therapie__background {
+    background-image: url("../assets/img/therapies.jpg");
+  }
+
+  /* ANIMS */
 
   .fade-enter-active,
   .fade-leave-active {
@@ -186,4 +250,41 @@
   .fade-leave-to {
     opacity: 0;
   }
+
+  .text-enter-active,
+  .text-leave-active {
+    transition: all 0.5s;
+  }
+  .text-enter,
+  .text-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes bobine {
+  0% {
+    transform: none;
+  }
+
+  30% {
+    transform: translateY(50px);
+  }
+
+  50% {
+    transform: translateY(40px);
+  }
+
+  60% {
+    transform: translateY(300px);
+  }
+
+  70% {
+    transform: translateY(100px);
+  }
+
+  80% {
+    transform: translateY(400px);
+  }
+
+}
 </style>
