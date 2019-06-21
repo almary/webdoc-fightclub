@@ -8,7 +8,7 @@
     </div>
     <div class="slide slide--title">
       <transition name="fade">
-        <h1 v-if="show == 1">L'Homme</h1>
+        <h1 v-if="show == 0">L'Homme</h1>
       </transition>
       <transition name="fade">
         <h2 v-if="show == 1">Un homme perdu dans une société monotone</h2>

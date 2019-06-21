@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :class="{navClosed: show > 0}">
+  <div class="wrapper" :class="{navClosed: show > 0, navDetection: show == 4}">
     <div class="bar" v-bind:style="styleBar"></div>
     <div class="wrapper--theme">
       <router-link to="/Homme"><div class="homme" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Homme', otherTabs: this.$route.path !== '/Homme'}">L'Homme</div></router-link>
@@ -61,6 +61,10 @@
 
   .navClosed:hover {
     transform: none;
+  }
+
+  .navDetection {
+    height: 70px;
   }
 
   .selectedTab {
