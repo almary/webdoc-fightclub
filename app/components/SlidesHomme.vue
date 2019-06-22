@@ -94,7 +94,7 @@
       <video
         v-if="show == 5"
         class="therapie__background"
-        src="../assets/vids/intro.mp4"
+        src="../assets/vids/therapie.mp4"
         autoplay
         muted
         loop
@@ -245,7 +245,7 @@
           </div>
         </div>
       </transition>
-      <div class="slide slide--universMascu">
+      <div class="slide slide--universMascu" v-if="show == 8">
         <div class="universMascu__background"></div>
         <div class="universMascu__content">
           <div class="universMascu__title subtitle">
@@ -429,11 +429,11 @@
   }
 
   .therapie__background {
-    height: 100vh;
     width: 100vw;
     z-index: -1;
     position: absolute;
     background: black;
+    filter: brightness(70%);
   }
 
   .therapie__image {
