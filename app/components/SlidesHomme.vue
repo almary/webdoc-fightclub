@@ -183,61 +183,79 @@
     </div>
     <div class="slide slide--feminisation">
       <div class="feminisation__title--wrapper">
-        <!-- <transition name="fade"> -->
+        <transition name="fade">
           <div
             class="feminisation__title feminisation__title--first subtitle"
             v-if="show == 7 && tv == 1"
           >
             La peur de la féminisation...
           </div>
-        <!-- </transition> -->
-        <!-- <transition name="fade"> -->
+        </transition>
+        <transition name="fade">
           <div
             class="feminisation__title feminisation__title--second subtitle"
             v-if="show == 7 && tv == 2"
           >
             ...compensée par la violence
           </div>
-        <!-- </transition> -->
+        </transition>
       </div>
-      <div class="feminisation__tv">
-        <div
-          class="tv__first--wrapper"
-          :class="{unselectedTv: tv == 2}"
-          v-on:click="tv = 1"
-          v-if="show == 7"
-        >
-          <div class="tv__first">
-            <img class="tv tv__first--tv" src="../assets/img/tv.png" alt="tv" />
+      <transition name="fade">
+        <div class="feminisation__tv" v-if="show == 7">
+          <div
+            class="tv__first--wrapper"
+            :class="{unselectedTv: tv == 2}"
+            v-on:click="tv = 1"
+          >
+            <div class="tv__first">
+              <img
+                class="tv tv__first--tv"
+                src="../assets/img/tv.png"
+                alt="tv"
+              />
+            </div>
+            <div class="tv__first--detailsWrapper">
+              <div class="tv__first--details details">
+                Il a peur que la sociéte (et le capitalisme) le transforme en
+                femme. Ils se sentent rabaissé par le travail.
+              </div>
+            </div>
           </div>
-          <div class="tv__first--detailsWrapper">
-            <div class="tv__first--details details">
-              Il a peur que la sociéte (et le capitalisme) le transforme en
-              femme. Ils se sentent rabaissé par le travail.
+
+          <div
+            class="tv__second--wrapper"
+            :class="{unselectedTv: tv == 1}"
+            v-on:click="tv = 2"
+          >
+            <div class="tv__second">
+              <img
+                class="tv tv__second--tv"
+                src="../assets/img/tv.png"
+                alt="tv"
+              />
+            </div>
+            <div class="tv__second--detailsWrapper">
+              <div class="tv__second--details details">
+                Etre violent est quelque chose qu'ils associent au fait d'etre
+                un homme, un vrai. La masculinité, à travers les aggressions,
+                leur donne une manière de contre-balancer avec leurs métiers non
+                virils et leur consumérisme.
+              </div>
             </div>
           </div>
         </div>
-
-        <div
-          class="tv__second--wrapper"
-          :class="{unselectedTv: tv == 1}"
-          v-on:click="tv = 2"
-          v-if="show == 7"
-        >
-          <div class="tv__second">
-            <img
-              class="tv tv__second--tv"
-              src="../assets/img/tv.png"
-              alt="tv"
-            />
+      </transition>
+      <div class="slide slide--universMascu">
+        <div class="universMascu__background"></div>
+        <div class="universMascu__content">
+          <div class="universMascu__title subtitle">
+            <div class="universMascu__title--first">Un univers baigné dans</div>
+            <div class="universMascu__title--second">la masculinité</div>
           </div>
-          <div class="tv__second--detailsWrapper">
-            <div class="tv__second--details details">
-              Etre violent est quelque chose qu'ils associent au fait d'etre un
-              homme, un vrai. La masculinité, à travers les aggressions, leur
-              donne une manière de contre-balancer avec leurs métiers non virils
-              et leur consumérisme.
-            </div>
+          <div class="universMascu__details details">
+            Contrairement à l’environnement quotidien et stérile du narrateur,
+            ceux liés à Tyler expriment une masculinité très marquée ainsi que
+            le besoin de se libérer de toutes chaines.
           </div>
         </div>
       </div>
@@ -567,6 +585,54 @@
 
   .unselectedTv {
     opacity: 0.5;
+  }
+
+  .slide--universMascu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .universMascu__background {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    background: url("../assets/img/mosaique-masculinite.png");
+    background-position: center;
+    background-size: 3500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .universMascu__content {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(-50px);
+  }
+
+  .universMascu__title {
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .universMascu__title--first {
+    font-size: 26px;
+  }
+
+  .universMascu__title--second {
+    font-size: 45px;
+  }
+
+  .universMascu__details {
+    width: 342px;
   }
 
   /* ANIMS SCOPED */
