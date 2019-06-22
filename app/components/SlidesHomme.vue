@@ -65,7 +65,7 @@
             </div>
           </transition>
         </div>
-        <div class="content__details">
+        <div class="content__details details">
           <transition name="fade">
             <div class="content__details--first" v-if="show == 4">
               Son cadre de vie est baigné dans des tons ternes qui font échos à
@@ -181,6 +181,67 @@
         </transition>
       </div>
     </div>
+    <div class="slide slide--feminisation">
+      <div class="feminisation__title--wrapper">
+        <!-- <transition name="fade"> -->
+          <div
+            class="feminisation__title feminisation__title--first subtitle"
+            v-if="show == 7 && tv == 1"
+          >
+            La peur de la féminisation...
+          </div>
+        <!-- </transition> -->
+        <!-- <transition name="fade"> -->
+          <div
+            class="feminisation__title feminisation__title--second subtitle"
+            v-if="show == 7 && tv == 2"
+          >
+            ...compensée par la violence
+          </div>
+        <!-- </transition> -->
+      </div>
+      <div class="feminisation__tv">
+        <div
+          class="tv__first--wrapper"
+          :class="{unselectedTv: tv == 2}"
+          v-on:click="tv = 1"
+          v-if="show == 7"
+        >
+          <div class="tv__first">
+            <img class="tv tv__first--tv" src="../assets/img/tv.png" alt="tv" />
+          </div>
+          <div class="tv__first--detailsWrapper">
+            <div class="tv__first--details details">
+              Il a peur que la sociéte (et le capitalisme) le transforme en
+              femme. Ils se sentent rabaissé par le travail.
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="tv__second--wrapper"
+          :class="{unselectedTv: tv == 1}"
+          v-on:click="tv = 2"
+          v-if="show == 7"
+        >
+          <div class="tv__second">
+            <img
+              class="tv tv__second--tv"
+              src="../assets/img/tv.png"
+              alt="tv"
+            />
+          </div>
+          <div class="tv__second--detailsWrapper">
+            <div class="tv__second--details details">
+              Etre violent est quelque chose qu'ils associent au fait d'etre un
+              homme, un vrai. La masculinité, à travers les aggressions, leur
+              donne une manière de contre-balancer avec leurs métiers non virils
+              et leur consumérisme.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -190,7 +251,13 @@
 
 <script>
   export default {
-    props: ["show"]
+    props: ["show"],
+
+    data() {
+      return {
+        tv: 1
+      };
+    }
   };
 </script>
 
@@ -451,6 +518,55 @@
     height: 300px;
     justify-content: space-around;
     align-items: center;
+  }
+
+  .slide--feminisation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .feminisation__title--wrapper {
+    height: 44px;
+    width: 760px;
+  }
+
+  .feminisation__title {
+    position: absolute;
+  }
+
+  .feminisation__tv {
+    display: flex;
+    flex-direction: row;
+    width: 85vw;
+    height: 500px;
+    justify-content: space-around;
+  }
+
+  .tv__first--wrapper,
+  .tv__second--wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 530px;
+    cursor: pointer;
+  }
+
+  .tv__first--detailsWrapper,
+  .tv__second--detailsWrapper {
+    height: 300px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tv__first--details,
+  .tv__second--details {
+    width: 389px;
+  }
+
+  .unselectedTv {
+    opacity: 0.5;
   }
 
   /* ANIMS SCOPED */
