@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    props: ["show"],
+    props: ["show", "percentage"],
 
     methods: {
       removeOldListener: function() {
@@ -40,7 +40,7 @@
         return {
           height: "5px",
           background: "#9F221D",
-          width: Math.round(this.show) * 10 + "%",
+          width: this.percentage + "%",
           transition: "all 1.5s ease"
         };
       }

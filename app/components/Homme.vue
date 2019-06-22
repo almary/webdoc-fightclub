@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <SlidesHomme :show="show"></SlidesHomme>
-    <Nav :show="show"></Nav>
+    <Nav :show="show" :percentage="percentage"></Nav>
   </div>
 </template>
 
@@ -15,7 +15,8 @@
       return {
         duration: 500,
         show: 0,
-        totalSlides: 10
+        totalSlides: 9,
+        percentage: 0
       };
     },
 
@@ -42,6 +43,7 @@
           console.log("scrolling up homme");
           this.prev();
         }
+        this.percentage = Math.round(this.show) / 9 * 100;
       },
 
       scrollFirefox: function(e) {
