@@ -3,12 +3,7 @@
     <div style="position: absolute">{{ show }}</div>
     <div class="slide slide--title">
       <transition name="fade">
-        <h1 v-if="show == 0">L'Homme</h1>
-      </transition>
-    </div>
-    <div class="slide slide--title">
-      <transition name="fade">
-        <h1 v-if="show == 0">L'Homme</h1>
+        <h1 v-if="show == 0 || show == 1">L'Homme</h1>
       </transition>
       <transition name="fade">
         <h2 v-if="show == 1">Un homme perdu dans une société monotone</h2>
@@ -126,6 +121,11 @@
 </script>
 
 <style scoped>
+  h2 {
+    position: absolute;
+    transform: translateY(50px);
+  }
+
   .firstPlan {
     z-index: 1;
   }
@@ -298,5 +298,5 @@
     transform: translateY(400px);
   } */
 
-/* } */
+  /* } */
 </style>

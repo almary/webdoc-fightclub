@@ -13,6 +13,18 @@
   export default {
     props: ["show"],
 
+    methods: {
+      removeOldListener: function() {
+        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+          window.removeEventListener("wheel", this.scroll, { passive: true });
+        } else {
+          window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
+            passive: true
+          });
+        }
+      }
+    },
+
     computed: {
       styleTabs: function() {
         return {

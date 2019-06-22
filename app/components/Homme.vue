@@ -28,7 +28,7 @@
             return;
           }
           //detect scroll (-50 : sensitivity)
-          console.log("scrolling down");
+          console.log("scrolling down homme");
           this.next();
         }
 
@@ -39,7 +39,7 @@
             return;
           }
           //detect scroll (-50 : sensitivity)
-          console.log("scrolling up");
+          console.log("scrolling up homme");
           this.prev();
         }
       },
@@ -56,6 +56,14 @@
 
       next: function() {
         this.removeScrollListener();
+
+        if (this.show == 0) {
+          this.show++;
+          setTimeout(() => {
+            this.addScrollListener();
+          }, this.duration);
+          return;
+        }
 
         //reset show to trigger leaving animation
         this.show = this.show + 0.5;
@@ -101,17 +109,19 @@
     },
 
     created() {
-      if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
-        window.addEventListener("wheel", this.scroll, { passive: true });
-      } else {
-        window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
-          passive: true
-        });
-      }
+      setTimeout(() => {
+        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+          window.addEventListener("wheel", this.scroll, { passive: true });
+        } else {
+          window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+            passive: true
+          });
+        }
+      }, 500);
     },
     destroyed() {
-      window.addEventListener("wheel", this.scroll);
-      window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+      window.removeEventListener("wheel", this.scroll);
+      window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
         passive: true
       });
     },
