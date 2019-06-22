@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper wrapper--themes">
+  <div class="wrapper wrapper--themes" :class="{noBackground: show == 5}">
     <div style="position: absolute">{{ show }}</div>
     <div class="slide slide--title">
       <transition name="fade">
@@ -91,22 +91,96 @@
       </div>
     </div>
     <div class="slide slide--therapie">
-      <div class="therapie__background"></div>
+      <video
+        v-if="show == 5"
+        class="therapie__background"
+        src="../assets/vids/intro.mp4"
+        autoplay
+        muted
+        loop
+      ></video>
       <div class="therapie__content">
-        <div class="therapie__content--title" v-if="show == 5">
-          Les thérapies de groupe
-        </div>
-        <div class="therapie__content--details" v-if="show == 5">
-          Le narrateur cherche d’une certaine façon un contact pour le sortir de
-          sa vie morose. Il relativise sur sa vie et sa condition.
-        </div>
+        <transition name="fade">
+          <div class="therapie__content--title subtitle" v-if="show == 5">
+            Les thérapies de groupe
+          </div>
+        </transition>
+        <transition name="text">
+          <div class="therapie__content--details details" v-if="show == 5">
+            Le narrateur cherche d’une certaine façon un contact pour le sortir
+            de sa vie morose. Il relativise sur sa vie et sa condition.
+          </div>
+        </transition>
+      </div>
+      <div class="therapie__image" :class="{firstPlan: show == 5}">
+        <transition name="fade">
+          <img
+            class="therapie__image--image"
+            src="../assets/img/therapie-extrait.png"
+            alt="extrait du livre"
+            v-if="show == 5"
+          />
+        </transition>
+        <img
+          v-if="show == 5"
+          class="therapie__image--marker"
+          src="../assets/img/marker.png"
+          alt="fluo sur le texte"
+        />
       </div>
     </div>
-    <img
-      src="../assets/img/therapie-extrait.png"
-      alt="extrait du livre"
-      v-if="show == 5"
-    />
+    <div class="slide slide--masculinite">
+      <div class="masculinite__wrapper">
+        <transition name="fade">
+          <div class="masculinite__title subtitle" v-if="show == 6">
+            La masculinité
+          </div>
+        </transition>
+        <transition name="fade">
+          <div
+            class="masculinite__polaroids"
+            :class="{firstPlan: show == 6}"
+            v-if="show == 6"
+          >
+            <img
+              src="../assets/img/tyler-polaroid.png"
+              alt="polaroid tyler"
+              class="masculinite__polaroids--tyler"
+            />
+            <img
+              src="../assets/img/narrator-polaroid.png"
+              alt="polaroid narrator"
+              class="masculinite__polaroids--narrator"
+            />
+            <img
+              src="../assets/img/bob-polaroid.png"
+              alt="polaroid bob"
+              class="masculinite__polaroids--bob"
+            />
+            <img
+              src="../assets/img/background-polaroid.png"
+              alt="polaroid background"
+              class="masculinite__polaroids--background"
+            />
+          </div>
+        </transition>
+      </div>
+      <div class="masculinite__content details">
+        <transition name="text">
+          <div v-if="show == 6">
+            Selon Tyler c’est en combattant que l’homme retrouve l’accès à sa
+            virilité, sa fierté. Il reprend confiance en lui et se sent
+            véritablement vivre.
+          </div>
+        </transition>
+        <transition name="text">
+          <div v-if="show == 6">
+            Bob, en contrepartie, représente la peur des hommes de cette
+            génération de la féminisation.
+          </div>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -121,6 +195,10 @@
 </script>
 
 <style scoped>
+  .noBackground {
+    background: none;
+  }
+
   h2 {
     position: absolute;
     transform: translateY(50px);
@@ -128,6 +206,18 @@
 
   .firstPlan {
     z-index: 1;
+  }
+
+  .subtitle {
+    font-family: "Univers Next Pro Ext", "sans-serif";
+    font-weight: bold;
+    font-size: 44px;
+  }
+
+  .details {
+    font-size: 22px;
+    font-weight: 100;
+    line-height: 120%;
   }
 
   .slide--title {
@@ -212,9 +302,6 @@
 
   .content__details {
     justify-content: space-evenly;
-    font-size: 22px;
-    font-weight: 100;
-    line-height: 130%;
   }
 
   .content__title--first,
@@ -236,20 +323,137 @@
     transform: translateY(-200px);
   }
 
+  .slide--therapie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .therapie__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 140px;
+  }
+
+  .therapie__content--details {
+    width: 408px;
+  }
+
   .therapie__background {
-    background-image: url("../assets/img/therapies.jpg");
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    position: absolute;
+    background: black;
   }
 
-  /* ANIMS */
-
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s;
+  .therapie__image {
+    position: absolute;
+    transform: translateY(160px);
+    height: 100px;
+    width: 500px;
   }
-  .fade-enter,
-  .fade-leave-to {
+
+  .therapie__image--marker {
+    position: absolute;
+    left: 33px;
+    top: 45px;
     opacity: 0;
+    transition: opacity 0.2s;
   }
+
+  .therapie__image--marker:hover {
+    opacity: 1;
+  }
+
+  .slide--masculinite {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 80vw;
+  }
+
+  .masculinite__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .masculinite__title {
+    transform: rotate(-5deg) translateX(-30px);
+  }
+
+  .masculinite__polaroids {
+    position: relative;
+    height: 450px;
+    width: 700px;
+  }
+
+  .masculinite__polaroids:hover .masculinite__polaroids--bob {
+    transform: rotate(5deg) scale(0.95) translateX(50px) translateY(5px);
+  }
+
+  .masculinite__polaroids:hover .masculinite__polaroids--narrator {
+    transform: rotate(-5deg) scale(0.95) translateX(-50px) translateY(5px);
+  }
+
+  .masculinite__polaroids--tyler,
+  .masculinite__polaroids--narrator,
+  .masculinite__polaroids--bob,
+  .masculinite__polaroids--background {
+    position: absolute;
+    transition: all 0.3s;
+  }
+
+  .masculinite__polaroids--tyler {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 3;
+  }
+
+  .masculinite__polaroids--bob {
+    right: 35px;
+    top: 20px;
+    transform: rotate(2deg) scale(0.95);
+    z-index: 2;
+  }
+
+  .masculinite__polaroids--narrator {
+    left: 0;
+    top: 20px;
+    transform: rotate(-2deg) scale(0.95);
+    z-index: 2;
+  }
+
+  .masculinite__polaroids--background {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transform: scale(1);
+    top: 25px;
+  }
+
+  .masculinite__content {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* ANIMS SCOPED */
 
   .text-enter-active,
   .text-leave-active {

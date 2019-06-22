@@ -115,4 +115,15 @@ h2 {
   line-height: 230%;
 }
 
+// ANIMS GENERALES
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 //version mobile....

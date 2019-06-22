@@ -82,14 +82,14 @@
   .selectedTab {
     background: #F0F0F0;
     color: #9F221D;
-    font-family: 'Univers Next Pro Ext';
+    font-family: 'Univers Next Pro';
     font-weight: bold;
   }
 
   .otherTabs {
     background: #111111;
     color: #F3F3F3;
-    font-family: 'Univers Next Pro Ext';
+    font-family: 'Univers Next Pro';
     font-weight: normal;
   }
 </style>

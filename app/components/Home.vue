@@ -10,16 +10,24 @@
     ></video>
     <button class="skip" v-if="show == 0" v-on:click="skip">skip</button>
     <button class="sound" v-if="show == 0" v-on:click="unmute">sound</button>
-    <div class="content" v-if="show == 1">
-      <div>
-        <h1 v-if="show == 1" class="title">Fight Club</h1>
-        <h2 v-if="show == 1">
-          Comment un environnement monotone modèle une pensée poussant au chaos
-          ?
-        </h2>
+    <transition name="fade">
+      <div class="content" v-if="show == 1">
+        <div>
+          <transition name="fade">
+            <h1 v-if="show == 1" class="title">Fight Club</h1>
+          </transition>
+          <transition name="fade">
+            <h2 v-if="show == 1">
+              Comment un environnement monotone modèle une pensée poussant au
+              chaos ?
+            </h2>
+          </transition>
+        </div>
+        <transition name="fade">
+          <div v-if="show == 1">scroll down</div>
+        </transition>
       </div>
-      <div v-if="show == 1">scroll down</div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -96,7 +104,8 @@
     align-items: center;
   }
 
-  .skip, .sound {
+  .skip,
+  .sound {
     position: absolute;
     bottom: 50px;
   }
@@ -130,11 +139,12 @@
     height: 200px;
   }
 
-  .component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .3s ease;
-}
-.component-fade-enter, .component-fade-leave-to
+  .component-fade-enter-active,
+  .component-fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+  .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+    opacity: 0;
+  }
 </style>
