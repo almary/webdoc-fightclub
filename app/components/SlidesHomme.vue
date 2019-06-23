@@ -205,7 +205,7 @@
           <div
             class="tv__first--wrapper"
             :class="{unselectedTv: tv == 2}"
-            v-on:click="tv = 1"
+            v-on:click="tvControl(1)"
           >
             <div class="tv__first">
               <img
@@ -213,6 +213,7 @@
                 src="../assets/img/tv.png"
                 alt="tv"
               />
+              <video class="tv__first--video" src="../assets/vids/tv1.mp4" autoplay muted loop ref="tv1"></video>
             </div>
             <div class="tv__first--detailsWrapper">
               <div class="tv__first--details details">
@@ -225,7 +226,7 @@
           <div
             class="tv__second--wrapper"
             :class="{unselectedTv: tv == 1}"
-            v-on:click="tv = 2"
+            v-on:click="tvControl(2)"
           >
             <div class="tv__second">
               <img
@@ -233,6 +234,7 @@
                 src="../assets/img/tv.png"
                 alt="tv"
               />
+              <video class="tv__second--video" src="../assets/vids/tv2.mp4" loop muted ref="tv2"></video>
             </div>
             <div class="tv__second--detailsWrapper">
               <div class="tv__second--details details">
@@ -273,8 +275,30 @@
 
     data() {
       return {
-        tv: 1
+        tv: 1,
+        tv1Playing: true,
+        tv2Playing: false,
       };
+    },
+
+    methods: {
+      tvControl: function(el) {
+        this.tv = el;
+        if (this.tv1Playing) {
+          this.$refs.tv1.pause();
+          this.tv1Playing = false;
+        } else {
+          this.$refs.tv1.play();
+          this.tv1Playing = true;
+        }
+        if (this.tv2Playing) {
+          this.$refs.tv2.pause();
+          this.tv2Playing = false;
+        } else {
+          this.$refs.tv2.play();
+          this.tv2Playing = true;
+        }
+      }
     }
   };
 </script>
@@ -562,6 +586,11 @@
     justify-content: space-around;
   }
 
+  .tv__first, .tv__second {
+    position: relative;
+    opacity: 0.9;
+  }
+
   .tv__first--wrapper,
   .tv__second--wrapper {
     display: flex;
@@ -581,6 +610,13 @@
   .tv__first--details,
   .tv__second--details {
     width: 389px;
+  }
+
+  .tv__first--video, .tv__second--video {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: -1;
   }
 
   .unselectedTv {

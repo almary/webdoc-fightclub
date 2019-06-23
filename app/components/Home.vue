@@ -24,7 +24,7 @@
           </transition>
         </div>
         <transition name="fade">
-          <div v-if="show == 1">scroll down</div>
+          <div class="instruction" v-if="show == 1">scroll down</div>
         </transition>
       </div>
     </transition>
@@ -125,6 +125,8 @@
     background-repeat: no-repeat;
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     text-align: center;
@@ -139,12 +141,9 @@
     height: 200px;
   }
 
-  .component-fade-enter-active,
-  .component-fade-leave-active {
-    transition: opacity 0.3s ease;
+  .instruction {
+    position: absolute;
+    bottom: 50px;
   }
-  .component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-  }
+
 </style>
