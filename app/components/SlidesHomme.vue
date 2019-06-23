@@ -82,6 +82,7 @@
         <div class="content__book" :class="{firstPlan: show == 4}">
           <transition name="fade">
             <img
+              preload
               src="../assets/img/book.png"
               alt="image d'extrait du livre"
               v-if="show == 4"
@@ -92,6 +93,7 @@
     </div>
     <div class="slide slide--therapie">
       <video
+        preload
         v-if="show == 5"
         class="therapie__background"
         src="../assets/vids/therapie.mp4"
@@ -115,6 +117,7 @@
       <div class="therapie__image" :class="{firstPlan: show == 5}">
         <transition name="fade">
           <img
+            preload
             class="therapie__image--image"
             src="../assets/img/therapie-extrait.png"
             alt="extrait du livre"
@@ -122,6 +125,7 @@
           />
         </transition>
         <img
+          preload
           v-if="show == 5"
           class="therapie__image--marker"
           src="../assets/img/marker.png"
@@ -143,16 +147,19 @@
             v-if="show == 6"
           >
             <img
+              preload
               src="../assets/img/tyler-polaroid.png"
               alt="polaroid tyler"
               class="masculinite__polaroids--tyler"
             />
             <img
+              preload
               src="../assets/img/narrator-polaroid.png"
               alt="polaroid narrator"
               class="masculinite__polaroids--narrator"
             />
             <img
+              preload
               src="../assets/img/bob-polaroid.png"
               alt="polaroid bob"
               class="masculinite__polaroids--bob"
@@ -209,11 +216,20 @@
           >
             <div class="tv__first">
               <img
+                preload
                 class="tv tv__first--tv"
                 src="../assets/img/tv.png"
                 alt="tv"
               />
-              <video class="tv__first--video" src="../assets/vids/tv1.mp4" autoplay muted loop ref="tv1"></video>
+              <video
+                preload
+                class="tv__first--video"
+                src="../assets/vids/tv1.mp4"
+                autoplay
+                muted
+                loop
+                ref="tv1"
+              ></video>
             </div>
             <div class="tv__first--detailsWrapper">
               <div class="tv__first--details details">
@@ -230,11 +246,19 @@
           >
             <div class="tv__second">
               <img
+                preload
                 class="tv tv__second--tv"
                 src="../assets/img/tv.png"
                 alt="tv"
               />
-              <video class="tv__second--video" src="../assets/vids/tv2.mp4" loop muted ref="tv2"></video>
+              <video
+                preload
+                class="tv__second--video"
+                src="../assets/vids/tv2.mp4"
+                loop
+                muted
+                ref="tv2"
+              ></video>
             </div>
             <div class="tv__second--detailsWrapper">
               <div class="tv__second--details details">
@@ -277,7 +301,7 @@
       return {
         tv: 1,
         tv1Playing: true,
-        tv2Playing: false,
+        tv2Playing: false
       };
     },
 
@@ -586,7 +610,8 @@
     justify-content: space-around;
   }
 
-  .tv__first, .tv__second {
+  .tv__first,
+  .tv__second {
     position: relative;
     opacity: 0.9;
   }
@@ -612,7 +637,8 @@
     width: 389px;
   }
 
-  .tv__first--video, .tv__second--video {
+  .tv__first--video,
+  .tv__second--video {
     position: absolute;
     top: 5px;
     right: 5px;
