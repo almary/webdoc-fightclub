@@ -104,20 +104,6 @@
     align-items: center;
   }
 
-  .skip,
-  .sound {
-    position: absolute;
-    bottom: 50px;
-  }
-
-  .skip {
-    right: 10vw;
-  }
-
-  .sound {
-    left: 10vw;
-  }
-
   .content {
     background-color: black;
     background-image: url("../assets/img/home-background.png");

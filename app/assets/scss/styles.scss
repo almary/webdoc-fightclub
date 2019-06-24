@@ -107,6 +107,20 @@ h2 {
   font-size: 25px;
 }
 
+.skip,
+.sound {
+  position: absolute;
+  bottom: 50px;
+}
+
+.skip {
+  right: 10vw;
+}
+
+.sound {
+  left: 10vw;
+}
+
 .slide {
   position: absolute;
   height: 100vh;

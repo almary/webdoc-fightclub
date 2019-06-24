@@ -188,7 +188,7 @@
         </transition>
       </div>
     </div>
-    <div class="slide slide--feminisation">
+    <div class="slide slide--feminisation" :class="{firstPlan: show == 7}">
       <div class="feminisation__title--wrapper">
         <transition name="fade">
           <div
@@ -234,7 +234,7 @@
             <div class="tv__first--detailsWrapper">
               <div class="tv__first--details details">
                 Il a peur que la sociéte (et le capitalisme) le transforme en
-                femme. Ils se sentent rabaissé par le travail.
+                femme. Ils se sentent rabaissés par le travail.
               </div>
             </div>
           </div>
@@ -263,7 +263,7 @@
             <div class="tv__second--detailsWrapper">
               <div class="tv__second--details details">
                 Etre violent est quelque chose qu'ils associent au fait d'etre
-                un homme, un vrai. La masculinité, à travers les aggressions,
+                un homme, un vrai. La masculinité, à travers les agressions,
                 leur donne une manière de contre-balancer avec leurs métiers non
                 virils et leur consumérisme.
               </div>
@@ -271,20 +271,24 @@
           </div>
         </div>
       </transition>
-      <div class="slide slide--universMascu" v-if="show == 8">
-        <div class="universMascu__background"></div>
-        <div class="universMascu__content">
-          <div class="universMascu__title subtitle">
-            <div class="universMascu__title--first">Un univers baigné dans</div>
-            <div class="universMascu__title--second">la masculinité</div>
-          </div>
-          <div class="universMascu__details details">
-            Contrairement à l’environnement quotidien et stérile du narrateur,
-            ceux liés à Tyler expriment une masculinité très marquée ainsi que
-            le besoin de se libérer de toutes chaines.
-          </div>
+    </div>
+    <div class="slide slide--universMascu" v-if="show == 8">
+      <div class="universMascu__background"></div>
+      <div class="universMascu__content">
+        <div class="universMascu__title subtitle">
+          <div class="universMascu__title--first">Un univers baigné dans</div>
+          <div class="universMascu__title--second">la masculinité</div>
+        </div>
+        <div class="universMascu__details details">
+          Contrairement à l’environnement quotidien et stérile du narrateur,
+          ceux liés à Tyler expriment une masculinité très marquée ainsi que le
+          besoin de se libérer de toutes chaines.
         </div>
       </div>
+    </div>
+    <div class="slide slide--conclusionFirst">
+      <video class="conclusionFirst__video" src="../assets/vids/end-first.mp4" autoplay ref="conclusionVideo" v-if="show == 9"></video>
+      <button class="sound" v-if="show == 9" v-on:click="mute">sound</button>
     </div>
   </div>
 </template>
@@ -315,6 +319,7 @@
           this.$refs.tv1.play();
           this.tv1Playing = true;
         }
+
         if (this.tv2Playing) {
           this.$refs.tv2.pause();
           this.tv2Playing = false;
@@ -322,7 +327,15 @@
           this.$refs.tv2.play();
           this.tv2Playing = true;
         }
-      }
+      },
+
+      mute: function() {
+        if (this.$refs.conclusionVideo.muted) {
+          this.$refs.conclusionVideo.muted = false;
+        } else {
+          this.$refs.conclusionVideo.muted = true;
+        }
+      },
     }
   };
 </script>
@@ -695,6 +708,11 @@
 
   .universMascu__details {
     width: 342px;
+  }
+
+  .conclusionFirst__video {
+    height: 100vh;
+    width: 100vw;
   }
 
   /* ANIMS SCOPED */
