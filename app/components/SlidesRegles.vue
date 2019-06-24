@@ -226,6 +226,18 @@
         </div>
       </div>
     </div>
+    <div class="slide slide--conclusionSecond" v-if="show == 10">
+      <video
+        class="conclusionSecond__video"
+        src="../assets/vids/bobine.mp4"
+        autoplay
+        ref="bobineVideo"
+        @ended="afterEnd"
+      ></video>
+      <button class="sound" v-on:click="muteBobine">
+        sound
+      </button>
+    </div>
   </div>
 </template>
 
@@ -261,6 +273,14 @@
           this.$refs.soapVideo.muted = false;
         } else {
           this.$refs.soapVideo.muted = true;
+        }
+      },
+
+      muteBobine: function() {
+        if (this.$refs.bobineVideo.muted) {
+          this.$refs.bobineVideo.muted = false;
+        } else {
+          this.$refs.bobineVideo.muted = true;
         }
       },
 
@@ -660,6 +680,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .conclusionSecond__video {
+    width: 100vw;
+    height: 100vh;
   }
 
   /* ANIMS SCOPED */

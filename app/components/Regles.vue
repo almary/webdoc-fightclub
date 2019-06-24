@@ -26,7 +26,7 @@
         if (e.deltaY > 50) {
           //max : next theme
           if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Regles" });
+            this.$router.push({ path: "Chaos" });
             return;
           }
 
