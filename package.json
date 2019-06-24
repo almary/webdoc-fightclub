@@ -2,7 +2,8 @@
   "name": "webdoc-fc",
   "version": "0.0.1",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   },
   "scripts": {
     "dev": "parcel app/index.html",
