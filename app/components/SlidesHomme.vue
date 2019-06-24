@@ -183,7 +183,7 @@
         <transition name="text">
           <div v-if="show == 6">
             Bob, en contrepartie, représente la peur des hommes de cette
-            génération de la féminisation.
+            génération par rapport à la féminisation.
           </div>
         </transition>
       </div>
@@ -319,18 +319,29 @@
     methods: {
       tvControl: function(el) {
         this.tv = el;
-        if (this.tv1Playing) {
+        if (this.tv1Playing && this.tv == 1) {
+          return;
+        }
+        if (this.tv2Playing && this.tv == 2) {
+          return;
+        }
+
+        if (this.tv1Playing && this.tv == 2) {
           this.$refs.tv1.pause();
           this.tv1Playing = false;
-        } else {
+        }
+
+        if (this.tv2Playing && this.tv == 1) {
+          this.$refs.tv2.pause();
+          this.tv2Playing = false;
+        }
+
+        if (this.tv == 1 && this.tv1Playing == false) {
           this.$refs.tv1.play();
           this.tv1Playing = true;
         }
 
-        if (this.tv2Playing) {
-          this.$refs.tv2.pause();
-          this.tv2Playing = false;
-        } else {
+        if (this.tv == 2 && this.tv2Playing == false) {
           this.$refs.tv2.play();
           this.tv2Playing = true;
         }
