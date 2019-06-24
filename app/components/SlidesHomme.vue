@@ -287,7 +287,14 @@
       </div>
     </div>
     <div class="slide slide--conclusionFirst">
-      <video class="conclusionFirst__video" src="../assets/vids/end-first.mp4" autoplay ref="conclusionVideo" v-if="show == 9"></video>
+      <video
+        class="conclusionFirst__video"
+        src="../assets/vids/end-first.mp4"
+        autoplay
+        ref="conclusionVideo"
+        v-if="show == 9"
+        @ended="afterEnd"
+      ></video>
       <button class="sound" v-if="show == 9" v-on:click="mute">sound</button>
     </div>
   </div>
@@ -336,6 +343,10 @@
           this.$refs.conclusionVideo.muted = true;
         }
       },
+
+      afterEnd: function() {
+        this.$router.push({ path: "Regles" });
+      }
     }
   };
 </script>

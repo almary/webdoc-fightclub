@@ -24,10 +24,12 @@
       scroll: function(e) {
         // scroll down
         if (e.deltaY > 50) {
-          //max
+          //max : next theme
           if (this.show >= this.totalSlides) {
+            this.$router.push({ path: "Regles" });
             return;
           }
+
           //detect scroll (-50 : sensitivity)
           console.log("scrolling down homme");
           this.next();
@@ -43,7 +45,7 @@
           console.log("scrolling up homme");
           this.prev();
         }
-        this.percentage = Math.round(this.show) / 9 * 100;
+        this.percentage = (Math.round(this.show) / 9) * 100;
       },
 
       scrollFirefox: function(e) {
@@ -59,6 +61,7 @@
       next: function() {
         this.removeScrollListener();
 
+        //if this.show no animation
         if (this.show == 0) {
           this.show++;
           setTimeout(() => {
