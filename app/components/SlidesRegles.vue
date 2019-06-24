@@ -122,6 +122,27 @@
         </div>
       </div>
     </div>
+    <div class="slide slide--nihilisme" v-if="show == 6">
+      <div class="nihilisme__title subtitle">
+        Le nihilisme
+      </div>
+      <div class="nihilisme__details--wrapper">
+        <div class="nihilisme__details details">
+          Le nihilisme soutient que la vie n’a pas de sens, rejette toutes
+          valeurs, croyance ou réalité substantielle.
+        </div>
+        <div class="nihilisme__details details">
+          C'est un rejet total de la vie.
+        </div>
+      </div>
+      <div class="nihilisme__bobine--wrapper">
+        <div class="nihilisme__bobine"></div>
+      </div>
+      <div class="nihilisme__details details">
+        Un monde dans lequel nous n’avons pas de morale, pas d’objets, pas de
+        pensées idéologiques, rien du tout.
+      </div>
+    </div>
   </div>
 </template>
 
@@ -351,7 +372,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     right: -470px;
-    bottom: 400px;
+    bottom: 450px;
     transition: all 0.3s;
   }
 
@@ -379,6 +400,39 @@
     width: 430px;
   }
 
+  .slide--nihilisme {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .nihilisme__bobine--wrapper {
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .nihilisme__bobine {
+    background-image: url("../assets/img/nihilisme-bobine.png");
+    width: 2732px;
+    height: 261px;
+    background-repeat: no-repeat;
+    background-position: right;
+    animation: bobine 15s linear infinite;
+  }
+
+  .nihilisme__details--wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+  }
+
+  .nihilisme__details {
+    width: 592px;
+  }
+
   /* ANIMS SCOPED */
 
   .text-enter-active,
@@ -404,29 +458,17 @@
     transform: translateY(-200vh);
   }
 
-  /* @keyframes bobine {
-  0% {
+  @keyframes bobine {
+    0% {
+      transform: none;
+    }
+
+    97% {
+      transform: translate(-700px);
+    }
+
+    100% {
+      transform: none;
+    }
   }
-
-  30% {
-    transform: translateY(50px);
-  }
-
-  50% {
-    transform: translateY(40px);
-  }
-
-  60% {
-    transform: translateY(300px);
-  }
-
-  70% {
-    transform: translateY(100px);
-  }
-
-  80% {
-    transform: translateY(400px);
-  } */
-
-  /* } */
 </style>
