@@ -29,6 +29,7 @@
         src="../assets/vids/bar.mp4"
         autoplay
         ref="barVideo"
+        @ended="increment"
       ></video>
       <button class="sound" v-on:click="mute">
         sound
@@ -149,12 +150,17 @@
         src="../assets/vids/soap.mp4"
         autoplay
         ref="soapVideo"
+        @ended="increment"
       ></video>
       <button class="sound" v-on:click="muteSoap">
         sound
       </button>
     </div>
-    <div class="slide slide--papers" :class="{firstPlan: show == 8}" v-if="show == 8">
+    <div
+      class="slide slide--papers"
+      :class="{firstPlan: show == 8}"
+      v-if="show == 8"
+    >
       <div class="papers__title subtitle">Le nihilisme</div>
       <img
         v-on:click="papers"
@@ -199,6 +205,27 @@
         alt="polaroid"
       />
     </div>
+    <div class="slide slide--autodestruction" v-if="show == 9">
+      <div class="autodestruction__background">
+        <div class="autodestruction__wrapper">
+          <div class="autodestruction__title subtitle">
+            L'autodestruction
+          </div>
+          <div class="autodestruction__content">
+            <div class="autodestruction__content--quote">
+              « Tyler dit que chercher à s'améliorer, c'est rien que de la
+              branlette. Tyler dit que l'autodestruction est sans doute la
+              réponse. »
+            </div>
+            <div class="autodestruction__content--details details">
+              Se détruire pour se reconstruire. Le narrateur réalise qu’il peut
+              s’évader de son existence et creuser une vision bien plus
+              excitante et profonde de la vie humaine.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -217,6 +244,10 @@
     },
 
     methods: {
+      increment: function() {
+        this.$emit("increment");
+      },
+
       mute: function() {
         if (this.$refs.barVideo.muted) {
           this.$refs.barVideo.muted = false;
@@ -585,6 +616,50 @@
 
   .papers__polaroid2.active {
     transform: translateX(330px) translateY(-100px);
+  }
+
+  .slide--autodestruction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .autodestruction__background {
+    width: 1166px;
+    height: 522px;
+    background-image: url("../assets/img/autodestruction-bp.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: all 1s;
+  }
+
+  .autodestruction__background:hover {
+    background-image: url("../assets/img/autodestruction-en.jpg");
+  }
+
+  .autodestruction__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55%;
+    width: 625px;
+    margin: 0 0 40px 40px;
+  }
+
+  .autodestruction__content--quote {
+    font-size: 25px;
+    font-weight: normal;
+    line-height: 120%;
+  }
+
+  .autodestruction__content {
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   /* ANIMS SCOPED */

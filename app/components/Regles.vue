@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <SlidesRegles :show="show"></SlidesRegles>
+    <SlidesRegles :show="show" @increment="incrementChild"></SlidesRegles>
     <Nav :show="show" :percentage="percentage"></Nav>
   </div>
 </template>
@@ -15,7 +15,7 @@
       return {
         duration: 500,
         show: 0,
-        totalSlides: 9,
+        totalSlides: 10,
         percentage: 0,
       };
     },
@@ -45,7 +45,7 @@
           console.log("scrolling up regles");
           this.prev();
         }
-        this.percentage = (Math.round(this.show) / 9) * 100;
+        this.percentage = (Math.round(this.show) / 10) * 100;
       },
 
       scrollFirefox: function(e) {
@@ -110,7 +110,11 @@
       removeScrollListener: function() {
         window.removeEventListener("wheel", this.scroll);
         window.removeEventListener("DOMMouseScroll", this.scrollFirefox);
-      }
+      },
+
+      incrementChild: function() {
+        this.next();
+      },
     },
 
     created() {
