@@ -49,7 +49,7 @@
             <div class="wrapper__bold">Il vit sans but.</div>
             <div>
               Il est tellement absorbé par la possession d’objets qu’il se
-              définit par ses possessions matériels:
+              définit par ses possessions matérielles :
             </div>
           </div>
           <img
@@ -63,6 +63,64 @@
         alt="image du livre"
         class="consommation__book"
       />
+    </div>
+    <div
+      class="slide slide--things"
+      v-if="show == 5"
+      :class="{noBackground: show == 5}"
+    >
+      <div class="things__title subtitle">La société de consommation</div>
+      <div class="things__wrapper">
+        <div class="things__illustration">
+          <img
+            src="../assets/img/things.png"
+            alt="illustration"
+            class="things__illustration--image"
+          />
+          <img
+            src="../assets/img/things-script.png"
+            alt="script"
+            class="things__illustration--script"
+          />
+        </div>
+        <div class="things__content">
+          <div class="content__quote">
+            « Il m'a fallu une vie entière pour acheter tous ces trucs. »
+          </div>
+          <div class="content__details details">
+            <div>
+              L’importance et le sens de sa vie est mesurée par les objets qu’il
+              possède. Décrivant sa propre existence à rien de plus qu’une façon
+              de garder et de ranger des choses.
+            </div>
+            <div>
+              Le consumérisme vide et sinistre incriminé dans Fight Club
+              illustre également la solitude latente du narrateur.
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="../assets/img/funfact.png"
+        alt="funfact"
+        class="things__funfact"
+      />
+      <div class="things__book">
+        <div class="things__book--content">
+          <div class="things__book--text">
+            La structure laquée d'entretien facile de mes tables d'appoint
+            Kalix.
+            <br />
+            Mes tables-gigognes Steg. <br />
+            On achète des meubles. On se dit : ce sera le dernier canapé dont
+            j'aurai jamais besoin de toute mon existence. On achète le canapé,
+            et pendant quelques années on se satisfait du fait que, quoi qui
+            puisse arriver, au moins on a réglé le problème du canapé. Et
+            ensuite le bon service de table. Ensuite le lit parfait. Les
+            rideaux. Le tapis.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -208,6 +266,8 @@
 
   .consommation__book {
     position: absolute;
+    width: auto;
+    height: 70vh;
     right: -300px;
     bottom: 0;
     transition: transform 0.3s;
@@ -215,6 +275,108 @@
 
   .consommation__book:hover {
     transform: translateX(-300px);
+  }
+
+  .slide--things {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .things__wrapper {
+    height: 70vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .things__illustration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .things__illustration--script {
+    width: 421px;
+    height: 198px;
+  }
+
+  .things__content {
+    width: 402px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 390px;
+    transform: translateY(80px);
+  }
+
+  .content__quote {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 110%;
+  }
+
+  .content__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 225px;
+  }
+
+  .things__funfact,
+  .things__book {
+    position: absolute;
+  }
+
+  .things__funfact {
+    right: -360px;
+    height: 300px;
+    bottom: 70px;
+    transition: all 0.5s;
+    z-index: 2;
+  }
+
+  .things__funfact:hover {
+    transform: rotate(90deg) translateY(285px) translateX(-50px);
+  }
+
+  .things__book {
+    width: 527px;
+    height: 160px;
+    overflow: hidden;
+    background-image: url("../assets/img/things-paper.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: -470px;
+    bottom: 400px;
+    transition: all 0.3s;
+  }
+
+  .things__book:hover {
+    transform: translateX(-470px);
+  }
+
+  .things__book--content {
+    color: #222222;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 180%;
+    left: 60px;
+    top: 20px;
+    width: 500px;
+    position: relative;
+    transition: all 7s linear;
+  }
+
+  .things__book--content:hover {
+    transform: translateY(-150px);
+  }
+
+  .things__book--text {
+    width: 430px;
   }
 
   /* ANIMS SCOPED */
