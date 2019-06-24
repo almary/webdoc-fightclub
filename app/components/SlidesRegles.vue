@@ -66,8 +66,8 @@
     </div>
     <div
       class="slide slide--things"
+      :class="{firstPlan: show == 5}"
       v-if="show == 5"
-      :class="{noBackground: show == 5}"
     >
       <div class="things__title subtitle">La société de consommation</div>
       <div class="things__wrapper">
@@ -143,6 +143,62 @@
         pensées idéologiques, rien du tout.
       </div>
     </div>
+    <div class="slide slide--soap" v-if="show == 7">
+      <video
+        class="soap__video"
+        src="../assets/vids/soap.mp4"
+        autoplay
+        ref="soapVideo"
+      ></video>
+      <button class="sound" v-on:click="muteSoap">
+        sound
+      </button>
+    </div>
+    <div class="slide slide--papers" :class="{firstPlan: show == 8}" v-if="show == 8">
+      <div class="papers__title subtitle">Le nihilisme</div>
+      <img
+        v-on:click="papers"
+        class="papers__paper0 papers"
+        src="../assets/img/papers-paper0.png"
+        alt="passage du livre"
+      />
+      <img
+        class="papers__paper1 papers"
+        :class="{active: paper == 1}"
+        src="../assets/img/papers-paper1.png"
+        alt="analyse"
+      />
+      <img
+        class="papers__paper2 papers"
+        :class="{active: paper == 1}"
+        src="../assets/img/papers-paper2.png"
+        alt="analyse"
+      />
+      <img
+        class="papers__paper3 papers"
+        :class="{active: paper == 1}"
+        src="../assets/img/papers-paper3.png"
+        alt="analyse"
+      />
+      <img
+        class="papers__polaroid0 papers"
+        :class="{active: paper == 1}"
+        src="../assets/img/papers-polaroid0.png"
+        alt="polaroid"
+      />
+      <img
+        class="papers__polaroid1 papers"
+        :class="{active: paper == 1}"
+        src="../assets/img/papers-polaroid1.png"
+        alt="polaroid"
+      />
+      <img
+        class="papers__polaroid2 papers"
+        :class="{active: paper == 1}"
+        src="../assets/img/papers-polaroid2.png"
+        alt="polaroid"
+      />
+    </div>
   </div>
 </template>
 
@@ -155,7 +211,9 @@
     props: ["show"],
 
     data() {
-      return {};
+      return {
+        paper: 0
+      };
     },
 
     methods: {
@@ -164,6 +222,22 @@
           this.$refs.barVideo.muted = false;
         } else {
           this.$refs.barVideo.muted = true;
+        }
+      },
+
+      muteSoap: function() {
+        if (this.$refs.soapVideo.muted) {
+          this.$refs.soapVideo.muted = false;
+        } else {
+          this.$refs.soapVideo.muted = true;
+        }
+      },
+
+      papers: function() {
+        if (this.paper == 0) {
+          this.paper = 1;
+        } else {
+          this.paper = 0;
         }
       },
 
@@ -431,6 +505,86 @@
 
   .nihilisme__details {
     width: 592px;
+  }
+
+  .soap__video {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide--papers {
+    display: flex;
+    align-items: center;
+  }
+
+  .papers__title {
+    position: absolute;
+    top: 7vh;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    text-align: center;
+  }
+
+  .papers {
+    position: absolute;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    transition: all 0.3s;
+  }
+
+  .papers__paper0 {
+    z-index: 3;
+    cursor: pointer;
+  }
+
+  .papers__paper1 {
+    z-index: 2;
+  }
+
+  .papers__paper1.active {
+    transform: translateX(-400px) translateY(-100px) rotate(-2deg);
+  }
+
+  .papers__paper2 {
+    z-index: 1;
+  }
+
+  .papers__paper2.active {
+    transform: translateX(-360px) translateY(130px);
+  }
+
+  .papers__paper3 {
+    z-index: 2;
+  }
+
+  .papers__paper3.active {
+    transform: translateX(340px) translateY(130px);
+  }
+
+  .papers__polaroid0 {
+    z-index: 0;
+  }
+
+  .papers__polaroid0.active {
+    transform: translateX(-160px) translateY(-85px);
+  }
+
+  .papers__polaroid1 {
+    z-index: 1;
+  }
+
+  .papers__polaroid1.active {
+    transform: translateX(160px) translateY(-60px);
+  }
+
+  .papers__polaroid2 {
+    z-index: 0;
+  }
+
+  .papers__polaroid2.active {
+    transform: translateX(330px) translateY(-100px);
   }
 
   /* ANIMS SCOPED */
