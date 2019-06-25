@@ -16,7 +16,7 @@
         duration: 500,
         show: 0,
         totalSlides: 10,
-        percentage: 0,
+        percentage: 0
       };
     },
 
@@ -52,10 +52,26 @@
       scrollFirefox: function(e) {
         var y = e.detail;
         if (e.detail > 2) {
+          //max : next theme
+          if (this.show >= this.totalSlides) {
+            this.$router.push({ path: "Chaos" });
+            return;
+          }
+
+          //detect scroll (-50 : sensitivity)
+          console.log("scrolling down regles");
           this.next();
+          this.percentage = (Math.ceil(this.show) / 10) * 100;
         }
         if (e.detail < -2) {
+          // min
+          if (this.show <= 0) {
+            return;
+          }
+          //detect scroll (-50 : sensitivity)
+          console.log("scrolling up regles");
           this.prev();
+          this.percentage = (Math.floor(this.show) / 10) * 100;
         }
       },
 
@@ -67,7 +83,7 @@
           this.show++;
           setTimeout(() => {
             this.addScrollListener();
-          }, this.duration*2);
+          }, this.duration * 2);
           return;
         }
 
@@ -115,7 +131,7 @@
 
       incrementChild: function() {
         this.next();
-      },
+      }
     },
 
     created() {

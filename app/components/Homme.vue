@@ -52,10 +52,26 @@
       scrollFirefox: function(e) {
         var y = e.detail;
         if (e.detail > 2) {
+          //max : next theme
+          if (this.show >= this.totalSlides) {
+            this.$router.push({ path: "Regles" });
+            return;
+          }
+
+          //detect scroll (-50 : sensitivity)
+          console.log("scrolling down homme");
           this.next();
+          this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
         }
         if (e.detail < -2) {
+          // min
+          if (this.show <= 0) {
+            return;
+          }
+          //detect scroll (-50 : sensitivity)
+          console.log("scrolling up homme");
           this.prev();
+          this.percentage = (Math.floor(this.show) / this.totalSlides) * 100;
         }
       },
 

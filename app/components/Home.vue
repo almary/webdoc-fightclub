@@ -1,30 +1,42 @@
 <template>
   <div class="wrapper">
-    <video
-      v-if="show == 0"
-      src="../assets/vids/intro.mp4"
-      autoplay
-      muted
-      ref="introVid"
-      @ended="skip"
-    ></video>
-    <button class="skip" v-if="show == 0" v-on:click="skip">skip</button>
-    <button class="sound" v-if="show == 0" v-on:click="unmute">sound</button>
+    <div class="video">
+      <transition name="fade">
+        <video
+          v-if="show == 1"
+          src="../assets/vids/intro.mp4"
+          autoplay
+          muted
+          ref="introVid"
+          @ended="afterEnd"
+        ></video>
+      </transition>
+      <transition name="fade">
+        <button class="skip" v-if="show == 1" v-on:click="afterEnd">
+          skip
+        </button>
+      </transition>
+      <transition name="fade">
+        <button class="sound" v-if="show == 1" v-on:click="unmute">
+          sound
+        </button>
+      </transition>
+    </div>
     <transition name="fade">
-      <div class="content" v-if="show == 1">
+      <div class="content" v-if="show == 0">
         <div>
           <transition name="fade">
-            <h1 v-if="show == 1" class="title">Fight Club</h1>
+            <h1 v-if="show == 0" class="title">Fight Club</h1>
           </transition>
           <transition name="fade">
-            <h2 v-if="show == 1">
+            <h2 v-if="show == 0">
               Comment un environnement monotone modèle une pensée poussant au
               chaos ?
             </h2>
           </transition>
         </div>
         <transition name="fade">
-          <div class="instruction" v-if="show == 1">scroll down</div>
+          <div class="instruction" v-if="show == 0">scroll down</div>
         </transition>
       </div>
     </transition>
@@ -40,16 +52,8 @@
     },
 
     methods: {
-      skip: function() {
-        this.show++;
-        console.log(this.show);
-        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
-          window.addEventListener("wheel", this.scroll, { passive: true });
-        } else {
-          window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
-            passive: true
-          });
-        }
+      afterEnd: function() {
+        this.$router.push({ path: "Homme" });
       },
 
       unmute: function() {
@@ -64,12 +68,27 @@
         // scroll down
         if (e.deltaY > 50) {
           //max
-          if (this.show >= this.totalSlides) {
-            return;
+          if (this.show >= 1) {
+            console.log("hey");
+            this.afterEnd();
           }
           //detect scroll (-50 : sensitivity)
-          console.log("scrolling down first");
-          this.start();
+          this.show++;
+        }
+      },
+
+      scrollFirefox: function(e) {
+        var y = e.detail;
+        if (e.detail > 2) {
+          // scroll down
+          if (e.deltaY > 50) {
+            //max
+            if (this.show >= 1) {
+              this.afterEnd();
+            }
+            //detect scroll (-50 : sensitivity)
+            this.show++;
+          }
         }
       },
 
@@ -82,6 +101,26 @@
           });
         }
         this.$router.push({ path: "Homme" });
+      }
+    },
+
+    created() {
+      if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+        window.addEventListener("wheel", this.scroll, { passive: true });
+      } else {
+        window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+          passive: true
+        });
+      }
+    },
+
+    destroyed() {
+      if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+        window.addEventListener("wheel", this.scroll, { passive: true });
+      } else {
+        window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+          passive: true
+        });
       }
     }
   };
@@ -131,5 +170,4 @@
     position: absolute;
     bottom: 50px;
   }
-
 </style>
