@@ -69,7 +69,7 @@ E<template>
         sound
       </button>
     </div>
-    <div class="slide slide--mort">
+    <div class="slide slide--mort" v-if="show == 6">
       <div class="mort__title subtitle">
         Le rapport à la mort
       </div>
@@ -87,8 +87,8 @@ E<template>
       </div>
       <div class="mort__content">
         <div class="mort__content--details">
-          « Méditer la mort, c’est méditer la liberté ; celui qui sait mourir, ne
-          sait plus être esclave »<span class="details">, Sénèque</span>
+          « Méditer la mort, c’est méditer la liberté ; celui qui sait mourir,
+          ne sait plus être esclave »<span class="details">, Sénèque</span>
         </div>
         <img
           class="mort__content--book"
@@ -96,6 +96,33 @@ E<template>
           alt="passage du livre"
         />
       </div>
+    </div>
+    <div class="slide slide--recul" v-if="show == 7">
+      <div class="recul__content ">
+        <div class="recul__title subtitle">Prise de recul</div>
+        <div class="recul__details details">
+          <div>
+            C’est à la mort de Bob, que Jack prend conscience qu’il doit
+            empêcher Tyler d’aller plus loin. Bob a été utilisé pour le projet,
+            comme un moyen.
+          </div>
+          <div class="recul__content--wrapper">
+            <div>
+              Se rebeller contre un système qui les abruti ne leur permet pas de
+              se libérer; cela les déshumanise.
+            </div>
+            <div>
+              Ce projet finit par déshumaniser les hommes, au lieu de les
+              grandir, il nie les individus au profit d’une cause commune.
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        class="recul__background"
+        src="../assets/img/recul.jpg"
+        alt="images du film"
+      />
     </div>
   </div>
 </template>
@@ -258,7 +285,8 @@ E<template>
     transform: rotateY(360deg);
   }
 
-  .mort__polaroid--1, .mort__polaroid--2 {
+  .mort__polaroid--1,
+  .mort__polaroid--2 {
     position: absolute;
     transition: all 0.5s;
   }
@@ -285,6 +313,35 @@ E<template>
   .mort__content--details {
     font-size: 27px;
     font-weight: bold;
+  }
+
+  .slide--recul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .recul__content {
+    width: 466px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .recul__details {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .recul__content--wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 170px;
   }
 
   /* ANIMS SCOPED */
