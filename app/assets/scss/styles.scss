@@ -107,6 +107,19 @@ h2 {
   font-size: 25px;
 }
 
+button {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #111111;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 .skip,
 .sound {
   position: absolute;
