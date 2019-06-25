@@ -7,7 +7,7 @@
       </transition>
       <transition name="fade">
         <h2 v-if="show == 1">
-          Le besoin de s’échapper par le chaos pour se sentir vivre
+          Une société déshumanisante poussant au nihilisme
         </h2>
       </transition>
     </div>
