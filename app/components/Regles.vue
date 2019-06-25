@@ -33,6 +33,7 @@
           //detect scroll (-50 : sensitivity)
           console.log("scrolling down regles");
           this.next();
+          this.percentage = (Math.ceil(this.show) / 10) * 100;
         }
 
         // scroll up
@@ -44,8 +45,8 @@
           //detect scroll (-50 : sensitivity)
           console.log("scrolling up regles");
           this.prev();
+          this.percentage = (Math.floor(this.show) / 10) * 100;
         }
-        this.percentage = (Math.round(this.show) / 10) * 100;
       },
 
       scrollFirefox: function(e) {
