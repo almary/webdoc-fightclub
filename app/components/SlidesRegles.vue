@@ -23,6 +23,7 @@
         </div>
       </div>
     </div>
+    <transition name="fade">
     <div class="slide slide--bar" v-if="show == 3">
       <video
         class="bar__video"
@@ -35,6 +36,8 @@
         sound
       </button>
     </div>
+    </transition>
+    <transition name="fade">
     <div class="slide slide--consommations" v-if="show == 4">
       <div class="consommation__title subtitle">
         La société de consommation
@@ -65,6 +68,8 @@
         class="consommation__book"
       />
     </div>
+    </transition>
+    <transition name="fade">
     <div
       class="slide slide--things"
       :class="{firstPlan: show == 5}"
@@ -123,6 +128,8 @@
         </div>
       </div>
     </div>
+    </transition>
+    <transition name="fade">
     <div class="slide slide--nihilisme" v-if="show == 6">
       <div class="nihilisme__title subtitle">
         Le nihilisme
@@ -144,6 +151,8 @@
         pensées idéologiques, rien du tout.
       </div>
     </div>
+    </transition>
+    <transition name="fade">
     <div class="slide slide--soap" v-if="show == 7">
       <video
         class="soap__video"
@@ -156,6 +165,8 @@
         sound
       </button>
     </div>
+    </transition>
+    <transition name="fade">
     <div
       class="slide slide--papers"
       :class="{firstPlan: show == 8}"
@@ -205,6 +216,8 @@
         alt="polaroid"
       />
     </div>
+    </transition>
+    <transition name="fade">
     <div class="slide slide--autodestruction" v-if="show == 9">
       <div class="autodestruction__background">
         <div class="autodestruction__wrapper">
@@ -226,6 +239,8 @@
         </div>
       </div>
     </div>
+    </transition>
+    <transition name="fade">
     <div class="slide slide--conclusionSecond" v-if="show == 10">
       <video
         class="conclusionSecond__video"
@@ -238,12 +253,9 @@
         sound
       </button>
     </div>
+    </transition>
   </div>
 </template>
-
-<!-- <transition name="rectangle">
-  <div class="rectangle" v-if="show == 1"></div>
-</transition> -->
 
 <script>
   export default {

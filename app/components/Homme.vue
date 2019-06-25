@@ -33,7 +33,7 @@
           //detect scroll (-50 : sensitivity)
           console.log("scrolling down homme");
           this.next();
-          this.percentage = (Math.ceil(this.show) / 10) * 100;
+          this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
         }
 
         // scroll up
@@ -45,7 +45,7 @@
           //detect scroll (-50 : sensitivity)
           console.log("scrolling up homme");
           this.prev();
-          this.percentage = (Math.floor(this.show) / 10) * 100;
+          this.percentage = (Math.floor(this.show) / this.totalSlides) * 100;
         }
       },
 

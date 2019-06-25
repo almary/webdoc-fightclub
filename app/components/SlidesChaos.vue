@@ -12,7 +12,16 @@ E<template>
       </transition>
     </div>
     <div class="slide slide--intro" v-if="show == 2">
-      <video src=""></video>
+      <video
+        class="intro__video"
+        src="../assets/vids/giveup.mp4"
+        autoplay
+        ref="introVideo"
+        @ended="increment"
+      ></video>
+      <button class="sound" v-on:click="muteIntro">
+        sound
+      </button>
     </div>
     <div class="slide slide--rupture" v-if="show == 3">
       <div class="rupture__title subtitle">Rupture sociale</div>
@@ -124,6 +133,26 @@ E<template>
         alt="images du film"
       />
     </div>
+    <div class="slide slide--end" v-if="show == 8">
+      <div class="end__background">
+        <div class="end__details details">
+          À la fin, les buildings tombent, les matériaux n’existent plus, tout
+          est calme.
+        </div>
+      </div>
+    </div>
+    <div class="slide slide--conclusion" v-if="show == 9">
+      <video
+        class="conclusion__video"
+        src="../assets/vids/conclusion.mp4"
+        autoplay
+        ref="conclusionVideo"
+        @ended="increment"
+      ></video>
+      <button class="sound" v-on:click="muteConclusion">
+        sound
+      </button>
+    </div>
   </div>
 </template>
 
@@ -140,13 +169,29 @@ E<template>
         this.$emit("increment");
       },
 
+      muteIntro: function() {
+        if (this.$refs.introVideo.muted) {
+          this.$refs.introVideo.muted = false;
+        } else {
+          this.$refs.introVideo.muted = true;
+        }
+      },
+
       muteCrash: function() {
         if (this.$refs.crashVideo.muted) {
           this.$refs.crashVideo.muted = false;
         } else {
           this.$refs.crashVideo.muted = true;
         }
-      }
+      },
+
+      muteConclusion: function() {
+        if (this.$refs.conclusionVideo.muted) {
+          this.$refs.conclusionVideo.muted = false;
+        } else {
+          this.$refs.conclusionVideo.muted = true;
+        }
+      },
     }
   };
 </script>
@@ -182,6 +227,11 @@ E<template>
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .intro__video {
+    width: 100vw;
+    height: 100vh;
   }
 
   .slide--rupture {
@@ -342,6 +392,31 @@ E<template>
     flex-direction: column;
     justify-content: space-between;
     height: 170px;
+  }
+
+  .slide--end {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .end__background {
+    width: 1052px;
+    height: 420px;
+    background-image: url("../assets/img/end-background.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .end__details {
+    width: 303px;
+    text-align: center;
+  }
+
+  .conclusion__video {
+    width: 100vw;
+    height: 100vh;
   }
 
   /* ANIMS SCOPED */
