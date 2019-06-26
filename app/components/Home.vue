@@ -46,7 +46,7 @@
           </transition>
           <transition name="fade">
             <h2 v-if="show == 0">
-              Comment un environnement monotone modèle une pensée poussant au
+              Comment un environnement monotone modèle-t-il une pensée poussant au
               chaos ?
             </h2>
           </transition>

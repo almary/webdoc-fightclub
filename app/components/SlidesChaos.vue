@@ -51,7 +51,7 @@ E<template>
             <div>
               Comme décrit dans le film, la solitude s'accompagne d'une
               réinvention incessante de soi-même, une transformation d'une
-              existence morne à excitante, de moral à immoral, et de mauviette à
+              existence morne à excitante, de morale à immorale, de mauviette à
               "vrai homme".
             </div>
           </div>
