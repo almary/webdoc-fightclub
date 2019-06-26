@@ -295,6 +295,7 @@
         @ended="afterEnd"
       ></video>
       <button class="sound" v-if="show == 9" v-on:click="mute">sound</button>
+      <button class="play-pause" v-if="show == 9" v-on:click="play">play / pause</button>
     </div>
   </div>
 </template>
@@ -311,11 +312,20 @@
       return {
         tv: 1,
         tv1Playing: true,
-        tv2Playing: false
+        tv2Playing: false,
       };
     },
 
     methods: {
+      play: function() {
+        console.log(this.$refs.conclusionVideo.paused);
+        if (this.$refs.conclusionVideo.paused) {
+          this.$refs.conclusionVideo.play()
+        } else {
+          this.$refs.conclusionVideo.pause()
+        }
+      },
+
       tvControl: function(el) {
         this.tv = el;
         if (this.tv1Playing && this.tv == 1) {

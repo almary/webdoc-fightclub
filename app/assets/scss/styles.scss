@@ -121,12 +121,17 @@ button {
 }
 
 .skip,
-.sound {
+.sound,
+.play-pause {
   position: absolute;
-  bottom: 70px;
+  bottom: 80px;
 }
 
 .skip {
+  right: 10vw;
+}
+
+.play-pause {
   right: 10vw;
 }
 

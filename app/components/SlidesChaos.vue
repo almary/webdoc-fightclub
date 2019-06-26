@@ -10,148 +10,173 @@ E<template>
         </h2>
       </transition>
     </div>
-    <div class="slide slide--intro" v-if="show == 2">
-      <video
-        class="intro__video"
-        src="../assets/vids/giveup.mp4"
-        autoplay
-        ref="introVideo"
-        @ended="increment"
-      ></video>
-      <button class="sound" v-on:click="muteIntro">
-        sound
-      </button>
-    </div>
-    <div class="slide slide--rupture" v-if="show == 3">
-      <div class="rupture__title subtitle">Rupture sociale</div>
-      <div class="rupture__wrapper">
-        <div class="rupture__content details">
-          <div>
-            Seule la désolation de la solitude et l'abscence totale de tout ce
-            qui rendrait le narrateur vivant pourrait prédisposer un homme à
-            désirer l'excitation et l'acceptation social non obstant des
-            conséquences à long terme.
+    <transition name="fade">
+      <div class="slide slide--intro" v-if="show == 2">
+        <video
+          class="intro__video"
+          src="../assets/vids/giveup.mp4"
+          autoplay
+          ref="introVideo"
+          @ended="increment"
+        ></video>
+        <button class="sound" v-on:click="muteIntro">
+          sound
+        </button>
+        <button class="play-pause" v-if="show == 2" v-on:click="play">
+          play / pause
+        </button>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--rupture" v-if="show == 3">
+        <div class="rupture__title subtitle">Rupture sociale</div>
+        <div class="rupture__wrapper">
+          <div class="rupture__content details">
+            <div>
+              Seule la désolation de la solitude et l'abscence totale de tout ce
+              qui rendrait le narrateur vivant pourrait prédisposer un homme à
+              désirer l'excitation et l'acceptation social non obstant des
+              conséquences à long terme.
+            </div>
+            <div>
+              Comme décrit dans le film, la solitude s'accompagne d'une
+              réinvention incessante de soi-même, une transformation d'une
+              existence morne à excitante, de moral à immoral, et de mauviette à
+              "vrai homme".
+            </div>
           </div>
-          <div>
-            Comme décrit dans le film, la solitude s'accompagne d'une
-            réinvention incessante de soi-même, une transformation d'une
-            existence morne à excitante, de moral à immoral, et de mauviette à
-            "vrai homme".
+          <div class="rupture__polaroid">
+            <img
+              class="rupture__polaroid--1"
+              src="../assets/img/rupture-1.png"
+              alt="polaroid"
+            />
+            <img
+              class="rupture__polaroid--2"
+              src="../assets/img/rupture-2.png"
+              alt="polaroid"
+            />
           </div>
         </div>
-        <div class="rupture__polaroid">
+      </div>
+    </transition>
+    <transition name="fade">
+      <div
+        class="slide slide--vivre"
+        v-if="show == 4"
+        :class="{firstPlan: show == 4}"
+      >
+        <div class="vivre__title subtitle">Se sentir vivre</div>
+        <img
+          class="vivre__script"
+          src="../assets/img/vivre-script.png"
+          alt="script"
+        />
+      </div>
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--crash" v-if="show == 5">
+        <video
+          class="crash__video"
+          src="../assets/vids/crash.mp4"
+          autoplay
+          @ended="increment"
+          ref="crashVideo"
+        ></video>
+        <button class="sound" v-on:click="muteCrash">
+          sound
+        </button>
+        <button class="play-pause" v-if="show == 5" v-on:click="play">
+          play / pause
+        </button>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--mort" v-if="show == 6">
+        <div class="mort__title subtitle">
+          Le rapport à la mort
+        </div>
+        <div class="mort__polaroid">
           <img
-            class="rupture__polaroid--1"
-            src="../assets/img/rupture-1.png"
+            class="mort__polaroid--1"
+            src="../assets/img/mort-polaroid.png"
             alt="polaroid"
           />
           <img
-            class="rupture__polaroid--2"
-            src="../assets/img/rupture-2.png"
-            alt="polaroid"
+            class="mort__polaroid--2"
+            src="../assets/img/mort-polaroid-back.png"
+            alt="dos polaroid"
+          />
+        </div>
+        <div class="mort__content">
+          <div class="mort__content--details">
+            « Méditer la mort, c’est méditer la liberté ; celui qui sait mourir,
+            ne sait plus être esclave »<span class="details">, Sénèque</span>
+          </div>
+          <img
+            class="mort__content--book"
+            src="../assets/img/mort-book.png"
+            alt="passage du livre"
           />
         </div>
       </div>
-    </div>
-    <div
-      class="slide slide--vivre"
-      v-if="show == 4"
-      :class="{firstPlan: show == 4}"
-    >
-      <div class="vivre__title subtitle">Se sentir vivre</div>
-      <img
-        class="vivre__script"
-        src="../assets/img/vivre-script.png"
-        alt="script"
-      />
-    </div>
-    <div class="slide slide--crash" v-if="show == 5">
-      <video
-        class="crash__video"
-        src="../assets/vids/crash.mp4"
-        autoplay
-        @ended="increment"
-        ref="crashVideo"
-      ></video>
-      <button class="sound" v-on:click="muteCrash">
-        sound
-      </button>
-    </div>
-    <div class="slide slide--mort" v-if="show == 6">
-      <div class="mort__title subtitle">
-        Le rapport à la mort
-      </div>
-      <div class="mort__polaroid">
-        <img
-          class="mort__polaroid--1"
-          src="../assets/img/mort-polaroid.png"
-          alt="polaroid"
-        />
-        <img
-          class="mort__polaroid--2"
-          src="../assets/img/mort-polaroid-back.png"
-          alt="dos polaroid"
-        />
-      </div>
-      <div class="mort__content">
-        <div class="mort__content--details">
-          « Méditer la mort, c’est méditer la liberté ; celui qui sait mourir,
-          ne sait plus être esclave »<span class="details">, Sénèque</span>
-        </div>
-        <img
-          class="mort__content--book"
-          src="../assets/img/mort-book.png"
-          alt="passage du livre"
-        />
-      </div>
-    </div>
-    <div class="slide slide--recul" v-if="show == 7">
-      <div class="recul__content ">
-        <div class="recul__title subtitle">Prise de recul</div>
-        <div class="recul__details details">
-          <div>
-            C’est à la mort de Bob, que Jack prend conscience qu’il doit
-            empêcher Tyler d’aller plus loin. Bob a été utilisé pour le projet,
-            comme un moyen.
-          </div>
-          <div class="recul__content--wrapper">
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--recul" v-if="show == 7">
+        <div class="recul__content ">
+          <div class="recul__title subtitle">Prise de recul</div>
+          <div class="recul__details details">
             <div>
-              Se rebeller contre un système qui les abruti ne leur permet pas de
-              se libérer; cela les déshumanise.
+              C’est à la mort de Bob, que Jack prend conscience qu’il doit
+              empêcher Tyler d’aller plus loin. Bob a été utilisé pour le
+              projet, comme un moyen.
             </div>
-            <div>
-              Ce projet finit par déshumaniser les hommes, au lieu de les
-              grandir, il nie les individus au profit d’une cause commune.
+            <div class="recul__content--wrapper">
+              <div>
+                Se rebeller contre un système qui les abruti ne leur permet pas
+                de se libérer; cela les déshumanise.
+              </div>
+              <div>
+                Ce projet finit par déshumaniser les hommes, au lieu de les
+                grandir, il nie les individus au profit d’une cause commune.
+              </div>
             </div>
           </div>
         </div>
+        <img
+          class="recul__background"
+          src="../assets/img/recul.jpg"
+          alt="images du film"
+        />
       </div>
-      <img
-        class="recul__background"
-        src="../assets/img/recul.jpg"
-        alt="images du film"
-      />
-    </div>
-    <div class="slide slide--end" v-if="show == 8">
-      <div class="end__background">
-        <div class="end__details details">
-          À la fin, les buildings tombent, les matériaux n’existent plus, tout
-          est calme.
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--end" v-if="show == 8">
+        <div class="end__background">
+          <div class="end__details details">
+            À la fin, les buildings tombent, les matériaux n’existent plus, tout
+            est calme.
+          </div>
         </div>
       </div>
-    </div>
-    <div class="slide slide--conclusion" v-if="show == 9">
-      <video
-        class="conclusion__video"
-        src="../assets/vids/conclusion.mp4"
-        autoplay
-        ref="conclusionVideo"
-        @ended="increment"
-      ></video>
-      <button class="sound" v-on:click="muteConclusion">
-        sound
-      </button>
-    </div>
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--conclusion" v-if="show == 9">
+        <video
+          class="conclusion__video"
+          src="../assets/vids/conclusion.mp4"
+          autoplay
+          ref="conclusionVideo"
+          @ended="increment"
+        ></video>
+        <button class="sound" v-on:click="muteConclusion">
+          sound
+        </button>
+        <button class="play-pause" v-if="show == 9" v-on:click="play">
+          play / pause
+        </button>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -166,6 +191,15 @@ E<template>
     methods: {
       increment: function() {
         this.$emit("increment");
+      },
+
+      play: function() {
+        console.log(this.$refs.conclusionVideo.paused);
+        if (this.$refs.conclusionVideo.paused) {
+          this.$refs.conclusionVideo.play()
+        } else {
+          this.$refs.conclusionVideo.pause()
+        }
       },
 
       muteIntro: function() {
@@ -190,7 +224,7 @@ E<template>
         } else {
           this.$refs.conclusionVideo.muted = true;
         }
-      },
+      }
     }
   };
 </script>

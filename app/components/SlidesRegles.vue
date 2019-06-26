@@ -23,235 +23,244 @@
       </div>
     </div>
     <transition name="fade">
-    <div class="slide slide--bar" v-if="show == 3">
-      <video
-        class="bar__video"
-        src="../assets/vids/bar.mp4"
-        autoplay
-        ref="barVideo"
-        @ended="increment"
-      ></video>
-      <button class="sound" v-on:click="mute">
-        sound
-      </button>
-    </div>
+      <div class="slide slide--bar" v-if="show == 3">
+        <video
+          class="bar__video"
+          src="../assets/vids/bar.mp4"
+          autoplay
+          ref="barVideo"
+          @ended="increment"
+        ></video>
+        <button class="sound" v-on:click="mute">
+          sound
+        </button>
+        <button class="play-pause" v-if="show == 3" v-on:click="play">
+          play / pause
+        </button>
+      </div>
     </transition>
     <transition name="fade">
-    <div class="slide slide--consommations" v-if="show == 4">
-      <div class="consommation__title subtitle">
-        La société de consommation
-      </div>
-      <div class="consommation__content details">
-        <div class="consommation__content--background"></div>
-        <div class="consommation__content--wrapper">
-          <div class="content__wrapper--text">
-            <div>
-              Le narrateur n’est personne, il n’a pas de passion autre que sa
-              consommation.
-            </div>
-            <div class="wrapper__bold">Il vit sans but.</div>
-            <div>
-              Il est tellement absorbé par la possession d’objets qu’il se
-              définit par ses possessions matérielles :
-            </div>
-          </div>
-          <img
-            src="../assets/img/consommation-scriptFirst.png"
-            alt="image du script"
-          />
+      <div class="slide slide--consommations" v-if="show == 4">
+        <div class="consommation__title subtitle">
+          La société de consommation
         </div>
+        <div class="consommation__content details">
+          <div class="consommation__content--background"></div>
+          <div class="consommation__content--wrapper">
+            <div class="content__wrapper--text">
+              <div>
+                Le narrateur n’est personne, il n’a pas de passion autre que sa
+                consommation.
+              </div>
+              <div class="wrapper__bold">Il vit sans but.</div>
+              <div>
+                Il est tellement absorbé par la possession d’objets qu’il se
+                définit par ses possessions matérielles :
+              </div>
+            </div>
+            <img
+              src="../assets/img/consommation-scriptFirst.png"
+              alt="image du script"
+            />
+          </div>
+        </div>
+        <img
+          src="../assets/img/consommation-book.png"
+          alt="image du livre"
+          class="consommation__book"
+        />
       </div>
-      <img
-        src="../assets/img/consommation-book.png"
-        alt="image du livre"
-        class="consommation__book"
-      />
-    </div>
     </transition>
     <transition name="fade">
-    <div
-      class="slide slide--things"
-      :class="{firstPlan: show == 5}"
-      v-if="show == 5"
-    >
-      <div class="things__title subtitle">La société de consommation</div>
-      <div class="things__wrapper">
-        <div class="things__illustration">
-          <img
-            src="../assets/img/things.png"
-            alt="illustration"
-            class="things__illustration--image"
-          />
-          <img
-            src="../assets/img/things-script.png"
-            alt="script"
-            class="things__illustration--script"
-          />
-        </div>
-        <div class="things__content">
-          <div class="content__quote">
-            « Il m'a fallu une vie entière pour acheter tous ces trucs. »
+      <div
+        class="slide slide--things"
+        :class="{firstPlan: show == 5}"
+        v-if="show == 5"
+      >
+        <div class="things__title subtitle">La société de consommation</div>
+        <div class="things__wrapper">
+          <div class="things__illustration">
+            <img
+              src="../assets/img/things.png"
+              alt="illustration"
+              class="things__illustration--image"
+            />
+            <img
+              src="../assets/img/things-script.png"
+              alt="script"
+              class="things__illustration--script"
+            />
           </div>
-          <div class="content__details details">
-            <div>
-              L’importance et le sens de sa vie est mesurée par les objets qu’il
-              possède. Décrivant sa propre existence à rien de plus qu’une façon
-              de garder et de ranger des choses.
+          <div class="things__content">
+            <div class="content__quote">
+              « Il m'a fallu une vie entière pour acheter tous ces trucs. »
             </div>
-            <div>
-              Le consumérisme vide et sinistre incriminé dans Fight Club
-              illustre également la solitude latente du narrateur.
+            <div class="content__details details">
+              <div>
+                L’importance et le sens de sa vie est mesurée par les objets
+                qu’il possède. Décrivant sa propre existence à rien de plus
+                qu’une façon de garder et de ranger des choses.
+              </div>
+              <div>
+                Le consumérisme vide et sinistre incriminé dans Fight Club
+                illustre également la solitude latente du narrateur.
+              </div>
+            </div>
+          </div>
+        </div>
+        <img
+          src="../assets/img/funfact.png"
+          alt="funfact"
+          class="things__funfact"
+        />
+        <div class="things__book">
+          <div class="things__book--content">
+            <div class="things__book--text">
+              La structure laquée d'entretien facile de mes tables d'appoint
+              Kalix.
+              <br />
+              Mes tables-gigognes Steg. <br />
+              On achète des meubles. On se dit : ce sera le dernier canapé dont
+              j'aurai jamais besoin de toute mon existence. On achète le canapé,
+              et pendant quelques années on se satisfait du fait que, quoi qui
+              puisse arriver, au moins on a réglé le problème du canapé. Et
+              ensuite le bon service de table. Ensuite le lit parfait. Les
+              rideaux. Le tapis.
             </div>
           </div>
         </div>
       </div>
-      <img
-        src="../assets/img/funfact.png"
-        alt="funfact"
-        class="things__funfact"
-      />
-      <div class="things__book">
-        <div class="things__book--content">
-          <div class="things__book--text">
-            La structure laquée d'entretien facile de mes tables d'appoint
-            Kalix.
-            <br />
-            Mes tables-gigognes Steg. <br />
-            On achète des meubles. On se dit : ce sera le dernier canapé dont
-            j'aurai jamais besoin de toute mon existence. On achète le canapé,
-            et pendant quelques années on se satisfait du fait que, quoi qui
-            puisse arriver, au moins on a réglé le problème du canapé. Et
-            ensuite le bon service de table. Ensuite le lit parfait. Les
-            rideaux. Le tapis.
-          </div>
-        </div>
-      </div>
-    </div>
     </transition>
     <transition name="fade">
-    <div class="slide slide--nihilisme" v-if="show == 6">
-      <div class="nihilisme__title subtitle">
-        Le nihilisme
-      </div>
-      <div class="nihilisme__details--wrapper">
+      <div class="slide slide--nihilisme" v-if="show == 6">
+        <div class="nihilisme__title subtitle">
+          Le nihilisme
+        </div>
+        <div class="nihilisme__details--wrapper">
+          <div class="nihilisme__details details">
+            Le nihilisme soutient que la vie n’a pas de sens, rejette toutes
+            valeurs, croyance ou réalité substantielle.
+          </div>
+          <div class="nihilisme__details details">
+            C'est un rejet total de la vie.
+          </div>
+        </div>
+        <div class="nihilisme__bobine--wrapper">
+          <div class="nihilisme__bobine"></div>
+        </div>
         <div class="nihilisme__details details">
-          Le nihilisme soutient que la vie n’a pas de sens, rejette toutes
-          valeurs, croyance ou réalité substantielle.
-        </div>
-        <div class="nihilisme__details details">
-          C'est un rejet total de la vie.
+          Un monde dans lequel nous n’avons pas de morale, pas d’objets, pas de
+          pensées idéologiques, rien du tout.
         </div>
       </div>
-      <div class="nihilisme__bobine--wrapper">
-        <div class="nihilisme__bobine"></div>
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--soap" v-if="show == 7">
+        <video
+          class="soap__video"
+          src="../assets/vids/soap.mp4"
+          autoplay
+          ref="soapVideo"
+          @ended="increment"
+        ></video>
+        <button class="sound" v-on:click="muteSoap">
+          sound
+        </button>
+        <button class="play-pause" v-if="show == 7" v-on:click="play">
+          play / pause
+        </button>
       </div>
-      <div class="nihilisme__details details">
-        Un monde dans lequel nous n’avons pas de morale, pas d’objets, pas de
-        pensées idéologiques, rien du tout.
+    </transition>
+    <transition name="fade">
+      <div
+        class="slide slide--papers"
+        :class="{firstPlan: show == 8}"
+        v-if="show == 8"
+      >
+        <div class="papers__title subtitle">Le nihilisme</div>
+        <img
+          v-on:click="papers"
+          class="papers__paper0 papers"
+          src="../assets/img/papers-paper0.png"
+          alt="passage du livre"
+        />
+        <img
+          class="papers__paper1 papers"
+          :class="{active: paper == 1}"
+          src="../assets/img/papers-paper1.png"
+          alt="analyse"
+        />
+        <img
+          class="papers__paper2 papers"
+          :class="{active: paper == 1}"
+          src="../assets/img/papers-paper2.png"
+          alt="analyse"
+        />
+        <img
+          class="papers__paper3 papers"
+          :class="{active: paper == 1}"
+          src="../assets/img/papers-paper3.png"
+          alt="analyse"
+        />
+        <img
+          class="papers__polaroid0 papers"
+          :class="{active: paper == 1}"
+          src="../assets/img/papers-polaroid0.png"
+          alt="polaroid"
+        />
+        <img
+          class="papers__polaroid1 papers"
+          :class="{active: paper == 1}"
+          src="../assets/img/papers-polaroid1.png"
+          alt="polaroid"
+        />
+        <img
+          class="papers__polaroid2 papers"
+          :class="{active: paper == 1}"
+          src="../assets/img/papers-polaroid2.png"
+          alt="polaroid"
+        />
       </div>
-    </div>
     </transition>
     <transition name="fade">
-    <div class="slide slide--soap" v-if="show == 7">
-      <video
-        class="soap__video"
-        src="../assets/vids/soap.mp4"
-        autoplay
-        ref="soapVideo"
-        @ended="increment"
-      ></video>
-      <button class="sound" v-on:click="muteSoap">
-        sound
-      </button>
-    </div>
-    </transition>
-    <transition name="fade">
-    <div
-      class="slide slide--papers"
-      :class="{firstPlan: show == 8}"
-      v-if="show == 8"
-    >
-      <div class="papers__title subtitle">Le nihilisme</div>
-      <img
-        v-on:click="papers"
-        class="papers__paper0 papers"
-        src="../assets/img/papers-paper0.png"
-        alt="passage du livre"
-      />
-      <img
-        class="papers__paper1 papers"
-        :class="{active: paper == 1}"
-        src="../assets/img/papers-paper1.png"
-        alt="analyse"
-      />
-      <img
-        class="papers__paper2 papers"
-        :class="{active: paper == 1}"
-        src="../assets/img/papers-paper2.png"
-        alt="analyse"
-      />
-      <img
-        class="papers__paper3 papers"
-        :class="{active: paper == 1}"
-        src="../assets/img/papers-paper3.png"
-        alt="analyse"
-      />
-      <img
-        class="papers__polaroid0 papers"
-        :class="{active: paper == 1}"
-        src="../assets/img/papers-polaroid0.png"
-        alt="polaroid"
-      />
-      <img
-        class="papers__polaroid1 papers"
-        :class="{active: paper == 1}"
-        src="../assets/img/papers-polaroid1.png"
-        alt="polaroid"
-      />
-      <img
-        class="papers__polaroid2 papers"
-        :class="{active: paper == 1}"
-        src="../assets/img/papers-polaroid2.png"
-        alt="polaroid"
-      />
-    </div>
-    </transition>
-    <transition name="fade">
-    <div class="slide slide--autodestruction" v-if="show == 9">
-      <div class="autodestruction__background">
-        <div class="autodestruction__wrapper">
-          <div class="autodestruction__title subtitle">
-            L'autodestruction
-          </div>
-          <div class="autodestruction__content">
-            <div class="autodestruction__content--quote">
-              « Tyler dit que chercher à s'améliorer, c'est rien que de la
-              branlette. Tyler dit que l'autodestruction est sans doute la
-              réponse. »
+      <div class="slide slide--autodestruction" v-if="show == 9">
+        <div class="autodestruction__background">
+          <div class="autodestruction__wrapper">
+            <div class="autodestruction__title subtitle">
+              L'autodestruction
             </div>
-            <div class="autodestruction__content--details details">
-              Se détruire pour se reconstruire. Le narrateur réalise qu’il peut
-              s’évader de son existence et creuser une vision bien plus
-              excitante et profonde de la vie humaine.
+            <div class="autodestruction__content">
+              <div class="autodestruction__content--quote">
+                « Tyler dit que chercher à s'améliorer, c'est rien que de la
+                branlette. Tyler dit que l'autodestruction est sans doute la
+                réponse. »
+              </div>
+              <div class="autodestruction__content--details details">
+                Se détruire pour se reconstruire. Le narrateur réalise qu’il
+                peut s’évader de son existence et creuser une vision bien plus
+                excitante et profonde de la vie humaine.
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </transition>
     <transition name="fade">
-    <div class="slide slide--conclusionSecond" v-if="show == 10">
-      <video
-        class="conclusionSecond__video"
-        src="../assets/vids/bobine.mp4"
-        autoplay
-        ref="bobineVideo"
-        @ended="afterEnd"
-      ></video>
-      <button class="sound" v-on:click="muteBobine">
-        sound
-      </button>
-    </div>
+      <div class="slide slide--conclusionSecond" v-if="show == 10">
+        <video
+          class="conclusionSecond__video"
+          src="../assets/vids/bobine.mp4"
+          autoplay
+          ref="bobineVideo"
+          @ended="afterEnd"
+        ></video>
+        <button class="sound" v-on:click="muteBobine">
+          sound
+        </button>
+        <button class="play-pause" v-if="show == 10" v-on:click="play">
+          play / pause
+        </button>
+      </div>
     </transition>
   </div>
 </template>
@@ -269,6 +278,15 @@
     methods: {
       increment: function() {
         this.$emit("increment");
+      },
+
+      play: function() {
+        console.log(this.$refs.conclusionVideo.paused);
+        if (this.$refs.conclusionVideo.paused) {
+          this.$refs.conclusionVideo.play();
+        } else {
+          this.$refs.conclusionVideo.pause();
+        }
       },
 
       mute: function() {
