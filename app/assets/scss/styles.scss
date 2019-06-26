@@ -148,6 +148,28 @@ button {
   font-size: 16px;
 }
 
+.audio__wrapper {
+  position: absolute;
+  top: 7vh;
+  right: 5vw;
+  z-index: 3;
+}
+
+.audio {
+  background: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+}
+
+.audio--false {
+  background-image: url("../svg/speaker2.svg");
+}
+.audio--true {
+  background-image: url("../svg/speaker1.svg");
+}
+
 .skip,
 .sound,
 .play-pause {
