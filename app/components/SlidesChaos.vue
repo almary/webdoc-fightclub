@@ -19,9 +19,19 @@ E<template>
           ref="introVideo"
           @ended="increment"
         ></video>
-        <button class="sound" v-on:click="muteIntro">
-          sound
-        </button>
+        <div class="sound__wrapper" v-if="show == 2">
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 2 && audioVideoFirst == true"
+            v-on:click="muteFirst"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 2 && audioVideoFirst == false"
+            v-on:click="muteFirst"
+          ></button>
+        </div>
         <button class="play-pause" v-if="show == 2" v-on:click="play">
           play / pause
         </button>
@@ -83,9 +93,19 @@ E<template>
           @ended="increment"
           ref="crashVideo"
         ></video>
-        <button class="sound" v-on:click="muteCrash">
-          sound
-        </button>
+        <div class="sound__wrapper" v-if="show == 5">
+            video
+            <button
+              class="sound sound--true"
+              v-if="show == 5 && audioVideoSecond == true"
+              v-on:click="muteSecond"
+            ></button>
+            <button
+              class="sound sound--false"
+              v-if="show == 5 && audioVideoSecond == false"
+              v-on:click="muteSecond"
+            ></button>
+          </div>
         <button class="play-pause" v-if="show == 5" v-on:click="play">
           play / pause
         </button>
@@ -185,7 +205,10 @@ E<template>
     props: ["show"],
 
     data() {
-      return {};
+      return {
+        audioVideoFirst: true,
+        audioVideoSecond: true
+      };
     },
 
     methods: {
@@ -196,25 +219,29 @@ E<template>
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
         if (this.$refs.conclusionVideo.paused) {
-          this.$refs.conclusionVideo.play()
+          this.$refs.conclusionVideo.play();
         } else {
-          this.$refs.conclusionVideo.pause()
+          this.$refs.conclusionVideo.pause();
         }
       },
 
-      muteIntro: function() {
+      muteFirst: function() {
         if (this.$refs.introVideo.muted) {
           this.$refs.introVideo.muted = false;
+          this.audioVideoFirst = true;
         } else {
           this.$refs.introVideo.muted = true;
+          this.audioVideoFirst = false;
         }
       },
 
-      muteCrash: function() {
+      muteSecond: function() {
         if (this.$refs.crashVideo.muted) {
           this.$refs.crashVideo.muted = false;
+          this.audioVideoSecond = true;
         } else {
           this.$refs.crashVideo.muted = true;
+          this.audioVideoSecond = false;
         }
       },
 

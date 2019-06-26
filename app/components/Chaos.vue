@@ -57,10 +57,10 @@
 
       pauseAudio: function() {
         // pause audio for specific slides
-        if (this.show == 9) {
+        if (this.show == 2 || this.show == 5 || this.show == 9) {
           this.$refs.audio.volume = 0;
         } else {
-          this.$refs.audio.volume = 1;
+          this.$refs.audio.volume = 0.7;
         }
       },
 
