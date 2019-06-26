@@ -1,12 +1,13 @@
 <template>
   <div class="wrapper">
-      <div class="mobile" v-if="mobile == 1">
-          <div class="mobile__title">Fight Club</div>
-          <div class="mobile__description">
-            Ce site est optimisé pour une navigation sur ordinateur, pour le
-            découvrir veuillez changer d'appareil.
-          </div>
-        </div>
+    <div class="mobile" v-if="mobile == 1">
+      <div class="mobile__title">Fight Club</div>
+      <div class="mobile__description">
+        Ce site est optimisé pour une navigation sur ordinateur, pour le
+        découvrir veuillez changer d'appareil.
+      </div>
+    </div>
+    <audio src="../assets/music/regles.mp3" autoplay loop ref="audio"></audio>
     <SlidesRegles :show="show" @increment="incrementChild"></SlidesRegles>
     <Nav :show="show" :percentage="percentage"></Nav>
   </div>
@@ -20,6 +21,7 @@
     name: "Homme",
     data() {
       return {
+        audio: true,
         mobile: 0,
         duration: 500,
         show: 0,
@@ -29,6 +31,24 @@
     },
 
     methods: {
+      audioControl: function() {
+        if (this.audio) {
+          this.$refs.audio.play();
+        } else {
+          this.$refs.audio.pause();
+        }
+      },
+
+      pauseAudio: function() {
+        // pause audio for specific slides
+        if (this.show == 3 || this.show == 7 || this.show == 10) {
+          this.audio = false;
+        } else {
+          this.audio = true;
+        }
+        this.audioControl();
+      },
+
       scroll: function(e) {
         // scroll down
         if (e.deltaY > 50) {
@@ -39,6 +59,9 @@
         if (e.deltaY < -50) {
           this.up();
         }
+        setTimeout(() => {
+          this.pauseAudio();
+        }, this.duration);
       },
 
       scrollFirefox: function(e) {
@@ -49,6 +72,9 @@
         if (e.detail < -2) {
           this.up();
         }
+        setTimeout(() => {
+          this.pauseAudio();
+        }, this.duration);
       },
 
       down: function() {
@@ -72,7 +98,7 @@
         // min
         if (this.show <= 0) {
           this.$router.push({ path: "../Homme/9" });
-          return
+          return;
         }
         //detect scroll (-50 : sensitivity)
         console.log("scrolling up regles");
@@ -152,18 +178,18 @@
       },
 
       mobileFunction: function() {
-        console.log('resize');
+        console.log("resize");
         if (window.innerWidth < 1100 || window.innerHeight < 650) {
           this.mobile = 1;
         } else {
           this.mobile = 0;
         }
-      },
+      }
     },
 
     created() {
       this.mobileFunction();
-      window.addEventListener('resize', this.mobileFunction);
+      window.addEventListener("resize", this.mobileFunction);
 
       setTimeout(() => {
         if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
@@ -194,7 +220,7 @@
         this.show = parseInt(this.$route.params.id);
       }
 
-      window.removeEventListener('resize', this.mobileFunction);
+      window.removeEventListener("resize", this.mobileFunction);
     },
 
     components: {

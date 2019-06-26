@@ -7,6 +7,8 @@
         découvrir veuillez changer d'appareil.
       </div>
     </div>
+    <audio src="../assets/music/chaos.mp3" autoplay loop ref="audio"></audio>
+
     <SlidesChaos :show="show" @increment="incrementChild"></SlidesChaos>
     <Nav :show="show" :percentage="percentage"></Nav>
   </div>
@@ -20,6 +22,7 @@
     name: "Homme",
     data() {
       return {
+        audio: true,
         mobile: 0,
         duration: 500,
         show: 0,
@@ -29,6 +32,24 @@
     },
 
     methods: {
+      audioControl: function() {
+        if (this.audio) {
+          this.$refs.audio.play();
+        } else {
+          this.$refs.audio.pause();
+        }
+      },
+
+      pauseAudio: function() {
+        // pause audio for specific slides
+        if (this.show == 2 || this.show == 5 || this.show == 9) {
+          this.audio = false;
+        } else {
+          this.audio = true;
+        }
+        this.audioControl();
+      },
+
       scroll: function(e) {
         // scroll down
         if (e.deltaY > 50) {
@@ -39,6 +60,10 @@
         if (e.deltaY < -50) {
           this.up();
         }
+
+        setTimeout(() => {
+          this.pauseAudio();
+        }, this.duration);
       },
 
       scrollFirefox: function(e) {
@@ -49,6 +74,10 @@
         if (e.detail < -2) {
           this.up();
         }
+
+        setTimeout(() => {
+          this.pauseAudio();
+        }, this.duration);
       },
 
       down: function() {
