@@ -112,7 +112,7 @@ E<template>
       </div>
     </transition>
     <transition name="fade">
-      <div class="slide slide--mort" v-if="show == 6">
+      <div class="slide slide--mort" v-if="show == 6" :class="{firstPlan: show == 6}">
         <div class="mort__title subtitle">
           Le rapport à la mort
         </div>
@@ -172,7 +172,13 @@ E<template>
     </transition>
     <div class="slide slide--end">
       <div class="end__wrapper">
-        <img src="../assets/img/end-background.jpg" class="end__background" v-if="show == 8"/>
+        <transition name="fade">
+          <img
+            src="../assets/img/end-background.jpg"
+            class="end__background"
+            v-if="show == 8"
+          />
+        </transition>
         <div class="end__details details">
           <transition name="appears">
             <span class="end__details--1" v-if="show == 8">
@@ -190,7 +196,6 @@ E<template>
             >
           </transition>
         </div>
-        </transition>
       </div>
     </div>
     <transition name="fade">
@@ -396,7 +401,7 @@ E<template>
     left: 0;
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 90vw;
     justify-content: space-around;
     align-items: center;
   }
@@ -535,28 +540,45 @@ E<template>
     transform: translateY(20px);
   }
 
-  .appears-enter-active,
-  .appears-leave-active {
+  .appears-enter-active {
     transition: all 0.5s;
     transition-delay: 0s;
   }
   .appears-enter {
     opacity: 0;
   }
-  .appears2-enter-active,
-  .appears2-leave-active {
+  .appears-leave-active {
+    transition: all 0.5s;
+  }
+  .appears-leave-to {
+    opacity: 0;
+  }
+
+  .appears2-enter-active {
     transition: all 0.5s;
     transition-delay: 1s;
   }
   .appears2-enter {
     opacity: 0;
   }
-  .appears3-enter-active,
-  .appears3-leave-active {
+  .appears2-leave-active {
+    transition: all 0.5s;
+  }
+  .appears2-leave-to {
+    opacity: 0;
+  }
+
+  .appears3-enter-active {
     transition: all 0.5s;
     transition-delay: 2s;
   }
   .appears3-enter {
+    opacity: 0;
+  }
+  .appears3-leave-active {
+    transition: all 0.5s;
+  }
+  .appears3-leave-to {
     opacity: 0;
   }
 
