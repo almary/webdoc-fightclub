@@ -94,18 +94,18 @@ E<template>
           ref="crashVideo"
         ></video>
         <div class="sound__wrapper" v-if="show == 5">
-            video
-            <button
-              class="sound sound--true"
-              v-if="show == 5 && audioVideoSecond == true"
-              v-on:click="muteSecond"
-            ></button>
-            <button
-              class="sound sound--false"
-              v-if="show == 5 && audioVideoSecond == false"
-              v-on:click="muteSecond"
-            ></button>
-          </div>
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 5 && audioVideoSecond == true"
+            v-on:click="muteSecond"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 5 && audioVideoSecond == false"
+            v-on:click="muteSecond"
+          ></button>
+        </div>
         <button class="play-pause" v-if="show == 5" v-on:click="play">
           play / pause
         </button>
@@ -189,9 +189,19 @@ E<template>
           ref="conclusionVideo"
           @ended="increment"
         ></video>
-        <button class="sound" v-on:click="muteConclusion">
-          sound
-        </button>
+        <div class="sound__wrapper" v-if="show == 9">
+            video
+            <button
+              class="sound sound--true"
+              v-if="show == 9 && audioVideoThird == true"
+              v-on:click="muteThird"
+            ></button>
+            <button
+              class="sound sound--false"
+              v-if="show == 9 && audioVideoThird == false"
+              v-on:click="muteThird"
+            ></button>
+          </div>
         <button class="play-pause" v-if="show == 9" v-on:click="play">
           play / pause
         </button>
@@ -207,7 +217,8 @@ E<template>
     data() {
       return {
         audioVideoFirst: true,
-        audioVideoSecond: true
+        audioVideoSecond: true,
+        audioVideoThird: true
       };
     },
 
@@ -245,13 +256,15 @@ E<template>
         }
       },
 
-      muteConclusion: function() {
+      muteThird: function() {
         if (this.$refs.conclusionVideo.muted) {
           this.$refs.conclusionVideo.muted = false;
+          this.audioVideoThird = true;
         } else {
           this.$refs.conclusionVideo.muted = true;
+          this.audioVideoThird = false;
         }
-      }
+      },
     }
   };
 </script>
