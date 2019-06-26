@@ -23,7 +23,11 @@
       </div>
     </div>
     <transition name="fade">
-      <div class="slide slide--bar" v-if="show == 3" :class="{firstPlan: show ==3}">
+      <div
+        class="slide slide--bar"
+        v-if="show == 3"
+        :class="{firstPlan: show ==3}"
+      >
         <video
           class="bar__video"
           src="../assets/vids/bar.mp4"
@@ -31,9 +35,19 @@
           ref="barVideo"
           @ended="increment"
         ></video>
-        <button class="sound" v-on:click="mute">
-          sound
-        </button>
+        <div class="sound__wrapper" v-if="show == 3">
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 3 && audioVideoFirst == true"
+            v-on:click="muteFirst"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 3 && audioVideoFirst == false"
+            v-on:click="muteFirst"
+          ></button>
+        </div>
         <button class="play-pause" v-if="show == 3" v-on:click="play">
           play / pause
         </button>
@@ -170,9 +184,19 @@
           ref="soapVideo"
           @ended="increment"
         ></video>
-        <button class="sound" v-on:click="muteSoap">
-          sound
-        </button>
+        <div class="sound__wrapper" v-if="show == 7">
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 7 && audioVideoSecond == true"
+            v-on:click="muteSecond"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 7 && audioVideoSecond == false"
+            v-on:click="muteSecond"
+          ></button>
+        </div>
         <button class="play-pause" v-if="show == 7" v-on:click="play">
           play / pause
         </button>
@@ -185,48 +209,44 @@
         v-if="show == 8"
       >
         <div class="papers__title subtitle">Le nihilisme</div>
-        <img
-          v-on:click="papers"
-          class="papers__paper0 papers"
-          src="../assets/img/papers-paper0.png"
-          alt="passage du livre"
-        />
-        <img
-          class="papers__paper1 papers"
-          :class="{active: paper == 1}"
-          src="../assets/img/papers-paper1.png"
-          alt="analyse"
-        />
-        <img
-          class="papers__paper2 papers"
-          :class="{active: paper == 1}"
-          src="../assets/img/papers-paper2.png"
-          alt="analyse"
-        />
-        <img
-          class="papers__paper3 papers"
-          :class="{active: paper == 1}"
-          src="../assets/img/papers-paper3.png"
-          alt="analyse"
-        />
-        <img
-          class="papers__polaroid0 papers"
-          :class="{active: paper == 1}"
-          src="../assets/img/papers-polaroid0.png"
-          alt="polaroid"
-        />
-        <img
-          class="papers__polaroid1 papers"
-          :class="{active: paper == 1}"
-          src="../assets/img/papers-polaroid1.png"
-          alt="polaroid"
-        />
-        <img
-          class="papers__polaroid2 papers"
-          :class="{active: paper == 1}"
-          src="../assets/img/papers-polaroid2.png"
-          alt="polaroid"
-        />
+        <div class="papers__wrapper">
+          <img
+            v-on:click="papers"
+            class="papers__paper0 papers"
+            src="../assets/img/papers-paper0.png"
+            alt="passage du livre"
+          />
+          <img
+            class="papers__paper1 papers"
+            src="../assets/img/papers-paper1.png"
+            alt="analyse"
+          />
+          <img
+            class="papers__paper2 papers"
+            src="../assets/img/papers-paper2.png"
+            alt="analyse"
+          />
+          <img
+            class="papers__paper3 papers"
+            src="../assets/img/papers-paper3.png"
+            alt="analyse"
+          />
+          <img
+            class="papers__polaroid0 papers"
+            src="../assets/img/papers-polaroid0.png"
+            alt="polaroid"
+          />
+          <img
+            class="papers__polaroid1 papers"
+            src="../assets/img/papers-polaroid1.png"
+            alt="polaroid"
+          />
+          <img
+            class="papers__polaroid2 papers"
+            src="../assets/img/papers-polaroid2.png"
+            alt="polaroid"
+          />
+        </div>
       </div>
     </transition>
     <transition name="fade">
@@ -278,7 +298,8 @@
 
     data() {
       return {
-        paper: 0
+        audioVideoFirst: true,
+        audioVideoSecond: true
       };
     },
 
@@ -287,20 +308,32 @@
         this.$emit("increment");
       },
 
+      muteFirst: function() {
+        if (this.$refs.barVideo.muted) {
+          this.$refs.barVideo.muted = false;
+          this.audioVideoFirst = true;
+        } else {
+          this.$refs.barVideo.muted = true;
+          this.audioVideoFirst = false;
+        }
+      },
+
+      muteSecond: function() {
+        if (this.$refs.soapVideo.muted) {
+          this.$refs.soapVideo.muted = false;
+          this.audioVideoSecond = true;
+        } else {
+          this.$refs.soapVideo.muted = true;
+          this.audioVideoSecond = false;
+        }
+      },
+
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
         if (this.$refs.conclusionVideo.paused) {
           this.$refs.conclusionVideo.play();
         } else {
           this.$refs.conclusionVideo.pause();
-        }
-      },
-
-      mute: function() {
-        if (this.$refs.barVideo.muted) {
-          this.$refs.barVideo.muted = false;
-        } else {
-          this.$refs.barVideo.muted = true;
         }
       },
 
@@ -317,14 +350,6 @@
           this.$refs.bobineVideo.muted = false;
         } else {
           this.$refs.bobineVideo.muted = true;
-        }
-      },
-
-      papers: function() {
-        if (this.paper == 0) {
-          this.paper = 1;
-        } else {
-          this.paper = 0;
         }
       },
 
@@ -613,24 +638,29 @@
     text-align: center;
   }
 
-  .papers {
+  .papers__wrapper {
     position: absolute;
     margin: 0 auto;
     right: 0;
     left: 0;
+    height: 480px;
+    width: 400px;
+  }
+
+  .papers {
+    position: absolute;
     transition: all 0.3s;
   }
 
   .papers__paper0 {
     z-index: 3;
-    cursor: pointer;
   }
 
   .papers__paper1 {
     z-index: 2;
   }
 
-  .papers__paper1.active {
+  .papers__wrapper:hover .papers__paper1 {
     transform: translateX(-400px) translateY(-100px) rotate(-2deg);
   }
 
@@ -638,7 +668,7 @@
     z-index: 1;
   }
 
-  .papers__paper2.active {
+  .papers__wrapper:hover .papers__paper2 {
     transform: translateX(-360px) translateY(130px);
   }
 
@@ -646,7 +676,7 @@
     z-index: 2;
   }
 
-  .papers__paper3.active {
+  .papers__wrapper:hover .papers__paper3 {
     transform: translateX(340px) translateY(130px);
   }
 
@@ -654,7 +684,7 @@
     z-index: 0;
   }
 
-  .papers__polaroid0.active {
+  .papers__wrapper:hover .papers__polaroid0 {
     transform: translateX(-160px) translateY(-85px);
   }
 
@@ -662,7 +692,7 @@
     z-index: 1;
   }
 
-  .papers__polaroid1.active {
+  .papers__wrapper:hover .papers__polaroid1 {
     transform: translateX(160px) translateY(-60px);
   }
 
@@ -670,7 +700,7 @@
     z-index: 0;
   }
 
-  .papers__polaroid2.active {
+  .papers__wrapper:hover .papers__polaroid2 {
     transform: translateX(330px) translateY(-100px);
   }
 

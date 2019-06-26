@@ -300,7 +300,19 @@
         v-if="show == 9"
         @ended="afterEnd"
       ></video>
-      <button class="sound" v-if="show == 9" v-on:click="mute">sound</button>
+      <div class="sound__wrapper" v-if="show == 9">
+        video
+        <button
+          class="sound sound--true"
+          v-if="show == 9 && audioVideo == true"
+          v-on:click="mute"
+        ></button>
+        <button
+          class="sound sound--false"
+          v-if="show == 9 && audioVideo == false"
+          v-on:click="mute"
+        ></button>
+      </div>
       <button class="play-pause" v-if="show == 9" v-on:click="play">
         play / pause
       </button>
@@ -318,6 +330,7 @@
 
     data() {
       return {
+        audioVideo: true,
         tv: 1,
         tv1Playing: true,
         tv2Playing: false
@@ -325,6 +338,15 @@
     },
 
     methods: {
+      mute: function() {
+        if (this.$refs.conclusionVideo.muted) {
+          this.$refs.conclusionVideo.muted = false;
+          this.audioVideo = true;
+        } else {
+          this.$refs.conclusionVideo.muted = true;
+          this.audioVideo = false;
+        }
+      },
 
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
