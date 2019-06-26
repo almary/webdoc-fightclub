@@ -23,9 +23,19 @@
         </button>
       </transition>
       <transition name="fade">
-        <button class="sound" v-if="show == 1" v-on:click="unmute">
-          son
-        </button>
+        <div class="sound__wrapper" v-if="show == 1">
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 1 && audioVideo == true"
+            v-on:click="unmute"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 1 && audioVideo == false"
+            v-on:click="unmute"
+          ></button>
+        </div>
       </transition>
     </div>
     <transition name="fade">
@@ -42,7 +52,9 @@
           </transition>
         </div>
         <transition name="fade">
-          <button class="commencer" v-if="show == 0" v-on:click="increment">Commencer</button>
+          <button class="commencer" v-if="show == 0" v-on:click="increment">
+            Commencer
+          </button>
         </transition>
       </div>
     </transition>
@@ -53,6 +65,7 @@
   export default {
     data() {
       return {
+        audioVideo: true,
         mobile: 0,
         show: 0
       };
@@ -70,8 +83,10 @@
       unmute: function() {
         if (this.$refs.introVid.muted) {
           this.$refs.introVid.muted = false;
+          this.audioVideo = true;
         } else {
           this.$refs.introVid.muted = true;
+          this.audioVideo = false;
         }
       },
 
