@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper wrapper--themes">
-    <div style="position: absolute">{{ show }}</div>
     <div class="slide slide--title">
       <transition name="fade">
         <h1 v-if="show == 0 || show == 1">Les Règles</h1>

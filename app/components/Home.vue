@@ -67,13 +67,17 @@
       scroll: function(e) {
         // scroll down
         if (e.deltaY > 50) {
+          this.removeScrollListener();
           //max
           if (this.show >= 1) {
-            console.log("hey");
             this.afterEnd();
+            return;
           }
           //detect scroll (-50 : sensitivity)
           this.show++;
+          setTimeout(() => {
+            this.addScrollListener();
+          }, 1000);
         }
       },
 
@@ -81,14 +85,39 @@
         var y = e.detail;
         if (e.detail > 2) {
           // scroll down
-          if (e.deltaY > 50) {
-            //max
-            if (this.show >= 1) {
-              this.afterEnd();
-            }
-            //detect scroll (-50 : sensitivity)
-            this.show++;
+
+          this.removeScrollListener();
+          //max
+          if (this.show >= 1) {
+            console.log("hey");
+            this.afterEnd();
+            return;
           }
+          //detect scroll (-50 : sensitivity)
+          this.show++;
+          setTimeout(() => {
+            this.addScrollListener();
+          }, 1000);
+        }
+      },
+
+      addScrollListener: function() {
+        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+          window.addEventListener("wheel", this.scroll, { passive: true });
+        } else {
+          window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
+            passive: true
+          });
+        }
+      },
+
+      removeScrollListener: function() {
+        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
+          window.removeEventListener("wheel", this.scroll, { passive: true });
+        } else {
+          window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
+            passive: true
+          });
         }
       },
 
