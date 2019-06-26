@@ -1,42 +1,45 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from "vue";
+import Router from "vue-router";
 
-import Home from './components/Home.vue';
-import Homme from './components/Homme.vue';
-import Regles from './components/Regles.vue';
-import Chaos from './components/Chaos.vue';
+import Home from "./components/Home.vue";
+import Homme from "./components/Homme.vue";
+import Regles from "./components/Regles.vue";
+import Chaos from "./components/Chaos.vue";
 
 Vue.use(Router);
 
 const router = new Router({
-  mode: 'history',
-  linkActiveClass: 'is-active',
+  mode: "history",
+  linkActiveClass: "is-active",
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
+      path: "/",
+      name: "home",
+      component: Home
     },
     {
-      path: '/Homme',
-      name: 'homme',
-      component: Homme,
+      path: "/Homme",
+      name: "homme",
+      component: Homme
     },
+    { path: "/Homme/:id", component: Homme },
     {
-      path: '/Regles',
-      name: 'regles',
-      component: Regles,
+      path: "/Regles",
+      name: "regles",
+      component: Regles
     },
+    { path: "/Regles/:id", component: Regles },
     {
-      path: '/Chaos',
-      name: 'chaos',
-      component: Chaos,
+      path: "/Chaos",
+      name: "chaos",
+      component: Chaos
     },
+    { path: "/Chaos/:id", component: Chaos },
     {
-      path: '*',
-      redirect: { name: 'home' },
-    },
-  ],
+      path: "*",
+      redirect: { name: "home" }
+    }
+  ]
 });
 
 export default router;

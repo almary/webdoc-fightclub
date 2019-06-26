@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper wrapper--themes" :class="{noBackground: show == 5}">
+    <div style="position: absolute">{{ show }}</div>
     <div class="slide slide--title">
       <transition name="fade">
         <h1 v-if="show == 0 || show == 1">L'Homme</h1>

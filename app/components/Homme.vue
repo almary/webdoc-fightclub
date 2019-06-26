@@ -26,13 +26,16 @@
         if (e.deltaY > 50) {
           //max : next theme
           if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Regles" });
+            this.$router.push({ path: "Regles/0" });
             return;
           }
 
           //detect scroll (-50 : sensitivity)
           console.log("scrolling down homme");
           this.next();
+          setTimeout(() => {
+            this.updateRoute();
+          }, this.duration);
           this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
         }
 
@@ -54,7 +57,7 @@
         if (e.detail > 2) {
           //max : next theme
           if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Regles" });
+            this.$router.push({ path: "Regles/0" });
             return;
           }
 
@@ -77,13 +80,13 @@
 
       next: function() {
         this.removeScrollListener();
-
         //if this.show no animation
         if (this.show == 0) {
           this.show++;
           setTimeout(() => {
             this.addScrollListener();
           }, this.duration);
+
           return;
         }
 
@@ -114,6 +117,15 @@
         }, this.duration);
       },
 
+      updateRoute: function() {
+        if (this.$route.params.id == undefined) {
+          this.$router.push({  path: `/Homme/1` });
+          return;
+        }
+        //update show with url
+        this.$router.push({ path: `/Homme/${this.show}` });
+      },
+
       addScrollListener: function() {
         if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
           window.addEventListener("wheel", this.scroll, { passive: true });
@@ -140,12 +152,23 @@
           });
         }
       }, 500);
+
+       //update show variable
+      if (this.$route.params.id) {
+        this.show = this.$route.params.id;
+        console.log(this.show)
+      }
     },
     destroyed() {
       window.removeEventListener("wheel", this.scroll);
       window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
         passive: true
       });
+
+      if (this.$route.params.id) {
+        this.show = this.$route.params.id;
+        console.log(this.show)
+      }
     },
 
     components: {

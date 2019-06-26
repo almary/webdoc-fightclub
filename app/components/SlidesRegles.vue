@@ -689,7 +689,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    transition: all 1s;
+    transition: all 0.3s;
   }
 
   .autodestruction__background:hover {
