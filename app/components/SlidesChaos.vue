@@ -170,16 +170,29 @@ E<template>
         />
       </div>
     </transition>
-    <transition name="fade">
-      <div class="slide slide--end" v-if="show == 8">
-        <div class="end__background">
-          <div class="end__details details">
-            À la fin, les buildings tombent, les matériaux n’existent plus, tout
-            est calme.
-          </div>
+    <div class="slide slide--end">
+      <div class="end__wrapper">
+        <img src="../assets/img/end-background.jpg" class="end__background" v-if="show == 8"/>
+        <div class="end__details details">
+          <transition name="appears">
+            <span class="end__details--1" v-if="show == 8">
+              À la fin, les buildings tombent,</span
+            >
+          </transition>
+          <transition name="appears2">
+            <span class="end__details--2" v-if="show == 8"
+              >les matériaux n’existent plus,</span
+            >
+          </transition>
+          <transition name="appears3">
+            <span class="end__details--3" v-if="show == 8">
+              tout est calme.</span
+            >
+          </transition>
         </div>
+        </transition>
       </div>
-    </transition>
+    </div>
     <transition name="fade">
       <div class="slide slide--conclusion" v-if="show == 9">
         <video
@@ -190,18 +203,18 @@ E<template>
           @ended="increment"
         ></video>
         <div class="sound__wrapper" v-if="show == 9">
-            video
-            <button
-              class="sound sound--true"
-              v-if="show == 9 && audioVideoThird == true"
-              v-on:click="muteThird"
-            ></button>
-            <button
-              class="sound sound--false"
-              v-if="show == 9 && audioVideoThird == false"
-              v-on:click="muteThird"
-            ></button>
-          </div>
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 9 && audioVideoThird == true"
+            v-on:click="muteThird"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 9 && audioVideoThird == false"
+            v-on:click="muteThird"
+          ></button>
+        </div>
         <button class="play-pause" v-if="show == 9" v-on:click="play">
           play / pause
         </button>
@@ -264,7 +277,7 @@ E<template>
           this.$refs.conclusionVideo.muted = true;
           this.audioVideoThird = false;
         }
-      },
+      }
     }
   };
 </script>
@@ -473,19 +486,37 @@ E<template>
     align-items: center;
   }
 
-  .end__background {
-    width: 1052px;
-    height: 420px;
-    background-image: url("../assets/img/end-background.jpg");
+  .end__wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+  }
+
+  .end__background {
+    width: 1052px;
+    height: 420px;
+    position: absolute;
   }
 
   .end__details {
     width: 303px;
     text-align: center;
+    position: absolute;
   }
+
+  /* .end__details--1 {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  .end__details--2 {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  .end__details--3 {
+    opacity: 1;
+    transition: all 0.5s;
+  } */
 
   .conclusion__video {
     width: 100vw;
@@ -502,6 +533,31 @@ E<template>
   .text-leave-to {
     opacity: 0;
     transform: translateY(20px);
+  }
+
+  .appears-enter-active,
+  .appears-leave-active {
+    transition: all 0.5s;
+    transition-delay: 0s;
+  }
+  .appears-enter {
+    opacity: 0;
+  }
+  .appears2-enter-active,
+  .appears2-leave-active {
+    transition: all 0.5s;
+    transition-delay: 1s;
+  }
+  .appears2-enter {
+    opacity: 0;
+  }
+  .appears3-enter-active,
+  .appears3-leave-active {
+    transition: all 0.5s;
+    transition-delay: 2s;
+  }
+  .appears3-enter {
+    opacity: 0;
   }
 
   .bobine-enter-active {

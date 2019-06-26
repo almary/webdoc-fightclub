@@ -359,7 +359,7 @@
       },
 
       afterEnd: function() {
-        this.$router.push({ path: "Chaos" });
+        this.$router.push({ path: "../Chaos" });
       }
     }
   };
@@ -594,7 +594,6 @@
   .slide--nihilisme {
     display: flex;
     flex-direction: column;
-    text-align: center;
     justify-content: space-evenly;
     align-items: center;
   }
