@@ -8,6 +8,19 @@
       </div>
     </div>
     <audio src="../assets/music/homme.mp3" autoplay loop ref="audio"></audio>
+    <div class="audio__wrapper">
+      musique
+      <button
+        class="audio audio--true"
+        v-on:click="audioButton"
+        v-if="audio == true"
+      ></button>
+      <button
+        class="audio audio--false"
+        v-on:click="audioButton"
+        v-if="audio == false"
+      ></button>
+    </div>
     <SlidesHomme :show="show"></SlidesHomme>
     <Nav :show="show" :percentage="percentage"></Nav>
   </div>
@@ -32,22 +45,24 @@
     },
 
     methods: {
-      audioControl: function() {
+      audioButton: function() {
         if (this.audio) {
-          this.$refs.audio.play();
-        } else {
           this.$refs.audio.pause();
+          this.audio = false;
+        } else {
+          this.$refs.audio.play();
+          this.audio = true;
         }
       },
+
 
       pauseAudio: function() {
         // pause audio for specific slides
         if (this.show == 9) {
-          this.audio = false;
+          this.$refs.audio.volume = 0;
         } else {
-          this.audio = true;
+          this.$refs.audio.volume = 1;
         }
-        this.audioControl();
       },
 
       scroll: function(e) {

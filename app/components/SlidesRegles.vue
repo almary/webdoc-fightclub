@@ -23,7 +23,7 @@
       </div>
     </div>
     <transition name="fade">
-      <div class="slide slide--bar" v-if="show == 3">
+      <div class="slide slide--bar" v-if="show == 3" :class="{firstPlan: show ==3}">
         <video
           class="bar__video"
           src="../assets/vids/bar.mp4"

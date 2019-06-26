@@ -55,22 +55,13 @@
         }
       },
 
-      audioVideo: function() {
-        if (this.audio) {
-          this.$refs.audio.play();
-        } else {
-          this.$refs.audio.pause();
-        }
-      },
-
       pauseAudio: function() {
         // pause audio for specific slides
-        if (this.show == 2 || this.show == 5 || this.show == 9) {
-          this.audio = false;
+        if (this.show == 9) {
+          this.$refs.audio.volume = 0;
         } else {
-          this.audio = true;
+          this.$refs.audio.volume = 1;
         }
-        this.audioVideo();
       },
 
       scroll: function(e) {
