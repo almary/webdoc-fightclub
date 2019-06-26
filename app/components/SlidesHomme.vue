@@ -42,7 +42,7 @@
     </div>
     <div class="slide slide--monotone">
       <div class="monotone__background">
-        <transition name="fade">
+        <transition name="zoom">
           <img
             preload
             src="../assets/img/mosaique.png"
@@ -53,25 +53,25 @@
       </div>
       <div class="monotone__content">
         <div class="content__title">
-          <transition name="fade">
+          <transition name="zoom">
             <div class="content__title--first" v-if="show == 4">
               Un environnement
             </div>
           </transition>
-          <transition name="fade">
+          <transition name="zoom">
             <div class="content__title--second" v-if="show == 4">
               monotone
             </div>
           </transition>
         </div>
         <div class="content__details details">
-          <transition name="fade">
+          <transition name="zoom">
             <div class="content__details--first" v-if="show == 4">
               Son cadre de vie est baigné dans des tons ternes qui font échos à
               la platitude de son quotidien.
             </div>
           </transition>
-          <transition name="fade">
+          <transition name="zoom">
             <div class="content__details--second" v-if="show == 4">
               Un quotidien sans passion, voué à la lassitude.
             </div>
@@ -79,7 +79,7 @@
         </div>
         <!-- add la class pour pouvoir hover au premier plan -->
         <div class="content__book" :class="{firstPlan: show == 4}">
-          <transition name="fade">
+          <transition name="zoom">
             <img
               preload
               src="../assets/img/book.png"
@@ -114,7 +114,7 @@
         </transition>
       </div>
       <div class="therapie__image" :class="{firstPlan: show == 5}">
-        <transition name="fade">
+        <transition name="text">
           <img
             preload
             class="therapie__image--image"
@@ -139,7 +139,7 @@
             La masculinité
           </div>
         </transition>
-        <transition name="fade">
+        <transition name="zoom">
           <div
             class="masculinite__polaroids"
             :class="{firstPlan: show == 6}"
@@ -271,18 +271,24 @@
         </div>
       </transition>
     </div>
-    <div class="slide slide--universMascu" v-if="show == 8">
-      <div class="universMascu__background"></div>
+    <div class="slide slide--universMascu">
+      <transition name="zoom">
+        <div class="universMascu__background" v-if="show == 8"></div>
+      </transition>
       <div class="universMascu__content">
-        <div class="universMascu__title subtitle">
-          <div class="universMascu__title--first">Un univers baigné dans</div>
-          <div class="universMascu__title--second">la masculinité</div>
-        </div>
-        <div class="universMascu__details details">
-          Contrairement à l’environnement quotidien et stérile du narrateur,
-          ceux liés à Tyler expriment une masculinité très marquée ainsi que le
-          besoin de se libérer de toutes chaines.
-        </div>
+        <transition name="fade">
+          <div class="universMascu__title subtitle" v-if="show == 8">
+            <div class="universMascu__title--first">Un univers baigné dans</div>
+            <div class="universMascu__title--second">la masculinité</div>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="universMascu__details details" v-if="show == 8">
+            Contrairement à l’environnement quotidien et stérile du narrateur,
+            ceux liés à Tyler expriment une masculinité très marquée ainsi que
+            le besoin de se libérer de toutes chaines.
+          </div>
+        </transition>
       </div>
     </div>
     <div class="slide slide--conclusionFirst">
@@ -295,7 +301,9 @@
         @ended="afterEnd"
       ></video>
       <button class="sound" v-if="show == 9" v-on:click="mute">sound</button>
-      <button class="play-pause" v-if="show == 9" v-on:click="play">play / pause</button>
+      <button class="play-pause" v-if="show == 9" v-on:click="play">
+        play / pause
+      </button>
     </div>
   </div>
 </template>
@@ -312,7 +320,7 @@
       return {
         tv: 1,
         tv1Playing: true,
-        tv2Playing: false,
+        tv2Playing: false
       };
     },
 
@@ -320,9 +328,9 @@
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
         if (this.$refs.conclusionVideo.paused) {
-          this.$refs.conclusionVideo.play()
+          this.$refs.conclusionVideo.play();
         } else {
-          this.$refs.conclusionVideo.pause()
+          this.$refs.conclusionVideo.pause();
         }
       },
 
@@ -576,11 +584,11 @@
   }
 
   .masculinite__polaroids:hover .masculinite__polaroids--bob {
-    transform: rotate(5deg) scale(0.95) translateX(50px) translateY(5px);
+    transform: rotate(5deg) scale(0.95) translateX(80px) translateY(5px);
   }
 
   .masculinite__polaroids:hover .masculinite__polaroids--narrator {
-    transform: rotate(-5deg) scale(0.95) translateX(-50px) translateY(5px);
+    transform: rotate(-5deg) scale(0.95) translateX(-80px) translateY(5px);
   }
 
   .masculinite__polaroids--tyler,
@@ -756,6 +764,20 @@
   .text-leave-to {
     opacity: 0;
     transform: translateY(20px);
+  }
+
+  .zoom-enter-active,
+  .zoom-leave-active {
+    transition: all 0.5s;
+  }
+  .zoom-enter {
+    opacity: 0;
+    transform: scale(2);
+  }
+
+  .zoom-leave-to {
+    opacity: 0;
+    transform: scale(0.5);
   }
 
   .bobine-enter-active {
