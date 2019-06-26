@@ -57,7 +57,7 @@
 
       pauseAudio: function() {
         // pause audio for specific slides
-        if (this.show == 9) {
+        if (this.show == 3 || this.show == 7 || this.show == 10) {
           this.$refs.audio.volume = 0;
         } else {
           this.$refs.audio.volume = 1;

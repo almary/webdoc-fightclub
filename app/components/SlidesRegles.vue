@@ -281,9 +281,19 @@
           ref="bobineVideo"
           @ended="afterEnd"
         ></video>
-        <button class="sound" v-on:click="muteBobine">
-          sound
-        </button>
+        <div class="sound__wrapper" v-if="show == 10">
+            video
+            <button
+              class="sound sound--true"
+              v-if="show == 10 && audioVideoThird == true"
+              v-on:click="muteThird"
+            ></button>
+            <button
+              class="sound sound--false"
+              v-if="show == 10 && audioVideoThird == false"
+              v-on:click="muteThird"
+            ></button>
+          </div>
         <button class="play-pause" v-if="show == 10" v-on:click="play">
           play / pause
         </button>
@@ -299,7 +309,8 @@
     data() {
       return {
         audioVideoFirst: true,
-        audioVideoSecond: true
+        audioVideoSecond: true,
+        audioVideoThird: true
       };
     },
 
@@ -328,28 +339,22 @@
         }
       },
 
+      muteThird: function() {
+        if (this.$refs.bobineVideo.muted) {
+          this.$refs.bobineVideo.muted = false;
+          this.audioVideoThird = true;
+        } else {
+          this.$refs.bobineVideo.muted = true;
+          this.audioVideoThird = false;
+        }
+      },
+
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
         if (this.$refs.conclusionVideo.paused) {
           this.$refs.conclusionVideo.play();
         } else {
           this.$refs.conclusionVideo.pause();
-        }
-      },
-
-      muteSoap: function() {
-        if (this.$refs.soapVideo.muted) {
-          this.$refs.soapVideo.muted = false;
-        } else {
-          this.$refs.soapVideo.muted = true;
-        }
-      },
-
-      muteBobine: function() {
-        if (this.$refs.bobineVideo.muted) {
-          this.$refs.bobineVideo.muted = false;
-        } else {
-          this.$refs.bobineVideo.muted = true;
         }
       },
 
@@ -645,6 +650,10 @@
     left: 0;
     height: 480px;
     width: 400px;
+    transform: translateY(40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .papers {
