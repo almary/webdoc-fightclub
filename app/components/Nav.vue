@@ -2,9 +2,31 @@
   <div class="wrapper" :class="{navClosed: show > 0, navDetection: show == 4}">
     <div class="bar" v-bind:style="styleBar"></div>
     <div class="wrapper--theme">
-      <router-link to="/Homme"><div class="homme" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Homme', otherTabs: this.$route.path !== '/Homme'}">L'Homme</div></router-link>
-      <router-link to="/Regles"> <div class="regles" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Regles', otherTabs: this.$route.path !== '/Regles'}">Les règles</div></router-link>
-      <router-link to="/Chaos"><div class="chaos" v-bind:style="styleTabs" :class="{selectedTab: this.$route.path === '/Chaos', otherTabs: this.$route.path !== '/Chaos'}">Le chaos</div></router-link>
+      <router-link to="/Homme"
+        ><div
+          class="homme"
+          v-bind:style="styleTabs"
+          :class="{selectedTab: routeNameMemo === 'homme' , otherTabs: routeNameMemo !== 'homme'}"
+        >
+          L'Homme
+        </div></router-link
+      >
+      <router-link to="/Regles">
+        <div
+          class="regles"
+          v-bind:style="styleTabs"
+          :class="{selectedTab: routeNameMemo === 'regles' , otherTabs: routeNameMemo !== 'regles'}"        >
+          Les règles
+        </div></router-link
+      >
+      <router-link to="/Chaos"
+        ><div
+          class="chaos"
+          v-bind:style="styleTabs"
+          :class="{selectedTab: routeNameMemo === 'chaos' , otherTabs: routeNameMemo !== 'chaos'}"        >
+          Le chaos
+        </div></router-link
+      >
     </div>
   </div>
 </template>
@@ -12,6 +34,12 @@
 <script>
   export default {
     props: ["show", "percentage"],
+
+    data() {
+      return {
+        routeNameMemo: "ok",
+      };
+    },
 
     methods: {
       removeOldListener: function() {
@@ -22,6 +50,11 @@
             passive: true
           });
         }
+      },
+
+      routeName: function() {
+        this.routeNameMemo = this.$route.name;
+        console.log(this.routeNameMemo)
       }
     },
 
@@ -32,7 +65,7 @@
           justifyContent: "center",
           alignItems: "center",
           width: "33.3vw",
-          height: "50px",
+          height: "50px"
         };
       },
 
@@ -44,7 +77,13 @@
           transition: "all 1.5s ease"
         };
       }
-    }
+    },
+
+    created() {
+      this.routeName();
+    },
+
+
   };
 </script>
 
@@ -80,16 +119,16 @@
   }
 
   .selectedTab {
-    background: #F0F0F0;
-    color: #9F221D;
-    font-family: 'Univers Next Pro';
+    background: #f0f0f0;
+    color: #9f221d;
+    font-family: "Univers Next Pro";
     font-weight: bold;
   }
 
   .otherTabs {
     background: #111111;
-    color: #F3F3F3;
-    font-family: 'Univers Next Pro';
+    color: #f3f3f3;
+    font-family: "Univers Next Pro";
     font-weight: normal;
   }
 </style>

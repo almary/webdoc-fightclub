@@ -24,66 +24,66 @@
       scroll: function(e) {
         // scroll down
         if (e.deltaY > 50) {
-          //max : next theme
-          if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Chaos" });
-            return;
-          }
-
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling down regles");
-          this.next();
-          this.percentage = (Math.ceil(this.show) / 10) * 100;
+          this.down();
         }
 
         // scroll up
         if (e.deltaY < -50) {
-          // min
-          if (this.show <= 0) {
-            return;
-          }
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling up regles");
-          this.prev();
-          this.percentage = (Math.floor(this.show) / 10) * 100;
+          this.up();
         }
       },
 
       scrollFirefox: function(e) {
         var y = e.detail;
         if (e.detail > 2) {
-          //max : next theme
-          if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Chaos" });
-            return;
-          }
-
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling down regles");
-          this.next();
-          this.percentage = (Math.ceil(this.show) / 10) * 100;
+          this.down();
         }
         if (e.detail < -2) {
-          // min
-          if (this.show <= 0) {
-            return;
-          }
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling up regles");
-          this.prev();
-          this.percentage = (Math.floor(this.show) / 10) * 100;
+          this.up();
         }
+      },
+
+      down: function() {
+        //max : next theme
+        if (this.show >= this.totalSlides) {
+          this.$router.push({ path: "../Regles" });
+          return;
+        }
+
+        //detect scroll (-50 : sensitivity)
+        console.log("scrolling down chaos");
+        this.next();
+        setTimeout(() => {
+          parseInt(this.show);
+          this.updateRoute();
+        }, this.duration);
+        this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
+      },
+
+      up: function() {
+        // min
+        if (this.show <= 0) {
+          return;
+        }
+        //detect scroll (-50 : sensitivity)
+        console.log("scrolling up chaos");
+        this.prev();
+        setTimeout(() => {
+          parseInt(this.show);
+          this.updateRoute();
+        }, this.duration);
+        this.percentage = (Math.floor(this.show) / this.totalSlides) * 100;
       },
 
       next: function() {
         this.removeScrollListener();
-
         //if this.show no animation
-        if (this.show == 0 || this.show == 2) {
+        if (this.show == 0) {
           this.show++;
           setTimeout(() => {
             this.addScrollListener();
-          }, this.duration * 2);
+          }, this.duration);
+
           return;
         }
 
@@ -112,6 +112,15 @@
             this.addScrollListener();
           }, this.duration);
         }, this.duration);
+      },
+
+      updateRoute: function() {
+        if (this.$route.params.id == undefined) {
+          this.$router.push({ path: `/Chaos/1` });
+          return;
+        }
+        //update show with url
+        this.$router.push({ path: `/Chaos/${this.show}` });
       },
 
       addScrollListener: function() {

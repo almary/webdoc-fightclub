@@ -24,6 +24,7 @@ const router = new Router({
     },
     {
       path: "/Homme/:id",
+      name: "homme",
       component: Homme
     },
     {
@@ -31,13 +32,13 @@ const router = new Router({
       name: "regles",
       component: Regles
     },
-    { path: "/Regles/:id", component: Regles },
+    { path: "/Regles/:id", component: Regles, name: "regles" },
     {
       path: "/Chaos",
       name: "chaos",
       component: Chaos
     },
-    { path: "/Chaos/:id", component: Chaos },
+    { path: "/Chaos/:id",  name: "chaos", component: Chaos, },
     {
       path: "*",
       redirect: { name: "home" }

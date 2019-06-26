@@ -46,7 +46,7 @@
       down: function() {
         //max : next theme
         if (this.show >= this.totalSlides) {
-          this.$router.push({ path: "Regles" });
+          this.$router.push({ path: "../Regles" });
           return;
         }
 
@@ -115,7 +115,6 @@
       },
 
       updateRoute: function() {
-        this.$router.push({ path: `/Homme/lol` });
         if (this.$route.params.id == undefined) {
           this.$router.push({ path: `/Homme/1` });
           return;
@@ -156,12 +155,15 @@
         this.show = parseInt(this.$route.params.id);
       }
     },
+
     destroyed() {
-      window.removeEventListener("wheel", this.scroll);
+      window.removeEventListener("wheel", this.scroll, { passive: true });
+
       window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
         passive: true
       });
 
+      //update show variable at page launch
       if (this.$route.params.id) {
         this.show = parseInt(this.$route.params.id);
       }
