@@ -24,58 +24,55 @@
       scroll: function(e) {
         // scroll down
         if (e.deltaY > 50) {
-          //max : next theme
-          if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Regles/0" });
-            return;
-          }
-
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling down homme");
-          this.next();
-          setTimeout(() => {
-            this.updateRoute();
-          }, this.duration);
-          this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
+          this.down();
         }
 
         // scroll up
         if (e.deltaY < -50) {
-          // min
-          if (this.show <= 0) {
-            return;
-          }
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling up homme");
-          this.prev();
-          this.percentage = (Math.floor(this.show) / this.totalSlides) * 100;
+          this.up();
         }
       },
 
       scrollFirefox: function(e) {
         var y = e.detail;
         if (e.detail > 2) {
-          //max : next theme
-          if (this.show >= this.totalSlides) {
-            this.$router.push({ path: "Regles/0" });
-            return;
-          }
-
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling down homme");
-          this.next();
-          this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
+          this.down();
         }
         if (e.detail < -2) {
-          // min
-          if (this.show <= 0) {
-            return;
-          }
-          //detect scroll (-50 : sensitivity)
-          console.log("scrolling up homme");
-          this.prev();
-          this.percentage = (Math.floor(this.show) / this.totalSlides) * 100;
+          this.up();
         }
+      },
+
+      down: function() {
+        //max : next theme
+        if (this.show >= this.totalSlides) {
+          this.$router.push({ path: "Regles" });
+          return;
+        }
+
+        //detect scroll (-50 : sensitivity)
+        console.log("scrolling down homme");
+        this.next();
+        setTimeout(() => {
+          parseInt(this.show);
+          this.updateRoute();
+        }, this.duration);
+        this.percentage = (Math.ceil(this.show) / this.totalSlides) * 100;
+      },
+
+      up: function() {
+        // min
+        if (this.show <= 0) {
+          return;
+        }
+        //detect scroll (-50 : sensitivity)
+        console.log("scrolling up homme");
+        this.prev();
+        setTimeout(() => {
+          parseInt(this.show);
+          this.updateRoute();
+        }, this.duration);
+        this.percentage = (Math.floor(this.show) / this.totalSlides) * 100;
       },
 
       next: function() {
@@ -118,8 +115,9 @@
       },
 
       updateRoute: function() {
+        this.$router.push({ path: `/Homme/lol` });
         if (this.$route.params.id == undefined) {
-          this.$router.push({  path: `/Homme/1` });
+          this.$router.push({ path: `/Homme/1` });
           return;
         }
         //update show with url
@@ -153,10 +151,9 @@
         }
       }, 500);
 
-       //update show variable
+      //update show variable at page launch
       if (this.$route.params.id) {
-        this.show = this.$route.params.id;
-        console.log(this.show)
+        this.show = parseInt(this.$route.params.id);
       }
     },
     destroyed() {
@@ -166,8 +163,7 @@
       });
 
       if (this.$route.params.id) {
-        this.show = this.$route.params.id;
-        console.log(this.show)
+        this.show = parseInt(this.$route.params.id);
       }
     },
 

@@ -22,7 +22,10 @@ const router = new Router({
       name: "homme",
       component: Homme
     },
-    { path: "/Homme/:id", component: Homme },
+    {
+      path: "/Homme/:id",
+      component: Homme
+    },
     {
       path: "/Regles",
       name: "regles",
