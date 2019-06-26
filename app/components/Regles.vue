@@ -81,10 +81,11 @@
         //if this.show no animation
         if (this.show == 0 || this.show == 3) {
           this.show++;
+          console.log("hye");
           setTimeout(() => {
             this.addScrollListener();
-          }, this.duration * 2);
-          return;
+          }, this.duration);
+            return;
         }
 
         //reset show to trigger leaving animation

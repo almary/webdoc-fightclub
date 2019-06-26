@@ -17,8 +17,8 @@
           La société de consommation
         </div>
         <div class="intro__details details">
-          Our society is completely monopolized by a culture of consumerism and
-          an obsession with commodities.
+          Notre société est complètement monopolisée par la culture de la
+          consommation et l'obsession des possessions.
         </div>
       </div>
     </div>
@@ -39,14 +39,18 @@
         </button>
       </div>
     </transition>
-    <transition name="fade">
-      <div class="slide slide--consommations" v-if="show == 4">
-        <div class="consommation__title subtitle">
+    <div class="slide slide--consommations">
+      <transition name="fade">
+        <div class="consommation__title subtitle" v-if="show == 4">
           La société de consommation
         </div>
-        <div class="consommation__content details">
-          <div class="consommation__content--background"></div>
-          <div class="consommation__content--wrapper">
+      </transition>
+      <div class="consommation__content details">
+        <transition name="backgroundConso">
+          <div class="consommation__content--background" v-if="show == 4"></div>
+        </transition>
+        <transition name="fade">
+          <div class="consommation__content--wrapper" v-if="show == 4">
             <div class="content__wrapper--text">
               <div>
                 Le narrateur n’est personne, il n’a pas de passion autre que sa
@@ -63,14 +67,17 @@
               alt="image du script"
             />
           </div>
-        </div>
+        </transition>
+      </div>
+      <transition name="fade">
         <img
           src="../assets/img/consommation-book.png"
           alt="image du livre"
           class="consommation__book"
+          v-if="show == 4"
         />
-      </div>
-    </transition>
+      </transition>
+    </div>
     <transition name="fade">
       <div
         class="slide slide--things"
@@ -726,6 +733,21 @@
   .text-leave-to {
     opacity: 0;
     transform: translateY(20px);
+  }
+
+  .backgroundConso-enter-active,
+  .backgroundConso-leave-active {
+    transition: all 0.5s;
+  }
+
+  .backgroundConso-enter {
+    width: 100vw;
+    height: 100vh;
+    transform: none;
+  }
+
+  .backgroundConso-leave-to {
+    opacity: 0;
   }
 
   .bobine-enter-active {
