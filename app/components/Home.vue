@@ -13,7 +13,6 @@
           v-if="show == 1"
           src="../assets/vids/intro.mp4"
           autoplay
-          muted
           ref="introVid"
           @ended="afterEnd"
         ></video>
@@ -25,7 +24,7 @@
       </transition>
       <transition name="fade">
         <button class="sound" v-if="show == 1" v-on:click="unmute">
-          sound
+          son
         </button>
       </transition>
     </div>
@@ -43,7 +42,7 @@
           </transition>
         </div>
         <transition name="fade">
-          <div class="instruction" v-if="show == 0">scroll down</div>
+          <button class="commencer" v-if="show == 0" v-on:click="increment">Commencer</button>
         </transition>
       </div>
     </transition>
@@ -60,6 +59,10 @@
     },
 
     methods: {
+      increment: function() {
+        this.show++;
+      },
+
       afterEnd: function() {
         this.$router.push({ path: "Homme" });
       },
@@ -69,63 +72,6 @@
           this.$refs.introVid.muted = false;
         } else {
           this.$refs.introVid.muted = true;
-        }
-      },
-
-      scroll: function(e) {
-        // scroll down
-        if (e.deltaY > 50) {
-          this.removeScrollListener();
-          //max
-          if (this.show >= 1) {
-            this.afterEnd();
-            return;
-          }
-          //detect scroll (-50 : sensitivity)
-          this.show++;
-          setTimeout(() => {
-            this.addScrollListener();
-          }, 1000);
-        }
-      },
-
-      scrollFirefox: function(e) {
-        var y = e.detail;
-        if (e.detail > 2) {
-          // scroll down
-
-          this.removeScrollListener();
-          //max
-          if (this.show >= 1) {
-            console.log("hey");
-            this.afterEnd();
-            return;
-          }
-          //detect scroll (-50 : sensitivity)
-          this.show++;
-          setTimeout(() => {
-            this.addScrollListener();
-          }, 1000);
-        }
-      },
-
-      addScrollListener: function() {
-        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
-          window.addEventListener("wheel", this.scroll, { passive: true });
-        } else {
-          window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
-            passive: true
-          });
-        }
-      },
-
-      removeScrollListener: function() {
-        if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
-          window.removeEventListener("wheel", this.scroll, { passive: true });
-        } else {
-          window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
-            passive: true
-          });
         }
       },
 
@@ -141,39 +87,21 @@
       },
 
       mobileFunction: function() {
-        console.log('resize');
+        console.log("resize");
         if (window.innerWidth < 1100 || window.innerHeight < 650) {
           this.mobile = 1;
         } else {
           this.mobile = 0;
         }
-      },
+      }
     },
-
 
     created() {
       this.mobileFunction();
-      window.addEventListener('resize', this.mobileFunction);
-
-      if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
-        window.addEventListener("wheel", this.scroll, { passive: true });
-      } else {
-        window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
-          passive: true
-        });
-      }
+      window.addEventListener("resize", this.mobileFunction);
     },
-
     destroyed() {
-      if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
-        window.addEventListener("wheel", this.scroll, { passive: true });
-      } else {
-        window.addEventListener("DOMMouseScroll", this.scrollFirefox, {
-          passive: true
-        });
-      }
-
-      window.removeEventListener('resize', this.mobileFunction);
+      window.removeEventListener("resize", this.mobileFunction);
     }
   };
 </script>
@@ -218,8 +146,13 @@
     height: 200px;
   }
 
-  .instruction {
+  .commencer {
     position: absolute;
     bottom: 50px;
+    padding: 15px 30px;
+    background-color: rgba(159, 34, 29, 0.5);
+  }
+  .commencer:hover {
+    background-color: rgba(159, 34, 29, 1);
   }
 </style>
