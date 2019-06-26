@@ -1,5 +1,12 @@
 <template>
   <div class="wrapper">
+    <div class="mobile" v-if="mobile == 1">
+      <div class="mobile__title">Fight Club</div>
+      <div class="mobile__description">
+        Ce site est optimisé pour une navigation sur ordinateur, pour le
+        découvrir veuillez changer d'appareil.
+      </div>
+    </div>
     <div class="video">
       <transition name="fade">
         <video
@@ -47,6 +54,7 @@
   export default {
     data() {
       return {
+        mobile: 0,
         show: 0
       };
     },
@@ -130,10 +138,23 @@
           });
         }
         this.$router.push({ path: "Homme" });
-      }
+      },
+
+      mobileFunction: function() {
+        console.log('resize');
+        if (window.innerWidth < 1100 || window.innerHeight < 650) {
+          this.mobile = 1;
+        } else {
+          this.mobile = 0;
+        }
+      },
     },
 
+
     created() {
+      this.mobileFunction();
+      window.addEventListener('resize', this.mobileFunction);
+
       if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
         window.addEventListener("wheel", this.scroll, { passive: true });
       } else {
@@ -151,6 +172,8 @@
           passive: true
         });
       }
+
+      window.removeEventListener('resize', this.mobileFunction);
     }
   };
 </script>

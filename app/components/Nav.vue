@@ -15,7 +15,8 @@
         <div
           class="regles"
           v-bind:style="styleTabs"
-          :class="{selectedTab: routeNameMemo === 'regles' , otherTabs: routeNameMemo !== 'regles'}"        >
+          :class="{selectedTab: routeNameMemo === 'regles' , otherTabs: routeNameMemo !== 'regles'}"
+        >
           Les règles
         </div></router-link
       >
@@ -23,7 +24,8 @@
         ><div
           class="chaos"
           v-bind:style="styleTabs"
-          :class="{selectedTab: routeNameMemo === 'chaos' , otherTabs: routeNameMemo !== 'chaos'}"        >
+          :class="{selectedTab: routeNameMemo === 'chaos' , otherTabs: routeNameMemo !== 'chaos'}"
+        >
           Le chaos
         </div></router-link
       >
@@ -37,7 +39,7 @@
 
     data() {
       return {
-        routeNameMemo: "ok",
+        routeNameMemo: "ok"
       };
     },
 
@@ -54,7 +56,6 @@
 
       routeName: function() {
         this.routeNameMemo = this.$route.name;
-        console.log(this.routeNameMemo)
       }
     },
 
@@ -82,8 +83,12 @@
     created() {
       this.routeName();
     },
-
-
+    // destroyed() {
+    //   window.removeEventListener("wheel", this.scroll);
+    //   window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
+    //     passive: true
+    //   });
+    // }
   };
 </script>
 

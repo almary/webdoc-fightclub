@@ -53,25 +53,25 @@
       </div>
       <div class="monotone__content">
         <div class="content__title">
-          <transition name="zoom">
+          <transition name="fade">
             <div class="content__title--first" v-if="show == 4">
               Un environnement
             </div>
           </transition>
-          <transition name="zoom">
+          <transition name="fade">
             <div class="content__title--second" v-if="show == 4">
               monotone
             </div>
           </transition>
         </div>
         <div class="content__details details">
-          <transition name="zoom">
+          <transition name="fade">
             <div class="content__details--first" v-if="show == 4">
               Son cadre de vie est baigné dans des tons ternes qui font échos à
               la platitude de son quotidien.
             </div>
           </transition>
-          <transition name="zoom">
+          <transition name="fade">
             <div class="content__details--second" v-if="show == 4">
               Un quotidien sans passion, voué à la lassitude.
             </div>
@@ -79,7 +79,7 @@
         </div>
         <!-- add la class pour pouvoir hover au premier plan -->
         <div class="content__book" :class="{firstPlan: show == 4}">
-          <transition name="zoom">
+          <transition name="text">
             <img
               preload
               src="../assets/img/book.png"
@@ -325,6 +325,7 @@
     },
 
     methods: {
+
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
         if (this.$refs.conclusionVideo.paused) {
@@ -421,7 +422,6 @@
   .intro {
     width: 473px;
     font-size: 31px;
-    text-align: center;
   }
 
   .slide--narrator {
@@ -449,7 +449,6 @@
   .narrator--details {
     font-size: 26px;
     width: 338px;
-    text-align: center;
   }
 
   .slide--monotone {
@@ -472,8 +471,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 390px;
+    width: 350px;
   }
 
   .content__title,
@@ -513,7 +511,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
   }
 
   .therapie__content {
@@ -541,12 +538,14 @@
     transform: translateY(160px);
     height: 100px;
     width: 500px;
+    display: flex;
+    justify-content: center;
   }
 
   .therapie__image--marker {
     position: absolute;
     left: 33px;
-    top: 45px;
+    top: 35px;
     opacity: 0;
     transition: opacity 0.2s;
   }
@@ -730,7 +729,6 @@
   }
 
   .universMascu__title {
-    text-align: center;
     height: 80px;
     display: flex;
     flex-direction: column;

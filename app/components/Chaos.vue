@@ -1,5 +1,12 @@
 <template>
   <div class="wrapper">
+    <div class="mobile" v-if="mobile == 1">
+      <div class="mobile__title">Fight Club</div>
+      <div class="mobile__description">
+        Ce site est optimisé pour une navigation sur ordinateur, pour le
+        découvrir veuillez changer d'appareil.
+      </div>
+    </div>
     <SlidesChaos :show="show" @increment="incrementChild"></SlidesChaos>
     <Nav :show="show" :percentage="percentage"></Nav>
   </div>
@@ -13,6 +20,7 @@
     name: "Homme",
     data() {
       return {
+        mobile: 0,
         duration: 500,
         show: 0,
         totalSlides: 10,
@@ -46,7 +54,6 @@
       down: function() {
         //max : next theme
         if (this.show >= this.totalSlides) {
-          this.$router.push({ path: "../Regles" });
           return;
         }
 
@@ -63,6 +70,7 @@
       up: function() {
         // min
         if (this.show <= 0) {
+          this.$router.push({ path: "../Regles/10" });
           return;
         }
         //detect scroll (-50 : sensitivity)
@@ -140,10 +148,22 @@
 
       incrementChild: function() {
         this.next();
+      },
+
+      mobileFunction: function() {
+        console.log("resize");
+        if (window.innerWidth < 1100 || window.innerHeight < 650) {
+          this.mobile = 1;
+        } else {
+          this.mobile = 0;
+        }
       }
     },
 
     created() {
+      this.mobileFunction();
+      window.addEventListener("resize", this.mobileFunction);
+
       setTimeout(() => {
         if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
           window.addEventListener("wheel", this.scroll, { passive: true });
@@ -153,12 +173,22 @@
           });
         }
       }, 500);
+
+      if (this.$route.params.id) {
+        this.show = parseInt(this.$route.params.id);
+      }
     },
     destroyed() {
       window.removeEventListener("wheel", this.scroll);
       window.removeEventListener("DOMMouseScroll", this.scrollFirefox, {
         passive: true
       });
+
+      if (this.$route.params.id) {
+        this.show = parseInt(this.$route.params.id);
+      }
+
+      window.removeEventListener("resize", this.mobileFunction);
     },
 
     components: {
