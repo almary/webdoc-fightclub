@@ -1,5 +1,7 @@
 # Web-doc Fight Club
 
+A webdoc using vueJS
+
 ## Project setup
 ```
 npm install
