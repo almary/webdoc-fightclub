@@ -17,9 +17,11 @@
           @ended="afterEnd"
         ></video>
       </transition>
-      <transition name="fade">
-        <button class="skip" v-if="show == 1" v-on:click="afterEnd">
-          skip
+        <transition name="fade">
+          <div class="skip__wrapper" v-if="show == 1">
+            passer
+        <button class="skip"  v-on:click="afterEnd">
+          </div>
         </button>
       </transition>
       <transition name="fade">
