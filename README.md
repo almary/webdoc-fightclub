@@ -1,15 +1,19 @@
 # Web-doc Fight Club
 
-A webdoc using vueJS
+Webdocumentaire utilisant VueJS
 
-## Project setup
+## Setup
 ```
 npm install
 ```
-In the root directory
+Dans le fichier racine
 
-## Run development server
+## Serveur de développement
 ```
 npm run dev
 ```
-In the root directory
+Dans le fichier racine
+
+## Utilisation de l'API
+
+Instructions dans le readme du dossier /api
