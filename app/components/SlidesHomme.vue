@@ -5,6 +5,9 @@
         <h1 v-if="show == 0 || show == 1">L'Homme</h1>
       </transition>
       <transition name="fade">
+        <div class="scroll" v-if="show == 0">scroll vers le bas <img src="../assets/img/down.gif"></div>
+      </transition>
+      <transition name="fade">
         <h2 v-if="show == 1">Un homme perdu dans une société monotone</h2>
       </transition>
     </div>

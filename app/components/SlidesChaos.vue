@@ -5,13 +5,16 @@ E<template>
         <h1 v-if="show == 0 || show == 1">Le Chaos</h1>
       </transition>
       <transition name="fade">
+        <div class="scroll" v-if="show == 0">scroll vers le bas <img src="../assets/img/down.gif"></div>
+      </transition>
+      <transition name="fade">
         <h2 v-if="show == 1">
           Le besoin de s’échapper par le chaos pour se sentir vivre
         </h2>
       </transition>
     </div>
     <transition name="fade">
-      <div class="slide slide--intro" v-if="show == 2">
+      <div class="slide slide--intro" v-if="show == 2" :class="{firstPlan: show == 2}">
         <video
           class="intro__video"
           src="../assets/vids/giveup.mp4"
@@ -32,9 +35,7 @@ E<template>
             v-on:click="muteFirst"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 2" v-on:click="play">
-          play / pause
-        </button>
+        <button class="play-pause" v-if="show == 2" v-on:click="playFirst"></button>
       </div>
     </transition>
     <transition name="fade">
@@ -85,7 +86,7 @@ E<template>
       </div>
     </transition>
     <transition name="fade">
-      <div class="slide slide--crash" v-if="show == 5">
+      <div class="slide slide--crash" v-if="show == 5" :class="{firstPlan: show ==5}">
         <video
           class="crash__video"
           src="../assets/vids/crash.mp4"
@@ -106,13 +107,15 @@ E<template>
             v-on:click="muteSecond"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 5" v-on:click="play">
-          play / pause
-        </button>
+        <button class="play-pause" v-if="show == 5" v-on:click="playSecond"></button>
       </div>
     </transition>
     <transition name="fade">
-      <div class="slide slide--mort" v-if="show == 6" :class="{firstPlan: show == 6}">
+      <div
+        class="slide slide--mort"
+        v-if="show == 6"
+        :class="{firstPlan: show == 6}"
+      >
         <div class="mort__title subtitle">
           Le rapport à la mort
         </div>
@@ -199,7 +202,7 @@ E<template>
       </div>
     </div>
     <transition name="fade">
-      <div class="slide slide--conclusion" v-if="show == 9">
+      <div class="slide slide--conclusion" v-if="show == 9" :class="{firstPlan: show == 9}">
         <video
           class="conclusion__video"
           src="../assets/vids/conclusion.mp4"
@@ -220,9 +223,7 @@ E<template>
             v-on:click="muteThird"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 9" v-on:click="play">
-          play / pause
-        </button>
+        <button class="play-pause" v-if="show == 9" v-on:click="playThird"></button>
       </div>
     </transition>
   </div>
@@ -245,15 +246,6 @@ E<template>
         this.$emit("increment");
       },
 
-      play: function() {
-        console.log(this.$refs.conclusionVideo.paused);
-        if (this.$refs.conclusionVideo.paused) {
-          this.$refs.conclusionVideo.play();
-        } else {
-          this.$refs.conclusionVideo.pause();
-        }
-      },
-
       muteFirst: function() {
         if (this.$refs.introVideo.muted) {
           this.$refs.introVideo.muted = false;
@@ -261,6 +253,14 @@ E<template>
         } else {
           this.$refs.introVideo.muted = true;
           this.audioVideoFirst = false;
+        }
+      },
+
+      playFirst: function() {
+        if (this.$refs.introVideo.paused) {
+          this.$refs.introVideo.play();
+        } else {
+          this.$refs.introVideo.pause();
         }
       },
 
@@ -274,6 +274,14 @@ E<template>
         }
       },
 
+      playSecond: function() {
+        if (this.$refs.crashVideo.paused) {
+          this.$refs.crashVideo.play();
+        } else {
+          this.$refs.crashVideo.pause();
+        }
+      },
+
       muteThird: function() {
         if (this.$refs.conclusionVideo.muted) {
           this.$refs.conclusionVideo.muted = false;
@@ -282,7 +290,16 @@ E<template>
           this.$refs.conclusionVideo.muted = true;
           this.audioVideoThird = false;
         }
-      }
+      },
+
+      playThird: function() {
+        console.log(this.$refs.conclusionVideo.paused);
+        if (this.$refs.conclusionVideo.paused) {
+          this.$refs.conclusionVideo.play();
+        } else {
+          this.$refs.conclusionVideo.pause();
+        }
+      },
     }
   };
 </script>

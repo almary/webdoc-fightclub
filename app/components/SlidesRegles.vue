@@ -5,6 +5,9 @@
         <h1 v-if="show == 0 || show == 1">Les Règles</h1>
       </transition>
       <transition name="fade">
+        <div class="scroll" v-if="show == 0">scroll vers le bas <img src="../assets/img/down.gif"></div>
+      </transition>
+      <transition name="fade">
         <h2 v-if="show == 1">
           Une société déshumanisante poussant au nihilisme
         </h2>
@@ -48,9 +51,7 @@
             v-on:click="muteFirst"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 3" v-on:click="play">
-          play / pause
-        </button>
+        <button class="play-pause" v-if="show == 3" v-on:click="playFirst"></button>
       </div>
     </transition>
     <div class="slide slide--consommations">
@@ -197,9 +198,7 @@
             v-on:click="muteSecond"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 7" v-on:click="play">
-          play / pause
-        </button>
+        <button class="play-pause" v-if="show == 7" v-on:click="playSecond"></button>
       </div>
     </transition>
     <transition name="fade">
@@ -282,21 +281,19 @@
           @ended="afterEnd"
         ></video>
         <div class="sound__wrapper" v-if="show == 10">
-            video
-            <button
-              class="sound sound--true"
-              v-if="show == 10 && audioVideoThird == true"
-              v-on:click="muteThird"
-            ></button>
-            <button
-              class="sound sound--false"
-              v-if="show == 10 && audioVideoThird == false"
-              v-on:click="muteThird"
-            ></button>
-          </div>
-        <button class="play-pause" v-if="show == 10" v-on:click="play">
-          play / pause
-        </button>
+          video
+          <button
+            class="sound sound--true"
+            v-if="show == 10 && audioVideoThird == true"
+            v-on:click="muteThird"
+          ></button>
+          <button
+            class="sound sound--false"
+            v-if="show == 10 && audioVideoThird == false"
+            v-on:click="muteThird"
+          ></button>
+        </div>
+        <button class="play-pause" v-if="show == 10" v-on:click="playThird"></button>
       </div>
     </transition>
   </div>
@@ -329,6 +326,14 @@
         }
       },
 
+      playFirst: function() {
+        if (this.$refs.barVideo.paused) {
+          this.$refs.barVideo.play();
+        } else {
+          this.$refs.barVideo.pause();
+        }
+      },
+
       muteSecond: function() {
         if (this.$refs.soapVideo.muted) {
           this.$refs.soapVideo.muted = false;
@@ -339,6 +344,14 @@
         }
       },
 
+      playSecond: function() {
+        if (this.$refs.soapVideo.paused) {
+          this.$refs.soapVideo.play();
+        } else {
+          this.$refs.soapVideo.pause();
+        }
+      },
+
       muteThird: function() {
         if (this.$refs.bobineVideo.muted) {
           this.$refs.bobineVideo.muted = false;
@@ -346,6 +359,14 @@
         } else {
           this.$refs.bobineVideo.muted = true;
           this.audioVideoThird = false;
+        }
+      },
+
+      playThird: function() {
+        if (this.$refs.bobineVideo.paused) {
+          this.$refs.bobineVideo.play();
+        } else {
+          this.$refs.bobineVideo.pause();
         }
       },
 
