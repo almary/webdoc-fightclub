@@ -103,7 +103,7 @@
 
       mobileFunction: function() {
         console.log("resize");
-        if (window.innerWidth < 1100 || window.innerHeight < 650) {
+        if (window.innerWidth < 1100 || window.innerHeight < 600) {
           this.mobile = 1;
         } else {
           this.mobile = 0;
