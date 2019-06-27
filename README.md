@@ -4,10 +4,10 @@
 ```
 npm install
 ```
-In the root directory directory
+In the root directory
 
 ## Run development server
 ```
 npm run dev
 ```
-In the root directory directory
+In the root directory
