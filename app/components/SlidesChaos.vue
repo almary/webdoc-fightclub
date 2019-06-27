@@ -54,16 +54,10 @@ E<template>
         <div class="rupture__wrapper">
           <div class="rupture__content details">
             <div>
-              Seule la désolation de la solitude et l'abscence totale de tout ce
-              qui rendrait le narrateur vivant pourrait prédisposer un homme à
-              désirer l'excitation et l'acceptation social non obstant des
-              conséquences à long terme.
+              {{ contents[0].text }}
             </div>
             <div>
-              Comme décrit dans le film, la solitude s'accompagne d'une
-              réinvention incessante de soi-même, une transformation d'une
-              existence morne à excitante, de morale à immorale, de mauviette à
-              "vrai homme".
+              {{ contents[1].text }}
             </div>
           </div>
           <div class="rupture__polaroid">
@@ -168,18 +162,14 @@ E<template>
           <div class="recul__title subtitle">Prise de recul</div>
           <div class="recul__details details">
             <div>
-              C’est à la mort de Bob, que Jack prend conscience qu’il doit
-              empêcher Tyler d’aller plus loin. Bob a été utilisé pour le
-              projet, comme un moyen.
+              {{ contents[2].text }}
             </div>
             <div class="recul__content--wrapper">
               <div>
-                Se rebeller contre un système qui les abruti ne leur permet pas
-                de se libérer; cela les déshumanise.
+                {{ contents[3].text }}
               </div>
               <div>
-                Ce projet finit par déshumaniser les hommes, au lieu de les
-                grandir, il nie les individus au profit d’une cause commune.
+                {{ contents[4].text }}
               </div>
             </div>
           </div>
@@ -266,6 +256,7 @@ E<template>
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     props: ["show"],
 
@@ -273,15 +264,26 @@ E<template>
       return {
         audioVideoFirst: true,
         audioVideoSecond: true,
-        audioVideoThird: true
+        audioVideoThird: true,
+        contents: []
       };
     },
-
+    created(){
+      this.getContents()
+    },
     methods: {
       increment: function() {
         this.$emit("increment");
       },
-
+      getContents: function() {
+            axios.get('http://localhost:2324/api/content')
+            .then(data => {
+                this.contents = data.data.contents
+            })
+            .catch(error => {
+                this.message = error
+            })
+      },
       muteFirst: function() {
         if (this.$refs.introVideo.muted) {
           this.$refs.introVideo.muted = false;

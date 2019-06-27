@@ -20,8 +20,7 @@
           La société de consommation
         </div>
         <div class="intro__details details">
-          Notre société est complètement monopolisée par la culture de la
-          consommation et l'obsession des possessions.
+          {{ contents[20].text }}
         </div>
       </div>
     </div>
@@ -68,13 +67,11 @@
           <div class="consommation__content--wrapper" v-if="show == 4">
             <div class="content__wrapper--text">
               <div>
-                Le narrateur n’est personne, il n’a pas de passion autre que sa
-                consommation.
+                {{ contents[21].text }}
               </div>
               <div class="wrapper__bold">Il vit sans but.</div>
               <div>
-                Il est tellement absorbé par la possession d’objets qu’il se
-                définit par ses possessions matérielles :
+                {{ contents[23].text }}
               </div>
             </div>
             <img
@@ -115,17 +112,14 @@
           </div>
           <div class="things__content">
             <div class="content__quote">
-              « Il m'a fallu une vie entière pour acheter tous ces trucs. »
+              {{ contents[24].text }}
             </div>
             <div class="content__details details">
               <div>
-                L’importance et le sens de sa vie est mesurée par les objets
-                qu’il possède. Décrivant sa propre existence à rien de plus
-                qu’une façon de garder et de ranger des choses.
+                {{ contents[25].text }}
               </div>
               <div>
-                Le consumérisme vide et sinistre incriminé dans Fight Club
-                illustre également la solitude latente du narrateur.
+                {{ contents[26].text }}
               </div>
             </div>
           </div>
@@ -160,19 +154,17 @@
         </div>
         <div class="nihilisme__details--wrapper">
           <div class="nihilisme__details details">
-            Le nihilisme soutient que la vie n’a pas de sens, rejette toutes
-            valeurs, croyance ou réalité substantielle.
+            {{ contents[27].text }}
           </div>
           <div class="nihilisme__details details">
-            C'est un rejet total de la vie.
+            {{ contents[28].text }}
           </div>
         </div>
         <div class="nihilisme__bobine--wrapper">
           <div class="nihilisme__bobine"></div>
         </div>
         <div class="nihilisme__details details">
-          Un monde dans lequel nous n’avons pas de morale, pas d’objets, pas de
-          pensées idéologiques, rien du tout.
+          {{ contents[29].text }}
         </div>
       </div>
     </transition>
@@ -257,14 +249,10 @@
             </div>
             <div class="autodestruction__content">
               <div class="autodestruction__content--quote">
-                « Tyler dit que chercher à s'améliorer, c'est rien que de la
-                branlette. Tyler dit que l'autodestruction est sans doute la
-                réponse. »
+                {{ contents[30].text }}
               </div>
               <div class="autodestruction__content--details details">
-                Se détruire pour se reconstruire. Le narrateur réalise qu’il
-                peut s’évader de son existence et creuser une vision bien plus
-                excitante et profonde de la vie humaine.
+                {{ contents[31].text }}
               </div>
             </div>
           </div>
@@ -300,6 +288,7 @@
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     props: ["show"],
 
@@ -307,15 +296,26 @@
       return {
         audioVideoFirst: true,
         audioVideoSecond: true,
-        audioVideoThird: true
+        audioVideoThird: true,
+        contents: []
       };
     },
-
+    created(){
+      this.getContents()
+    },
     methods: {
       increment: function() {
         this.$emit("increment");
       },
-
+      getContents: function() {
+            axios.get('http://localhost:2324/api/content')
+            .then(data => {
+                this.contents = data.data.contents
+            })
+            .catch(error => {
+                this.message = error
+            })
+      },
       muteFirst: function() {
         if (this.$refs.barVideo.muted) {
           this.$refs.barVideo.muted = false;
@@ -500,7 +500,7 @@
   .consommation__book {
     position: absolute;
     width: auto;
-    height: 70vh;
+    height: 580px;
     right: -300px;
     bottom: 0;
     transition: transform 0.3s;

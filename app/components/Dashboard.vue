@@ -45,6 +45,9 @@
     width: 100vw;
     height: 100vh;
 }
+body {
+    overflow: visible;
+}
 h1 {
     color: black;
 }
@@ -115,6 +118,12 @@ export default {
             document.querySelector('.modal').style.display = "none"
         }
     },
+    created(){
+        document.querySelector('body').style.overflow = "visible"
+    },
+    destroyed(){
+        document.querySelector('body').style.overflow = "hidden"
+    },
     mounted: function() {
         if(!this.$session.exists())
         {
@@ -122,6 +131,7 @@ export default {
         }
         this.isLoggedin = true
         this.getContents()
+
     }
 }
 </script>

@@ -14,8 +14,7 @@
     <div class="slide slide--intro">
       <transition name="text">
         <div class="intro" v-if="show == 2">
-          Fight Club dresse le portrait de la fin d'un siècle qui agonise, par
-          le biais d'un narrateur désabusé.
+          {{ contents[5].text }}
         </div>
       </transition>
     </div>
@@ -32,13 +31,12 @@
       <div class="narrator--textwrapper">
         <transition name="text">
           <div class="narrator--details" v-if="show == 3">
-            Le narrateur : un cadre moyen, célibataire, sans aucune passion et
-            qui souffre d'insomnie.
+            {{ contents[6].text }}
           </div>
         </transition>
         <transition name="text">
           <div class="narrator--details" v-if="show == 3">
-            Prédisposé à vouloir changer.
+            {{ contents[7].text }}
           </div>
         </transition>
       </div>
@@ -70,13 +68,12 @@
         <div class="content__details details">
           <transition name="fade">
             <div class="content__details--first" v-if="show == 4">
-              Son cadre de vie est baigné dans des tons ternes qui font échos à
-              la platitude de son quotidien.
+              {{ contents[8].text }}
             </div>
           </transition>
           <transition name="fade">
             <div class="content__details--second" v-if="show == 4">
-              Un quotidien sans passion, voué à la lassitude.
+              {{ contents[9].text }}
             </div>
           </transition>
         </div>
@@ -106,13 +103,12 @@
       <div class="therapie__content">
         <transition name="fade">
           <div class="therapie__content--title subtitle" v-if="show == 5">
-            Les thérapies de groupe
+            {{ contents[10].text }}
           </div>
         </transition>
         <transition name="text">
           <div class="therapie__content--details details" v-if="show == 5">
-            Le narrateur cherche d’une certaine façon un contact pour le sortir
-            de sa vie morose. Il relativise sur sa vie et sa condition.
+            {{ contents[11].text }}
           </div>
         </transition>
       </div>
@@ -139,7 +135,7 @@
       <div class="masculinite__wrapper">
         <transition name="fade">
           <div class="masculinite__title subtitle" v-if="show == 6">
-            La masculinité
+            {{ contents[12].text }}
           </div>
         </transition>
         <transition name="zoom">
@@ -177,15 +173,12 @@
       <div class="masculinite__content details">
         <transition name="text">
           <div v-if="show == 6">
-            Selon Tyler c’est en combattant que l’homme retrouve l’accès à sa
-            virilité, sa fierté. Il reprend confiance en lui et se sent
-            véritablement vivre.
+            {{ contents[13].text }}
           </div>
         </transition>
         <transition name="text">
           <div v-if="show == 6">
-            Bob, en contrepartie, représente la peur des hommes de cette
-            génération par rapport à la féminisation.
+            {{ contents[14].text }}
           </div>
         </transition>
       </div>
@@ -197,7 +190,7 @@
             class="feminisation__title feminisation__title--first subtitle"
             v-if="show == 7 && tv == 1"
           >
-            La peur de la féminisation...
+            {{ contents[15].text }}
           </div>
         </transition>
         <transition name="fade">
@@ -205,7 +198,7 @@
             class="feminisation__title feminisation__title--second subtitle"
             v-if="show == 7 && tv == 2"
           >
-            ...compensée par la violence
+            {{ contents[16].text }}
           </div>
         </transition>
       </div>
@@ -235,8 +228,7 @@
             </div>
             <div class="tv__first--detailsWrapper">
               <div class="tv__first--details details">
-                Il a peur que la sociéte (et le capitalisme) le transforme en
-                femme. Ils se sentent rabaissés par le travail.
+                {{ contents[17].text }}
               </div>
             </div>
           </div>
@@ -264,10 +256,7 @@
             </div>
             <div class="tv__second--detailsWrapper">
               <div class="tv__second--details details">
-                Etre violent est quelque chose qu'ils associent au fait d'etre
-                un homme, un vrai. La masculinité, à travers les agressions,
-                leur donne une manière de contre-balancer avec leurs métiers non
-                virils et leur consumérisme.
+                {{ contents[18].text }}
               </div>
             </div>
           </div>
@@ -287,9 +276,7 @@
         </transition>
         <transition name="fade">
           <div class="universMascu__details details" v-if="show == 8">
-            Contrairement à l’environnement quotidien et stérile du narrateur,
-            ceux liés à Tyler expriment une masculinité très marquée ainsi que
-            le besoin de se libérer de toutes chaines.
+            {{ contents[19].text }}
           </div>
         </transition>
       </div>
@@ -327,6 +314,7 @@
 </transition> -->
 
 <script>
+import axios from 'axios'
   export default {
     props: ["show"],
 
@@ -335,10 +323,13 @@
         audioVideo: true,
         tv: 1,
         tv1Playing: true,
-        tv2Playing: false
+        tv2Playing: false,
+        contents: []
       };
     },
-
+    created(){
+      this.getContents()
+    },
     methods: {
       mute: function() {
         if (this.$refs.conclusionVideo.muted) {
@@ -349,7 +340,15 @@
           this.audioVideo = false;
         }
       },
-
+      getContents: function() {
+            axios.get('http://localhost:2324/api/content')
+            .then(data => {
+                this.contents = data.data.contents
+            })
+            .catch(error => {
+                this.message = error
+            })
+      },
       play: function() {
         console.log(this.$refs.conclusionVideo.paused);
         if (this.$refs.conclusionVideo.paused) {
