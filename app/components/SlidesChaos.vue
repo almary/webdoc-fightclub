@@ -5,7 +5,9 @@ E<template>
         <h1 v-if="show == 0 || show == 1">Le Chaos</h1>
       </transition>
       <transition name="fade">
-        <div class="scroll" v-if="show == 0">scroll vers le bas <img src="../assets/img/down.gif"></div>
+        <div class="scroll" v-if="show == 0">
+          scroll vers le bas <img src="../assets/img/down.gif" />
+        </div>
       </transition>
       <transition name="fade">
         <h2 v-if="show == 1">
@@ -14,7 +16,11 @@ E<template>
       </transition>
     </div>
     <transition name="fade">
-      <div class="slide slide--intro" v-if="show == 2" :class="{firstPlan: show == 2}">
+      <div
+        class="slide slide--intro"
+        v-if="show == 2"
+        :class="{firstPlan: show == 2}"
+      >
         <video
           class="intro__video"
           src="../assets/vids/giveup.mp4"
@@ -35,7 +41,11 @@ E<template>
             v-on:click="muteFirst"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 2" v-on:click="playFirst"></button>
+        <button
+          class="play-pause"
+          v-if="show == 2"
+          v-on:click="playFirst"
+        ></button>
       </div>
     </transition>
     <transition name="fade">
@@ -86,7 +96,11 @@ E<template>
       </div>
     </transition>
     <transition name="fade">
-      <div class="slide slide--crash" v-if="show == 5" :class="{firstPlan: show ==5}">
+      <div
+        class="slide slide--crash"
+        v-if="show == 5"
+        :class="{firstPlan: show ==5}"
+      >
         <video
           class="crash__video"
           src="../assets/vids/crash.mp4"
@@ -107,7 +121,11 @@ E<template>
             v-on:click="muteSecond"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 5" v-on:click="playSecond"></button>
+        <button
+          class="play-pause"
+          v-if="show == 5"
+          v-on:click="playSecond"
+        ></button>
       </div>
     </transition>
     <transition name="fade">
@@ -202,7 +220,11 @@ E<template>
       </div>
     </div>
     <transition name="fade">
-      <div class="slide slide--conclusion" v-if="show == 9" :class="{firstPlan: show == 9}">
+      <div
+        class="slide slide--conclusion"
+        v-if="show == 9"
+        :class="{firstPlan: show == 9}"
+      >
         <video
           class="conclusion__video"
           src="../assets/vids/conclusion.mp4"
@@ -223,7 +245,21 @@ E<template>
             v-on:click="muteThird"
           ></button>
         </div>
-        <button class="play-pause" v-if="show == 9" v-on:click="playThird"></button>
+        <button
+          class="play-pause"
+          v-if="show == 9"
+          v-on:click="playThird"
+        ></button>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div class="slide slide--final" v-if="show == 10">
+        <div class="final__wrapper">
+          <div class="final__title subtitle">
+            Merci d'avoir parcouru ce documentaire.
+          </div>
+          <router-link to="/"><button>Recommencer</button> </router-link>
+        </div>
       </div>
     </transition>
   </div>
@@ -299,7 +335,7 @@ E<template>
         } else {
           this.$refs.conclusionVideo.pause();
         }
-      },
+      }
     }
   };
 </script>
@@ -450,12 +486,11 @@ E<template>
   }
 
   .mort__polaroid--1 {
-    z-index: 2;
+    z-index: 1;
   }
 
   .mort__polaroid--2 {
     transform: rotateY(180deg);
-    z-index: 3;
   }
 
   .mort__content {
@@ -543,6 +578,22 @@ E<template>
   .conclusion__video {
     width: 100vw;
     height: 100vh;
+  }
+
+  .slide--final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .final__wrapper {
+    height: 300px;
+    width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 
   /* ANIMS SCOPED */

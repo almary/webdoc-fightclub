@@ -113,7 +113,6 @@
       up: function() {
         // min
         if (this.show <= 0) {
-          this.$router.push({ path: "../Regles/10" });
           return;
         }
         //detect scroll (-50 : sensitivity)

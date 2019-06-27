@@ -112,7 +112,6 @@
       up: function() {
         // min
         if (this.show <= 0) {
-          this.$router.push({ path: "../Homme/9" });
           return;
         }
         //detect scroll (-50 : sensitivity)
