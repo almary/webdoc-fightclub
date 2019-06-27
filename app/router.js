@@ -1,12 +1,21 @@
 import Vue from "vue";
 import Router from "vue-router";
+import VueSession from 'vue-session';
 
 import Home from "./components/Home.vue";
 import Homme from "./components/Homme.vue";
 import Regles from "./components/Regles.vue";
 import Chaos from "./components/Chaos.vue";
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+
+var options = {
+  persist: true
+}
 
 Vue.use(Router);
+Vue.use(VueSession, options);
+
 
 const router = new Router({
   mode: "history",
@@ -39,6 +48,16 @@ const router = new Router({
       component: Chaos
     },
     { path: "/Chaos/:id",  name: "chaos", component: Chaos, },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    },
     {
       path: "*",
       redirect: { name: "home" }
