@@ -181,6 +181,12 @@ button {
 }
 
 .play-pause {
+  background: none;
+  background-repeat: no-repeat;
+  background-image: url("../svg/playpause.svg");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
   right: 5vw;
 }
 

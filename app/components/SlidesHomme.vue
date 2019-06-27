@@ -314,7 +314,6 @@
         ></button>
       </div>
       <button class="play-pause" v-if="show == 9" v-on:click="play">
-        play / pause
       </button>
     </div>
   </div>
@@ -396,7 +395,7 @@
       },
 
       afterEnd: function() {
-        this.$router.push({ path: "Regles" });
+        this.$router.push({ path: "../Regles" });
       }
     }
   };
