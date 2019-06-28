@@ -11,7 +11,7 @@ Pour ce projet, nous utilisons MongoDB comme base de donnée.
 2. Installer les dépendances
 `npm i`
 
-3. Importer la base de donnée `mongoimport --db fightclub --collection contents --type json --file seed.json --jsonArray --maintainInsertionOrder`
+3. Importer la base de donnée `mongoimport --db fightclub --collection contents --type json --file content.json --jsonArray --maintainInsertionOrder`
 
 4. Lancer MongoDB `mongod`
 
