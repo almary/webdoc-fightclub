@@ -17,6 +17,6 @@ Pour ce projet, nous utilisons MongoDB comme base de donnée.
 
 5. Lancer le serveur `node server.js`
 
-## Gestion du contenu
+## Url de gestion du contenu
 
 localhost:xxxx/Login
